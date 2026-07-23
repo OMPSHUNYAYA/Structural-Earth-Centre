@@ -1,0 +1,116 @@
+{
+  "authority_limit": "RESULT_IS_BOUND_TO_EXACT_INPUT_DATASET_AND_DECLARED_BOUNDARY_LENGTH_MEASURE",
+  "carrier_class": "EXTERNAL_GLOBAL_LAND_POLYGON_DATASET",
+  "coordinate_input": "LONGITUDE_LATITUDE_DEGREES",
+  "dataset_locator": {
+    "binding_rule": "DATASET_BYTES_SHA256_IS_MATERIAL_EVIDENCE",
+    "dataset_name": "1:110m Land",
+    "default_fetch_url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/refs/heads/master/geojson/ne_110m_land.geojson",
+    "mutable_locator": true,
+    "official_repository": "https://github.com/nvkelso/natural-earth-vector",
+    "project_page": "https://www.naturalearthdata.com/downloads/110m-physical-vectors/110m-land/",
+    "source_name": "Natural Earth"
+  },
+  "geometry_types": [
+    "POLYGON",
+    "MULTIPOLYGON"
+  ],
+  "identity_model": {
+    "evidence_id_material": [
+      "schema",
+      "system_version",
+      "result_id",
+      "dataset_sha256",
+      "dataset_byte_length",
+      "feature_count",
+      "polygon_count",
+      "ring_count",
+      "vertex_count",
+      "source_locator",
+      "acquisition_mode",
+      "algorithm_profile_hash",
+      "identity_quantization_decimal_places"
+    ],
+    "profile": "SEC-REAL-LAND-IDENTITY-1-D02",
+    "result_id_material": [
+      "schema",
+      "system_version",
+      "profile_id",
+      "algorithm_profile_hash",
+      "dataset_sha256",
+      "structural_result"
+    ],
+    "source_locator_affects_evidence_id": true,
+    "source_locator_affects_result_id": false,
+    "structural_result_rule": "IDENTITY_BEARING_FLOATING_FIELDS_ARE_PROFILE_QUANTIZED_BEFORE_HASHING"
+  },
+  "input_admission": {
+    "coordinate_requirements": {
+      "boolean_values_rejected": true,
+      "finite_numeric_required": true,
+      "latitude_range_degrees": [
+        -90,
+        90
+      ],
+      "longitude_range_degrees": [
+        -180,
+        180
+      ]
+    },
+    "failure_state": "INPUT_REJECTED",
+    "invalid_json": "REJECT",
+    "invalid_utf8": "REJECT",
+    "ring_requirements": {
+      "closed_ring_required": true,
+      "minimum_positions": 4
+    },
+    "unsupported_geometry_state": "UNSUPPORTED"
+  },
+  "input_format": "GEOJSON_FEATURE_COLLECTION",
+  "measure": "SPHERICAL_BOUNDARY_ARC_LENGTH",
+  "non_claims": [
+    "NOT_THE_INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+    "NOT_A_POPULATION_CENTRE",
+    "NOT_A_UNIVERSAL_GEOGRAPHICAL_CENTRE",
+    "NOT_INVARIANT_TO_DATASET_BOUNDARY_OR_SCALE_CHANGES",
+    "NOT_EQUIVALENT_TO_SURFACE_AREA_WEIGHTING"
+  ],
+  "numerical_contract": {
+    "arithmetic_model": "BINARY64_TRANSCENDENTAL_PATH",
+    "cross_platform_exactness": "NOT_UNCONDITIONALLY_CLAIMED",
+    "identity_quantization_decimal_places": 9,
+    "portability_rule": "RESULT_ID_BINDS_THE_QUANTIZED_STRUCTURAL_RESULT_UNDER_THIS_ALGORITHM_PROFILE",
+    "quantization_stage": "BEFORE_RESULT_ID_HASHING"
+  },
+  "objective": "SPHERICAL_BOUNDARY_LENGTH_VECTOR_CENTRE_DIRECTION",
+  "objective_family": "NORMALIZED_VECTOR_MOMENT_DIRECTION",
+  "orientation_policy": "BOUNDARY_DIRECTION_IS_ORIENTATION_INVARIANT",
+  "output": {
+    "fields": [
+      "latitude_deg",
+      "longitude_deg",
+      "unit_vector_xyz",
+      "boundary_length_radians"
+    ],
+    "identity_quantization_decimal_places": 9,
+    "kind": "DIRECTION_ON_UNIT_SPHERE"
+  },
+  "profile_hash": "sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68",
+  "profile_id": "SEC-REAL-LAND-BOUNDARY-VECTOR-CENTRE-1-D01",
+  "required_evidence": [
+    "dataset_sha256",
+    "dataset_byte_length",
+    "feature_count",
+    "polygon_count",
+    "ring_count",
+    "vertex_count",
+    "source_locator",
+    "acquisition_mode",
+    "algorithm_profile_hash",
+    "identity_quantization_decimal_places"
+  ],
+  "ring_policy": "ALL_DECLARED_RING_BOUNDARIES_CONTRIBUTE_POSITIVE_ARC_LENGTH",
+  "schema": "SEC-REAL-LAND-CENTRE-PROFILE-1-D03",
+  "surface_model": "UNIT_SPHERE",
+  "system_version": "0.5.0"
+}

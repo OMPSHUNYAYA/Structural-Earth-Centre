@@ -1,0 +1,35 @@
+{
+  "domain_adapters": [
+    {
+      "adapter_profile_hash": "sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2",
+      "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-CENTRE-1-D01",
+      "domain_id": "CENTRE"
+    },
+    {
+      "adapter_profile_hash": "sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1",
+      "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01",
+      "domain_id": "ADMISSIBILITY"
+    }
+  ],
+  "generic_kernel_profile_hash": "sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9",
+  "generic_kernel_profile_id": "SEC-GENERIC-STRUCTURAL-KERNEL-1-D01",
+  "principles": {
+    "certificate_binds_kernel_adapter_claim_and_result": true,
+    "domain_specific_rules_are_adapter_bounded": true,
+    "no_blind_aggregation": true,
+    "no_repair_invention": true,
+    "same_generic_primitives_across_domains": true
+  },
+  "profile_hash": "sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f",
+  "profile_id": "SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01",
+  "proof_dimensions": [
+    "CLAIM_RELATION_SEMANTICS",
+    "RESULT_SPECTRUM_SEMANTICS",
+    "RESOLUTION_FRONTIER_SEMANTICS",
+    "RESOLUTION_CERTIFICATE_BINDING",
+    "PYTHON_JAVASCRIPT_PARITY"
+  ],
+  "proof_scope": "TWO_BOUNDED_SYNTHETIC_DOMAINS_WITH_EXACT_REPRODUCIBLE_VECTORS",
+  "schema": "SEC-STRUCTURAL-PORTABILITY-PROFILE-1-D01",
+  "system_version": "0.5.0"
+}

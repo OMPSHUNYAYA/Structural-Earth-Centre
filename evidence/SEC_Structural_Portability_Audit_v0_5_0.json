@@ -1,0 +1,284 @@
+{
+  "checks": [
+    {
+      "check_id": "PROFILE_IDENTITIES",
+      "detail": [
+        "sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f",
+        "sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9",
+        "sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2",
+        "sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "CORPUS_ID",
+      "detail": "sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_SET_ID",
+      "detail": "secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RC001",
+      "detail": "CLAIM_EQUIVALENT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RA001",
+      "detail": "CLAIM_EQUIVALENT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RC002",
+      "detail": "LEFT_REFINES_RIGHT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RA002",
+      "detail": "LEFT_REFINES_RIGHT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RC003",
+      "detail": "COMPATIBLE_OVERLAP",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RA003",
+      "detail": "COMPATIBLE_OVERLAP",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RC004",
+      "detail": "DECLARATION_CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-RA004",
+      "detail": "DECLARATION_CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SC001",
+      "detail": "RESULT_CONVERGENT_CLAIM_DIVERSE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SA001",
+      "detail": "RESULT_CONVERGENT_CLAIM_DIVERSE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SC002",
+      "detail": "RESULT_DIVERGENT_FAMILY",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SA002",
+      "detail": "RESULT_DIVERGENT_FAMILY",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SC003",
+      "detail": "MIXED_RESOLUTION_FAMILY",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-SA003",
+      "detail": "MIXED_RESOLUTION_FAMILY",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FC001",
+      "detail": "UNIQUE_MINIMAL_FRONTIER",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FA001",
+      "detail": "UNIQUE_MINIMAL_FRONTIER",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FC002",
+      "detail": "MULTIPLE_MINIMAL_FRONTIERS",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FA002",
+      "detail": "MULTIPLE_MINIMAL_FRONTIERS",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FC003",
+      "detail": "NO_ADMISSIBLE_FRONTIER",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-FA003",
+      "detail": "NO_ADMISSIBLE_FRONTIER",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-CC001",
+      "detail": "CERTIFICATE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-CA001",
+      "detail": "CERTIFICATE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-DC001",
+      "detail": "RESOLVED",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-PORT-DA001",
+      "detail": "RESOLVED",
+      "pass": true
+    },
+    {
+      "check_id": "RELATION_SEMANTICS_DOMAIN_INVARIANT_1",
+      "detail": [
+        "CLAIM_EQUIVALENT",
+        "CLAIM_EQUIVALENT"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "RELATION_SEMANTICS_DOMAIN_INVARIANT_2",
+      "detail": [
+        "LEFT_REFINES_RIGHT",
+        "LEFT_REFINES_RIGHT"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "RELATION_SEMANTICS_DOMAIN_INVARIANT_3",
+      "detail": [
+        "COMPATIBLE_OVERLAP",
+        "COMPATIBLE_OVERLAP"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "RELATION_SEMANTICS_DOMAIN_INVARIANT_4",
+      "detail": [
+        "DECLARATION_CONFLICT",
+        "DECLARATION_CONFLICT"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SPECTRUM_SEMANTICS_DOMAIN_INVARIANT_1",
+      "detail": [
+        "RESULT_CONVERGENT_CLAIM_DIVERSE",
+        "RESULT_CONVERGENT_CLAIM_DIVERSE"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SPECTRUM_SEMANTICS_DOMAIN_INVARIANT_2",
+      "detail": [
+        "RESULT_DIVERGENT_FAMILY",
+        "RESULT_DIVERGENT_FAMILY"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SPECTRUM_SEMANTICS_DOMAIN_INVARIANT_3",
+      "detail": [
+        "MIXED_RESOLUTION_FAMILY",
+        "MIXED_RESOLUTION_FAMILY"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "FRONTIER_SEMANTICS_DOMAIN_INVARIANT_1",
+      "detail": [
+        "UNIQUE_MINIMAL_FRONTIER",
+        "UNIQUE_MINIMAL_FRONTIER",
+        1,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "FRONTIER_SEMANTICS_DOMAIN_INVARIANT_2",
+      "detail": [
+        "MULTIPLE_MINIMAL_FRONTIERS",
+        "MULTIPLE_MINIMAL_FRONTIERS",
+        1,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "FRONTIER_SEMANTICS_DOMAIN_INVARIANT_3",
+      "detail": [
+        "NO_ADMISSIBLE_FRONTIER",
+        "NO_ADMISSIBLE_FRONTIER",
+        null,
+        null
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "CERTIFICATE_TAMPER_SENSITIVITY",
+      "detail": "sha256:81ac2bab45826861921284d8f33a74796bf02110203b62869f6103e6204c47c8",
+      "pass": true
+    },
+    {
+      "check_id": "GENERIC_KERNEL_ADAPTER_SEPARATION",
+      "detail": [
+        "CLAIM_RELATION",
+        "RESOLUTION_CERTIFICATE",
+        "RESOLUTION_FRONTIER",
+        "RESULT_SPECTRUM"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "PORTABILITY_CERTIFICATE_RECONSTRUCTS",
+      "detail": "sha256:660af7631ca9e7cc630ec3695c0cb78ead5fa43f62e09be6e4555361b3a8eb21",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:41933da5589cb12615d2a8d470f725918d70c7fad3da033c6d663fc2344ec4d1",
+  "generic_kernel_profile_id": "SEC-GENERIC-STRUCTURAL-KERNEL-1-D01",
+  "passed": 40,
+  "portability_certificate": {
+    "adapter_profiles": [
+      {
+        "adapter_profile_hash": "sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1",
+        "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01",
+        "domain_id": "ADMISSIBILITY"
+      },
+      {
+        "adapter_profile_hash": "sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2",
+        "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-CENTRE-1-D01",
+        "domain_id": "CENTRE"
+      }
+    ],
+    "generic_kernel_profile_hash": "sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9",
+    "generic_kernel_profile_id": "SEC-GENERIC-STRUCTURAL-KERNEL-1-D01",
+    "portability_certificate_id": "sha256:660af7631ca9e7cc630ec3695c0cb78ead5fa43f62e09be6e4555361b3a8eb21",
+    "portability_profile_hash": "sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f",
+    "portability_profile_id": "SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01",
+    "proof_scope": "SHARED_GENERIC_PRIMITIVES_ACROSS_TWO_BOUNDED_DOMAIN_ADAPTERS",
+    "schema": "SEC-STRUCTURAL-PORTABILITY-CERTIFICATE-1-D01",
+    "system_version": "0.5.0",
+    "vector_corpus_id": "sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7",
+    "vector_set_id": "secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4"
+  },
+  "portability_profile_id": "SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01",
+  "schema": "SEC-STRUCTURAL-PORTABILITY-AUDIT-1-D01",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 40,
+  "vector_corpus_id": "sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7",
+  "vector_set_id": "secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4"
+}

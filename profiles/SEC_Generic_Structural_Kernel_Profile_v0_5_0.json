@@ -1,0 +1,31 @@
+{
+  "canonicalization": "SORTED_KEY_CANONICAL_JSON_UTF8",
+  "generic_operations": [
+    "CLAIM_RELATION",
+    "RESULT_SPECTRUM",
+    "RESOLUTION_FRONTIER",
+    "RESOLUTION_CERTIFICATE"
+  ],
+  "identity_algorithm": "SHA256",
+  "limits": {
+    "max_claims": 256,
+    "max_dependencies": 256,
+    "max_repair_options": 16
+  },
+  "non_claims": [
+    "NO_UNIVERSAL_DOMAIN_COMPLETENESS",
+    "NO_CAUSAL_INFERENCE",
+    "NO_AUTOMATIC_EXECUTION_AUTHORITY",
+    "NO_REPAIR_INVENTION_OUTSIDE_DECLARED_OPTIONS"
+  ],
+  "profile_hash": "sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9",
+  "profile_id": "SEC-GENERIC-STRUCTURAL-KERNEL-1-D01",
+  "resolved_state": "RESOLVED",
+  "schema": "SEC-GENERIC-STRUCTURAL-KERNEL-PROFILE-1-D01",
+  "separation_contract": {
+    "domain_adapters_may_resolve_subject_matter": true,
+    "generic_kernel_contains_domain_specific_resolution_rules": false,
+    "generic_relation_spectrum_frontier_and_certificate_semantics_are_shared": true
+  },
+  "system_version": "0.5.0"
+}

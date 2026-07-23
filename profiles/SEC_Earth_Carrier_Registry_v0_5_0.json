@@ -1,0 +1,198 @@
+{
+  "architecture_profile": "SEC-ARCH-1-D01",
+  "carrier_registry_id": "sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216",
+  "carriers": [
+    {
+      "carrier_id": "sha256:79f061c88af8fd416977713bbb6744ad7c15162556d3196c0c3857b083ce2e76",
+      "carrier_key": "EARTH_IDEAL_SPHERE_NORMALIZED",
+      "carrier_type": "DECLARED_ANALYTIC_BODY",
+      "claim_boundary": "GEOMETRIC_MODEL_ONLY",
+      "earth_scope": "MODEL_ONLY",
+      "frame": "SEC-EARTH-MODEL-CARTESIAN-3D-D01",
+      "geometry": {
+        "origin": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "radius": {
+          "d": "1",
+          "n": "1"
+        },
+        "shape": "SPHERE"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [],
+      "symmetry": "FULL_ROTATIONAL_SYMMETRY"
+    },
+    {
+      "carrier_id": "sha256:45de76bad68432a24106549c6f10bddbe03dbbe452ca756f459742fd7e28b5ee",
+      "carrier_key": "EARTH_WGS84_REFERENCE_ELLIPSOID",
+      "carrier_type": "DECLARED_REFERENCE_ELLIPSOID",
+      "claim_boundary": "REFERENCE_ELLIPSOID_GEOMETRY_ONLY",
+      "earth_scope": "REFERENCE_MODEL",
+      "frame": "WGS84_ECEF_REFERENCE",
+      "geometry": {
+        "inverse_flattening": {
+          "decimal": "298.257223563"
+        },
+        "origin_ecef_m": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "semi_major_axis_m": {
+          "d": "1",
+          "n": "6378137"
+        },
+        "shape": "OBLATE_ELLIPSOID"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [
+        "NGA-WGS84-STD-0036-1.0.0"
+      ],
+      "symmetry": "AXIAL_AND_CENTRAL_MODEL_SYMMETRY"
+    },
+    {
+      "carrier_id": "sha256:728a295202a5ec4c5d5f7300ec1072ddc79098366e563ef319cf111712e6aa9a",
+      "carrier_key": "EARTH_WGS84_COORDINATE_SYSTEM",
+      "carrier_type": "DECLARED_REFERENCE_SYSTEM",
+      "claim_boundary": "REFERENCE_SYSTEM_ORIGIN_NOT_LIVE_MEASUREMENT",
+      "earth_scope": "WHOLE_EARTH_REFERENCE_SYSTEM",
+      "frame": "WGS84_ECEF_REFERENCE",
+      "geometry": {
+        "origin_ecef_m": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ]
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [
+        "NGA-WGS84-STD-0036-1.0.0"
+      ],
+      "symmetry": "NOT_RESOLUTION_AUTHORITY"
+    },
+    {
+      "carrier_id": "sha256:8d5ca2ea02efface97e596ea45e57c5f06f72d7c4f11ef65b110b72b60f5aaf3",
+      "carrier_key": "EARTH_ITRS_WHOLE_SYSTEM",
+      "carrier_type": "DECLARED_REFERENCE_SYSTEM",
+      "claim_boundary": "REFERENCE_SYSTEM_DEFINITION_NOT_INSTANTANEOUS_REALIZATION",
+      "earth_scope": "WHOLE_EARTH_INCLUDING_OCEANS_AND_ATMOSPHERE",
+      "frame": "ITRS_ABSTRACT_REFERENCE_SYSTEM",
+      "geometry": {
+        "origin_coordinate": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "origin_reference": "GEOCENTRE"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [
+        "IERS-TN36-2010"
+      ],
+      "symmetry": "NOT_RESOLUTION_AUTHORITY"
+    },
+    {
+      "carrier_id": "sha256:d02379f9daee7f93ab0f47ff89280f4ea787d01d519ff7d709ea3e209b133d66",
+      "carrier_key": "EARTH_SURFACE_ABSTRACT_CLOSED",
+      "carrier_type": "DECLARED_SYMMETRY_CLASS",
+      "claim_boundary": "SURFACE_CENTRE_REQUIRES_OBJECTIVE_OR_BREAKER",
+      "earth_scope": "SURFACE_ONLY",
+      "frame": "ABSTRACT_EARTH_SURFACE",
+      "geometry": {
+        "candidate_class": "ALL_SURFACE_POINTS",
+        "shape_class": "CLOSED_EARTH_SURFACE"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [],
+      "symmetry": "NO_INTRINSIC_UNIQUE_SURFACE_POINT_WITHOUT_BREAKER"
+    },
+    {
+      "carrier_id": "sha256:fe09896e2043c06ed5fb4d2fd4a079337bd083208d99787730323981fee68271",
+      "carrier_key": "EARTH_LAND_DISTRIBUTION_EXTERNAL",
+      "carrier_type": "EXTERNAL_DATASET_CARRIER",
+      "claim_boundary": "NO_LAND_CENTRE_WITHOUT_DECLARED_DATASET_AND_RULES",
+      "earth_scope": "LAND_DISTRIBUTION",
+      "frame": "DATASET_DECLARED",
+      "geometry": {
+        "dataset_embedded": false,
+        "dataset_role": "LAND_MASK_AND_BOUNDARY"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [],
+      "symmetry": "DATA_DEPENDENT"
+    },
+    {
+      "carrier_id": "sha256:e2ced56586604bb75629312a6db3967dc963c821d803d396d2bfab384e941cff",
+      "carrier_key": "EARTH_POPULATION_DISTRIBUTION_EXTERNAL",
+      "carrier_type": "EXTERNAL_DATASET_CARRIER",
+      "claim_boundary": "NO_POPULATION_CENTRE_WITHOUT_DECLARED_DATASET_AND_RULES",
+      "earth_scope": "POPULATION_DISTRIBUTION",
+      "frame": "DATASET_DECLARED",
+      "geometry": {
+        "dataset_embedded": false,
+        "dataset_role": "POPULATION_GRID_OR_EVENTS"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [],
+      "symmetry": "DATA_DEPENDENT"
+    },
+    {
+      "carrier_id": "sha256:c26e84ab896807620efd4cb915d65422ae748a8c1f6d1c6ed24a06fb00e97815",
+      "carrier_key": "EARTH_GRAVITY_FIELD_EXTERNAL",
+      "carrier_type": "EXTERNAL_FIELD_CARRIER",
+      "claim_boundary": "GRAVITY_CENTRE_REQUIRES_EXPLICIT_OBJECTIVE",
+      "earth_scope": "GRAVITY_FIELD",
+      "frame": "MODEL_DECLARED",
+      "geometry": {
+        "dataset_embedded": false,
+        "dataset_role": "GRAVITY_MODEL"
+      },
+      "schema": "SEC-EARTH-CARRIER-1-D01",
+      "source_ids": [],
+      "symmetry": "MODEL_DEPENDENT"
+    }
+  ],
+  "rules_profile": "SEC-RULES-1-D01",
+  "schema": "SEC-EARTH-CARRIER-REGISTRY-1-D01",
+  "source_registry_id": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+  "system_version": "0.5.0"
+}

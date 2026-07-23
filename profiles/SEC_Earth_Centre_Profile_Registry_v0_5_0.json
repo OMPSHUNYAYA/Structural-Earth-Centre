@@ -1,0 +1,268 @@
+{
+  "architecture_profile": "SEC-ARCH-1-D01",
+  "carrier_registry_id": "sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216",
+  "profile_registry_id": "sha256:252d5945bad22ac90aaee972a8e33cdf094dc81d8762de92e6730bb624962a26",
+  "profiles": [
+    {
+      "admitted_claim_scopes": [
+        "MODEL_GEOMETRIC_CENTRE"
+      ],
+      "authority_limit": "MODEL_GEOMETRY_ONLY",
+      "carrier_key": "EARTH_IDEAL_SPHERE_NORMALIZED",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED"
+      ],
+      "declared_result": [
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        }
+      ],
+      "objective": "GEOMETRIC_CENTRE_OF_DECLARED_BODY",
+      "profile_hash": "sha256:a3f650176676709b9725544dc99299167ba66fca7e85c370081867fc07e07774",
+      "profile_id": "SEC-EARTH-PROFILE-IDEAL-SPHERE-GEOMETRIC-1-D01",
+      "required_dependencies": [
+        "frame"
+      ],
+      "resolution_mode": "DECLARED_GEOMETRIC_ORIGIN",
+      "result_kind": "POINT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "REFERENCE_ELLIPSOID_GEOMETRIC_CENTRE"
+      ],
+      "authority_limit": "REFERENCE_MODEL_ONLY",
+      "carrier_key": "EARTH_WGS84_REFERENCE_ELLIPSOID",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED"
+      ],
+      "declared_result": [
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        }
+      ],
+      "objective": "REFERENCE_ELLIPSOID_GEOMETRIC_CENTRE",
+      "profile_hash": "sha256:86369d145efc363246cf174db080710b2db3d319f00b7a4f35c68d70255c46ab",
+      "profile_id": "SEC-EARTH-PROFILE-WGS84-ELLIPSOID-GEOMETRIC-1-D01",
+      "required_dependencies": [
+        "frame"
+      ],
+      "resolution_mode": "DECLARED_GEOMETRIC_ORIGIN",
+      "result_kind": "POINT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "WGS84_COORDINATE_SYSTEM_ORIGIN"
+      ],
+      "authority_limit": "REFERENCE_ORIGIN_ONLY_NOT_LIVE_GEOCENTRE_MEASUREMENT",
+      "carrier_key": "EARTH_WGS84_COORDINATE_SYSTEM",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED"
+      ],
+      "declared_result": [
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        }
+      ],
+      "objective": "REFERENCE_SYSTEM_ORIGIN",
+      "profile_hash": "sha256:e567949673c15ed2dda3dd1d20c9f0f4b640dbaa62e5ee47a7c22a2d5651ceca",
+      "profile_id": "SEC-EARTH-PROFILE-WGS84-REFERENCE-ORIGIN-1-D01",
+      "required_dependencies": [
+        "frame"
+      ],
+      "resolution_mode": "DECLARED_REFERENCE_ORIGIN",
+      "result_kind": "POINT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "ITRS_REFERENCE_SYSTEM_ORIGIN"
+      ],
+      "authority_limit": "REFERENCE_SYSTEM_DEFINITION_ONLY",
+      "carrier_key": "EARTH_ITRS_WHOLE_SYSTEM",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED",
+        "SINGLE_MASS_SCOPE_REQUIRED"
+      ],
+      "declared_result": [
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        },
+        {
+          "d": "1",
+          "n": "0"
+        }
+      ],
+      "objective": "ITRS_REFERENCE_SYSTEM_ORIGIN",
+      "profile_hash": "sha256:6a3fca5890f101d40c46e06ab4debbc834d68bcd21db97bd7029ac41708176e3",
+      "profile_id": "SEC-EARTH-PROFILE-ITRS-GEOCENTRE-ORIGIN-1-D01",
+      "required_dependencies": [
+        "frame",
+        "mass_scope"
+      ],
+      "resolution_mode": "DECLARED_REFERENCE_ORIGIN",
+      "result_kind": "POINT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "INSTANTANEOUS_PHYSICAL_GEOCENTRE"
+      ],
+      "authority_limit": "NO_PHYSICAL_COORDINATE_WITHOUT_DECLARED_REALIZATION_EPOCH_AND_EVIDENCE",
+      "carrier_key": "EARTH_ITRS_WHOLE_SYSTEM",
+      "conflict_rules": [
+        "SINGLE_FRAME_REALIZATION_REQUIRED",
+        "SINGLE_EPOCH_REQUIRED",
+        "SINGLE_MASS_SCOPE_REQUIRED"
+      ],
+      "declared_result": null,
+      "objective": "INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+      "profile_hash": "sha256:57bd75429c8f8f38c4021552ae303a15710d6a5fe0edc9eb6182d8e86255407b",
+      "profile_id": "SEC-EARTH-PROFILE-INSTANTANEOUS-PHYSICAL-GEOCENTRE-1-D01",
+      "required_dependencies": [
+        "frame_realization",
+        "epoch",
+        "evidence_bundle_id",
+        "mass_scope"
+      ],
+      "resolution_mode": "EXTERNAL_EVIDENCE_REQUIRED",
+      "result_kind": "EXTERNAL_EVIDENCE_BOUND_POINT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "DECLARED_SURFACE_REPRESENTATIVE"
+      ],
+      "authority_limit": "NO_INTRINSIC_SURFACE_CENTRE_INFERRED_FROM_DISPLAY_OR_COORDINATE_ORDER",
+      "carrier_key": "EARTH_SURFACE_ABSTRACT_CLOSED",
+      "conflict_rules": [
+        "AT_MOST_ONE_SYMMETRY_BREAKER"
+      ],
+      "declared_result": null,
+      "objective": "UNIQUE_SURFACE_REPRESENTATIVE",
+      "profile_hash": "sha256:b4ec4d923f0470f532311d0ebeb0c549afe4d02e95438fa50f978a708f144034",
+      "profile_id": "SEC-EARTH-PROFILE-UNIQUE-SURFACE-REPRESENTATIVE-1-D01",
+      "required_dependencies": [
+        "surface_symmetry"
+      ],
+      "resolution_mode": "SYMMETRY_UNIQUENESS",
+      "result_kind": "POINT_OR_AMBIGUOUS",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "LAND_AREA_CENTRE"
+      ],
+      "authority_limit": "NO_LAND_CENTRE_WITHOUT_DATASET_IDENTITY_AND_BOUNDARY_SEMANTICS",
+      "carrier_key": "EARTH_LAND_DISTRIBUTION_EXTERNAL",
+      "conflict_rules": [
+        "SINGLE_LAND_MASK_REQUIRED",
+        "SINGLE_COASTLINE_POLICY_REQUIRED",
+        "SINGLE_METRIC_REQUIRED",
+        "SINGLE_EPOCH_REQUIRED"
+      ],
+      "declared_result": null,
+      "objective": "LAND_AREA_CENTRE",
+      "profile_hash": "sha256:bd0cb76a26278815240e31222cbd769d69a8e40c7cc06f7e7163d43e11eb0970",
+      "profile_id": "SEC-EARTH-PROFILE-LAND-AREA-CENTRE-1-D01",
+      "required_dependencies": [
+        "land_mask_id",
+        "coastline_policy",
+        "metric",
+        "epoch"
+      ],
+      "resolution_mode": "EXTERNAL_DATASET_REQUIRED",
+      "result_kind": "EXTERNAL_DATASET_BOUND_RESULT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "POPULATION_CENTRE"
+      ],
+      "authority_limit": "NO_POPULATION_CENTRE_WITHOUT_DATASET_EPOCH_AND_ALLOCATION_RULE",
+      "carrier_key": "EARTH_POPULATION_DISTRIBUTION_EXTERNAL",
+      "conflict_rules": [
+        "SINGLE_POPULATION_DATASET_REQUIRED",
+        "SINGLE_ALLOCATION_RULE_REQUIRED",
+        "SINGLE_METRIC_REQUIRED",
+        "SINGLE_EPOCH_REQUIRED"
+      ],
+      "declared_result": null,
+      "objective": "POPULATION_CENTRE",
+      "profile_hash": "sha256:0386b3d4d07699615f93806eb6792d2f333428a3f02ce1dc6df8a15f6d06b5a5",
+      "profile_id": "SEC-EARTH-PROFILE-POPULATION-CENTRE-1-D01",
+      "required_dependencies": [
+        "population_dataset_id",
+        "allocation_rule",
+        "metric",
+        "epoch"
+      ],
+      "resolution_mode": "EXTERNAL_DATASET_REQUIRED",
+      "result_kind": "EXTERNAL_DATASET_BOUND_RESULT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    },
+    {
+      "admitted_claim_scopes": [
+        "GRAVITY_FIELD_CENTRE"
+      ],
+      "authority_limit": "GRAVITY_FIELD_DOES_NOT_SUPPLY_A_UNIQUE_CENTRE_OBJECTIVE_BY_ITSELF",
+      "carrier_key": "EARTH_GRAVITY_FIELD_EXTERNAL",
+      "conflict_rules": [
+        "SINGLE_GRAVITY_MODEL_REQUIRED",
+        "SINGLE_OBJECTIVE_REQUIRED",
+        "SINGLE_FRAME_REQUIRED",
+        "SINGLE_EPOCH_REQUIRED"
+      ],
+      "declared_result": null,
+      "objective": "GRAVITY_CENTRE_UNDECLARED",
+      "profile_hash": "sha256:c9b764259f0db47dbbe26ee4de237232ce076107186182fb17e5c96fa950a6b1",
+      "profile_id": "SEC-EARTH-PROFILE-GRAVITY-CENTRE-1-D01",
+      "required_dependencies": [
+        "gravity_model_id",
+        "objective",
+        "frame",
+        "epoch"
+      ],
+      "resolution_mode": "EXTERNAL_FIELD_OBJECTIVE_REQUIRED",
+      "result_kind": "EXTERNAL_FIELD_BOUND_RESULT",
+      "schema": "SEC-EARTH-CENTRE-PROFILE-1-D01"
+    }
+  ],
+  "rules_profile": "SEC-RULES-1-D01",
+  "schema": "SEC-EARTH-PROFILE-REGISTRY-1-D01",
+  "source_registry_id": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+  "system_version": "0.5.0"
+}

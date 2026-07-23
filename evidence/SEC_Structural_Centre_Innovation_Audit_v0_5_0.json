@@ -1,0 +1,160 @@
+{
+  "checks": [
+    {
+      "check_id": "CORPUS_ID",
+      "detail": "sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_SET_ID",
+      "detail": "secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973",
+      "pass": true
+    },
+    {
+      "check_id": "INNOVATION_PROFILE",
+      "detail": "SEC-STRUCTURAL-CENTRE-INNOVATION-1-D01",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S001",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S002",
+      "detail": "RESOLVED_REGION",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S003",
+      "detail": "RESOLVED_REGION",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S004",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S005",
+      "detail": "CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D001",
+      "detail": "NO_STRUCTURAL_DIFFERENCE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D002",
+      "detail": "CLAIM_DISTINCT_RESULT_EQUIVALENT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D003",
+      "detail": "SINGLE_DEPENDENCY_DIVERGENCE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D004",
+      "detail": "MULTI_DEPENDENCY_DIVERGENCE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D005",
+      "detail": "UNRESOLVED_COMPARISON",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y001",
+      "detail": "UNIQUE_CENTRE_REFUSED",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y002",
+      "detail": "UNIQUE_CENTRE_ADMITTED",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y003",
+      "detail": "CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-C001",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-C002",
+      "detail": "RESOLVED_REGION",
+      "pass": true
+    },
+    {
+      "check_id": "ENVELOPE_PERMUTATION_INVARIANCE",
+      "detail": "sha256:0396b32381f4bf29386a720e1289ca3bea323936a9327e433b165e54d3669100",
+      "pass": true
+    },
+    {
+      "check_id": "DUPLICATE_SAMPLE_REGION_INVARIANCE",
+      "detail": "sha256:d38afafbfc42515e0760d7ade2b602d9a8b53d7bcce40e5b3af9cfeaa8c7cd9a",
+      "pass": true
+    },
+    {
+      "check_id": "DIFFERENTIAL_CHANGED_SET_DIRECTION_INVARIANCE",
+      "detail": [
+        "measure"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "CLAIM_ID_DEPENDENCY_SENSITIVITY",
+      "detail": [
+        "sha256:f09e272eda9b0a5e9f9cc4a935805d10bee2e41bf6527428b49318a23e531307",
+        "sha256:34394bc43765879a818cd338515c3830cbd143cdeec7d2535dfd7b72c09d4048"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "CERTIFICATE_TAMPER_SENSITIVITY",
+      "detail": "sha256:8aeb3cd5f48b941a002594f8e45d9406e32bec71b36a78af939cc7e7b0595019",
+      "pass": true
+    },
+    {
+      "check_id": "REGION_MEMBERSHIP_BOUNDARY",
+      "detail": {
+        "dimension": 2,
+        "lower_bound": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE",
+        "upper_bound": [
+          {
+            "d": "1",
+            "n": "2"
+          },
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ]
+      },
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:6821172bdea22cf559730eb534ad81a570d19b5fb4b1ed0ada18df7e6589ccb9",
+  "passed": 24,
+  "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-AUDIT-1-D01",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 24,
+  "vector_corpus_id": "sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49",
+  "vector_set_id": "secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973"
+}

@@ -1,0 +1,102 @@
+{
+  "checks": [
+    {
+      "check_id": "SYSTEM_VERSION",
+      "detail": "0.5.0",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_SET_ID",
+      "detail": "secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_CORPUS_ID",
+      "detail": "sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S001",
+      "detail": "SEC-INV-S001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S002",
+      "detail": "SEC-INV-S002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S003",
+      "detail": "SEC-INV-S003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S004",
+      "detail": "SEC-INV-S004",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-S005",
+      "detail": "SEC-INV-S005",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D001",
+      "detail": "SEC-INV-D001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D002",
+      "detail": "SEC-INV-D002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D003",
+      "detail": "SEC-INV-D003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D004",
+      "detail": "SEC-INV-D004",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-D005",
+      "detail": "SEC-INV-D005",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y001",
+      "detail": "SEC-INV-Y001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y002",
+      "detail": "SEC-INV-Y002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-Y003",
+      "detail": "SEC-INV-Y003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-C001",
+      "detail": "SEC-INV-C001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-INV-C002",
+      "detail": "SEC-INV-C002",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:31961a9e9e52f2e54c9739bae04823395ce909c2b3a063f01af178d8d0991451",
+  "passed": 18,
+  "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-PARITY-EVIDENCE-1-D01",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 18,
+  "vector_corpus_id": "sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49",
+  "vector_set_id": "secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973"
+}

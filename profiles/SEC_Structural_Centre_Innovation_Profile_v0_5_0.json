@@ -1,0 +1,54 @@
+{
+  "capabilities": [
+    {
+      "capability": "STRUCTURAL_CENTRE_DIFFERENTIAL",
+      "profile": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+      "purpose": "COMPARE_DECLARED_DEPENDENCIES_WITHOUT_TREATING_COORDINATE_EQUALITY_AS_CLAIM_EQUALITY"
+    },
+    {
+      "capability": "CENTRE_STABILITY_ENVELOPE",
+      "profile": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+      "purpose": "RESOLVE_A_DECLARED_FINITE_PERTURBATION_FAMILY_TO_POINT_OR_BOUNDED_REGION"
+    },
+    {
+      "capability": "SYMMETRY_CERTIFICATE",
+      "profile": "SEC-SYMMETRY-CERTIFICATE-1-D01",
+      "purpose": "RECORD_WHY_UNIQUENESS_IS_ADMITTED_OR_REFUSED"
+    },
+    {
+      "capability": "CENTRE_RESOLUTION_CERTIFICATE",
+      "profile": "SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01",
+      "purpose": "BIND_CLAIM_RESULT_WITNESSES_AND_EVIDENCE_WITHOUT_ESCALATING_AUTHORITY"
+    }
+  ],
+  "certificate_semantics": {
+    "certificate_is_evidence_of_resolution_structure_not_external_truth": true,
+    "declared_result_id_may_bind_an_existing_result_identity": true,
+    "result_id_source_is_explicit": true,
+    "result_material_hash_separately_binds_the_certificate_view_of_the_result": true
+  },
+  "differential_semantics": {
+    "changed_dependency_set_is_descriptive_not_automatic_causal_proof": true,
+    "single_changed_dependency_supports_controlled_differential_interpretation": true
+  },
+  "profile_hash": "sha256:79b1e301e3180cd959e4169bdcb9786825c06ae519c3c6d16222105efb1b532b",
+  "profile_id": "SEC-STRUCTURAL-CENTRE-INNOVATION-1-D01",
+  "region_semantics": {
+    "authority_limit": "BOUNDED_TO_EXPLICITLY_DECLARED_PERTURBATION_RESULTS",
+    "implemented": true,
+    "no_inference_outside_declared_family": true,
+    "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE"
+  },
+  "result_states": [
+    "RESOLVED_POINT",
+    "RESOLVED_REGION",
+    "MULTI_CENTRE",
+    "AMBIGUOUS",
+    "INCOMPLETE",
+    "CONFLICT",
+    "UNSUPPORTED",
+    "ABSTAIN"
+  ],
+  "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-PROFILE-1-D01",
+  "system_version": "0.5.0"
+}

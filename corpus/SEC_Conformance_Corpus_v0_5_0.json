@@ -1,0 +1,4992 @@
+{
+  "architecture_profile": "SEC-ARCH-1-D01",
+  "canonicalization_profile": "SEC-CANON-1-D01",
+  "corpus_id": "sha256:fbdad21cf55b17a02e5130c8a214d5859ff6a51a04be330e0448d80396ef7bd6",
+  "exact_arithmetic_profile": "SEC-EXACT-1-D01",
+  "profile_registry_id": "sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e",
+  "rules_profile": "SEC-RULES-1-D01",
+  "schema": "SEC-CONFORMANCE-CORPUS-1-D01",
+  "system_version": "0.5.0",
+  "vector_count": 38,
+  "vector_profile": "SEC-VECTORS-1-D01",
+  "vector_set_id": "secv_9c24f0f89d5b5caf744f0ebb5b4ca2435e55b15dd744bd147ad24d843503ad5d",
+  "vectors": [
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unique exact two-dimensional centroid",
+      "vector_hash": "sha256:63f8a611b5ff2943908690fc238cdb87409a8674206fa4f8bba1ea45f28fc08d",
+      "vector_id": "SEC-C001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:61eaedb3eb06a40e0139c46282339daa402a90b052e40f1e983abffa8048cd0c",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:61eaedb3eb06a40e0139c46282339daa402a90b052e40f1e983abffa8048cd0c",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:8732d80c980dc46082c2ff4ebba106b44a16fec8b817d7938c34949e02f9eb34"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "3",
+            "n": "2"
+          }
+        ],
+        "certificate_id": "sha256:e38140f26e96b06bc6325855ac20904b4238337712538c7b9f75dfc4766a8aa0",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:751f8c3199bfeeacbbd17f116822b65609dd0a0b01d74177dc30957703c02c35"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Fractional exact centroid",
+      "vector_hash": "sha256:7e814756ae570f1c0812e013220a51e58f49aca47e6438c6a750b12a2220ccf0",
+      "vector_id": "SEC-C002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "-2"
+                },
+                {
+                  "d": "1",
+                  "n": "4"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "4"
+                },
+                {
+                  "d": "1",
+                  "n": "-2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:e7c35da4ae7abbdd79b09e812b124f25f0e47f0222bc427ec3919b5db5e12d5f",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:e7c35da4ae7abbdd79b09e812b124f25f0e47f0222bc427ec3919b5db5e12d5f",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:c26e5e58dad302eef713e9684bcff8928e98515c4b45c1a992fc1c76759f56a4"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:584354ad33574499972a5a77add9517545c21c8d7db6529563fe143444d0b18f",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "-2"
+                },
+                {
+                  "d": "1",
+                  "n": "4"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "4"
+                },
+                {
+                  "d": "1",
+                  "n": "-2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Centroid with negative coordinates",
+      "vector_hash": "sha256:04ff3d875d3cddaaa81310cdeb542a887ad675fec38099c39542b573734396f2",
+      "vector_id": "SEC-C003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "4"
+                },
+                {
+                  "d": "1",
+                  "n": "6"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:021f78cae8a4cd3bef2672b606a2501b2fe72cacbd9a6ed4068b652d30237ed0",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:021f78cae8a4cd3bef2672b606a2501b2fe72cacbd9a6ed4068b652d30237ed0",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_3D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:d0a14e55bf6a74481d23c798c2c0087a5fb391baa3acc8500cd623fdc4edd90c"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "2"
+          },
+          {
+            "d": "1",
+            "n": "3"
+          }
+        ],
+        "certificate_id": "sha256:a87f16043910d0e6f17296d925e23ab9b9ed9ac941a82be10d85c07db2e24f9d",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:8f293703b750a5c35cc1df6af3628da871dce95219905ead33e75e2f0d23b5b2"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "4"
+                },
+                {
+                  "d": "1",
+                  "n": "6"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_3D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Three-dimensional exact centroid",
+      "vector_hash": "sha256:edea440acc118c68958c56972d0801f3b315b1754e7fa8e21f2f92d2e93eb5dc",
+      "vector_id": "SEC-C004"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1000000000000000000000000000000"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1000000000000000000000000000002"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:c5df0988b97b71016e38b241e1363d86b718dad8595ab80bfcbb09d525605f4e",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:c5df0988b97b71016e38b241e1363d86b718dad8595ab80bfcbb09d525605f4e",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:4ab3ba7462ad2f289677c4b493db469bf40f586709c5d5b2bcf1eced7e61041d"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1000000000000000000000000000001"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:0d8ad03f3ad102bb01378105a1cf6094704c8033e2643583e289e1ca1e443e1a",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:6d3c6bb37eab35c22909b566fa4da65cdfbc316d2ee19dfa8ae8f895d88ceb43"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1000000000000000000000000000000"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1000000000000000000000000000002"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Large-integer exact centroid",
+      "vector_hash": "sha256:9f9d0d991295ab82f37be9c7752f5e42acc7fc9f9e1a8891ad5c349da14a0ee2",
+      "vector_id": "SEC-C005"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "3",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "3"
+                },
+                {
+                  "d": "1",
+                  "n": "3"
+                }
+              ],
+              "weight": {
+                "d": "3",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:4b5b07d2ff729e55ca8478f6b6dad7f5e2d63e68dc838442fc43f3bed820db0f",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:4b5b07d2ff729e55ca8478f6b6dad7f5e2d63e68dc838442fc43f3bed820db0f",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:3c6a5f187bb107a92450ad64ce2dd1618fa8f7cb74d1fe4d19cbf63b67e423e1"
+      },
+      "category": "CORE_EXACTNESS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "2"
+          },
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "certificate_id": "sha256:2f965a178e4013a44f6e044a0f2c64978bbbb5f475d11812c0432312541893d7",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "3",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "3"
+                },
+                {
+                  "d": "1",
+                  "n": "3"
+                }
+              ],
+              "weight": {
+                "d": "3",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Exact rational weights",
+      "vector_hash": "sha256:f5f4548ab3de51d4ebf20362181d525a7de0152dfa8ef5398ba07f5e895b13e9",
+      "vector_id": "SEC-C006"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "METAMORPHIC",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "metamorphic_relation": {
+        "base_vector": "SEC-C001",
+        "expected_invariant": [
+          "carrier_id",
+          "resolution_state",
+          "centre_value",
+          "result_id",
+          "certificate_id"
+        ],
+        "relation_id": "MR-01"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Input-order permutation of exact centroid",
+      "vector_hash": "sha256:98fcb2119a47afc0163555347b98db440c92caa8b4e44c749fd0f5f3f15701e2",
+      "vector_id": "SEC-C007"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "2",
+                  "n": "1"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "2",
+                  "n": "3"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:eb326853c357d751724b5718b85c6bcba9f3fc0a3987be3b7fe29d9a9abf5e44",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:eb326853c357d751724b5718b85c6bcba9f3fc0a3987be3b7fe29d9a9abf5e44",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:898d6aa8783246fe7c576673440ae2ca74cc0bafeff58151a672061e444f8bba"
+      },
+      "category": "METAMORPHIC",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "6",
+            "n": "7"
+          },
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "certificate_id": "sha256:548ca9123cdbb89b50324878d69fba274b55d25dea5212f31f2328279c678516",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:3147b80c0ad81e0092ecb548a0d06c9e4c01eb8f9bb16e80ee0ee74c2132e9a7"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "4",
+                  "n": "2"
+                },
+                {
+                  "d": "3",
+                  "n": "6"
+                }
+              ],
+              "weight": {
+                "d": "2",
+                "n": "2"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "4",
+                  "n": "6"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "2",
+                "n": "4"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "metamorphic_relation": {
+        "expected_property": "Equivalent rational forms normalize before identity and exact arithmetic.",
+        "relation_id": "MR-05"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Equivalent rational representations normalize canonically",
+      "vector_hash": "sha256:9677874dc866264cb2511d17a1fa21533d43d2a30fd063b6259ce79aaf59fdc3",
+      "vector_id": "SEC-C008"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "NOT_MATERIAL",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:c7441795db190d56ebf1277be6b431f6387e61070d7899b1e701dd9ad00482f9"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:6d03b555ee36f7459218d4390e772bf84650b8607d43c50b059ab71dcbf9fb5e",
+        "resolution_state": "INCOMPLETE",
+        "result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {}
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Missing required frame dependency",
+      "vector_hash": "sha256:021aacfa2b9cdc6d39e999dc1821ae7e85192cf14fbff9414f97ee2030c19196",
+      "vector_id": "SEC-S001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:82413fdf09aa85f7aee1e63ff9fb44fca5874e0df3ea8e131a2bee33fe561473",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:82413fdf09aa85f7aee1e63ff9fb44fca5874e0df3ea8e131a2bee33fe561473",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:9fbc6658c684d7afb5bdac919e0a105ace0be0c78cdded4d64f061ffbc7b7324"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:e9c5d5170b1b2f51cd61f9635104f289b168e50a26bdba1f85fdc3b3cee6f0d0",
+        "resolution_state": "UNSUPPORTED",
+        "result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Zero weight outside positive-rational profile",
+      "vector_hash": "sha256:c9d91cf491a23707351378c0d956e943c4e9b69ad0d2d1f4e9ae9731ff272a17",
+      "vector_id": "SEC-S002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "-1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:ebaad807991875256d10d71ad3a6ddea70de449fa5869c956cd5c75fa3567e00",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:ebaad807991875256d10d71ad3a6ddea70de449fa5869c956cd5c75fa3567e00",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:c3e01964bb2d195143dc1fe793fc40002632e1327b40e3315e4fc58979bc688c"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:b911ff15e4c63bbc9f6fc0abfef649db820f6af84f398c28b60d28f14df4baa5",
+        "resolution_state": "UNSUPPORTED",
+        "result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "-1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Negative weight outside positive-rational profile",
+      "vector_hash": "sha256:2b34fe6efe293095237fc8d7d6a2f3416a2022a34d398f2d473c3f4e36f76391",
+      "vector_id": "SEC-S003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:a207d13b8ae08117334076d0e56d797e1c1c6ecfb12d357cbc9f3b1839442bd9",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:a207d13b8ae08117334076d0e56d797e1c1c6ecfb12d357cbc9f3b1839442bd9",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:9bb719b068493e1c495ece02a24024929e52d5ad7dc7cfef6b54b8f071a3b975"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:4d1feb95d0308c04cb5d549783f4917b5e098f0f62d2fe271e6f8dc8f1bafe3d",
+        "resolution_state": "CONFLICT",
+        "result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Conflicting point dimensions",
+      "vector_hash": "sha256:62fd54aa8c48b58b04d9690a17d74387421774f4d7a0959ca98ea2797e5159e1",
+      "vector_id": "SEC-S004"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:3fb9518e66d61736202d293ad585b943d3cef36efb668bf0d7e2bbeee30f6635"
+      },
+      "category": "MEDOID",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:8dffadddb4949f5268972e088c9bbf57b0fa58f2811f302bc2ab9feb6d8cded8",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "10"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "11"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "10"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "10"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "19"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "9"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:a64f0d743ee18992ca4406f288d816bb648d1992763b1001ee7a584d95e4e732",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:10d10647b0d124e33c43da6e5333137a1bd6d834ed099ba75f90961edd02fd80"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unique exact L1 medoid",
+      "vector_hash": "sha256:019a1d86fe40ade9811a29835921d8b0e7d62a2daa8479ce7779699eb38ef14d",
+      "vector_id": "SEC-M001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"
+      },
+      "category": "MEDOID",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "POINT_SET",
+        "centre_values": [
+          [
+            {
+              "d": "1",
+              "n": "0"
+            }
+          ],
+          [
+            {
+              "d": "1",
+              "n": "2"
+            }
+          ]
+        ],
+        "certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "2"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c",
+        "resolution_state": "MULTI_CENTRE",
+        "result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Two exact L1 medoids",
+      "vector_hash": "sha256:693158ec0ac882cac5adb14fd90122f10e18cb6a0a63ff8b85ad0c31fc532b20",
+      "vector_id": "SEC-M002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:cf7a10d4a00a72f5e7a5bc4e22d06755b49fd8e799ef36c0412bf15bc48f62c4",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:cf7a10d4a00a72f5e7a5bc4e22d06755b49fd8e799ef36c0412bf15bc48f62c4",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:edee6892e1e0859c4aa550db7ad2e889105a588f224759b92ad535fc938abb5c"
+      },
+      "category": "MEDOID",
+      "centre_profile": "SEC-PROFILE-MEDOID-L2SQ-1-D01",
+      "centre_profile_hash": "sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "2"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "certificate_id": "sha256:9e557205b9dcc945470ab3f7299eb0a0fd21d30f9e0ccc6b0f0d41003ef01f31",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "5"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "13"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "8"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "5"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "3"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "10"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "5"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:3fb5c5df72bb306eddc467b9f6641e6054c31e2127e6abf1c3d2c1f73dd1e513",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:6d2ed948993c84f2c3d514db1366d57929fdc40eba2bd3dca2689203f7735d7f"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unique squared-L2 medoid",
+      "vector_hash": "sha256:da4f976669a36a0403940d3a00be69db8ef90c8bf654a339ad47ea74919c8809",
+      "vector_id": "SEC-M003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:767f8fa6e0f1f0aa6c8287c361c4a99c7ebd16dd93165afd7241265480cf41a0"
+      },
+      "category": "MEDOID",
+      "centre_profile": "SEC-PROFILE-MEDOID-L2SQ-1-D01",
+      "centre_profile_hash": "sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8",
+      "expected": {
+        "centre_type": "POINT_SET",
+        "centre_values": [
+          [
+            {
+              "d": "1",
+              "n": "0"
+            }
+          ],
+          [
+            {
+              "d": "1",
+              "n": "2"
+            }
+          ]
+        ],
+        "certificate_id": "sha256:fbc8a68fdc1798ab7c99271c14b435ac1c9e0288974e8ee3f0f5ea414f471088",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "4"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "4"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "4"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:555ad8a72e76fc8fa784067f1974df09b7d3e0e7332b12ed434a9e01d17c58b8",
+        "resolution_state": "MULTI_CENTRE",
+        "result_id": "sha256:fc0b00532d6aee2ec9d7b8c04c39a17c4483c0b0661cbcd128c2eebbabcb92c4"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Two squared-L2 medoids",
+      "vector_hash": "sha256:f4ef072b12223af3f539243982533c6acc79094f5c5128da3f62b2db3231835a",
+      "vector_id": "SEC-M004"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"
+      },
+      "category": "METAMORPHIC",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "POINT_SET",
+        "centre_values": [
+          [
+            {
+              "d": "1",
+              "n": "0"
+            }
+          ],
+          [
+            {
+              "d": "1",
+              "n": "2"
+            }
+          ]
+        ],
+        "certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "2"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c",
+        "resolution_state": "MULTI_CENTRE",
+        "result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "metamorphic_relation": {
+        "base_vector": "SEC-M002",
+        "expected_invariant": [
+          "carrier_id",
+          "resolution_state",
+          "centre_values",
+          "field_id",
+          "result_id",
+          "certificate_id"
+        ],
+        "relation_id": "MR-06"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Candidate and support enumeration permutation",
+      "vector_hash": "sha256:92e9ce2d2697493aa7b0d0e9840855437d14e7055c173949a982a502137e4a27",
+      "vector_id": "SEC-M005"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:e6ccb13cf373934d92411f5301cc09d28c6a2565020317ce2826e443353d2038",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:e6ccb13cf373934d92411f5301cc09d28c6a2565020317ce2826e443353d2038",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:af7fd488974a433f85771c810ee2a2cc131fecd5480b4a0a58c1bfce37fb2f67"
+      },
+      "category": "MEDOID",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:c8f5acf748cc569e6a3e85b9c34c4a7f97a3a857634c038a6c6570cefb0c47ac",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "3"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "4"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "1"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "3"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "3"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "5"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "2"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:e5832b2a8ef6af19f490a907f861fa20136088e407bf63ba5a5c778a3426ccc5",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:354ed5a0d7ed9f04656aedb20244c340cc783d663cc20a493caee3a1bc99778e"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "3"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Exact finite centre field and centre pressure",
+      "vector_hash": "sha256:0f8ef8d324b5f8ca778cf95d79e1cfbb9b5171a05fc527561ec620bfe0025542",
+      "vector_id": "SEC-M006"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "CHEBYSHEV_UNSUPPORTED",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:b2c35d7eec545bb9372f78b84e1240f64d3dfd63ee1900210a2c9c36fdc6ba0f"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:c3740511d77ffc24e5fbbcd4dd559fe2442962bbe1ad4bf0ca392330d9aaad2e",
+        "resolution_state": "UNSUPPORTED",
+        "result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "CHEBYSHEV_UNSUPPORTED"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unsupported metric declaration",
+      "vector_hash": "sha256:7eef026bdb0fdd791f24a3fb61982920e0f26df07ffe3bc6e3334ead77579e13",
+      "vector_id": "SEC-M007"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:1e40830ce01c37b466d04de7833e1963a1ce3818e0696bdc00f0c7c9b7dab1a7",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:1e40830ce01c37b466d04de7833e1963a1ce3818e0696bdc00f0c7c9b7dab1a7",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:bb24df3bfdb571bc099ee99d5043832d2f7a71d222896ed26f3b8cefbe3d1615"
+      },
+      "category": "STRUCTURAL_STATES",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:3758fbc23b945926bb7895dc41c6c91b7439f064134fd709d596b374536de7a7",
+        "resolution_state": "INCOMPLETE",
+        "result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Missing finite candidate set",
+      "vector_hash": "sha256:bcd168f64726196a09e3b13c45fd55ee06ff5161a81a55d86501ce712ef5f5e9",
+      "vector_id": "SEC-M008"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            "A",
+            "B",
+            "C"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "carrier_id": "sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6",
+          "epoch_id": "NOT_MATERIAL",
+          "equivalence_class_id": "sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7",
+          "frame_id": "NOT_MATERIAL",
+          "measure_id": "NOT_MATERIAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "DECLARED_SYMMETRY_UNIQUENESS",
+          "precision_policy_id": "EXACT_SYMBOLIC",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "DECLARED_EQUIVALENCE_REQUIRED"
+        },
+        "dependency_fingerprint_id": "sha256:0083c4da929ea348606ca6bd6fd72f95dd3d2d9c5516042bfb45ed3741f4c685"
+      },
+      "category": "SYMMETRY",
+      "centre_profile": "SEC-PROFILE-SYMMETRY-1-D01",
+      "centre_profile_hash": "sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288",
+      "expected": {
+        "centre_type": "EQUIVALENCE_CLASS",
+        "centre_values": [
+          "A",
+          "B",
+          "C"
+        ],
+        "certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+        "resolution_state": "AMBIGUOUS",
+        "result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            "A",
+            "B",
+            "C"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "dependencies": {
+          "equivalence_class": "A|B|C"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Declared three-member symmetry without breaker",
+      "vector_hash": "sha256:7481c0864eb3bd93c69f5f4d86ff5013d210a4bbaa6744fd7f7c5ec7791cba81",
+      "vector_id": "SEC-Y001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            "A",
+            "B",
+            "C"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "carrier_id": "sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6",
+          "epoch_id": "NOT_MATERIAL",
+          "equivalence_class_id": "sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7",
+          "frame_id": "NOT_MATERIAL",
+          "measure_id": "NOT_MATERIAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "DECLARED_SYMMETRY_UNIQUENESS",
+          "precision_policy_id": "EXACT_SYMBOLIC",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "DECLARED_EQUIVALENCE_REQUIRED"
+        },
+        "dependency_fingerprint_id": "sha256:0083c4da929ea348606ca6bd6fd72f95dd3d2d9c5516042bfb45ed3741f4c685"
+      },
+      "category": "METAMORPHIC",
+      "centre_profile": "SEC-PROFILE-SYMMETRY-1-D01",
+      "centre_profile_hash": "sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288",
+      "expected": {
+        "centre_type": "EQUIVALENCE_CLASS",
+        "centre_values": [
+          "A",
+          "B",
+          "C"
+        ],
+        "certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+        "resolution_state": "AMBIGUOUS",
+        "result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            "C",
+            "A",
+            "B"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "C",
+            "B",
+            "A"
+          ]
+        },
+        "dependencies": {
+          "equivalence_class": "A|B|C"
+        }
+      },
+      "metamorphic_relation": {
+        "base_vector": "SEC-Y001",
+        "expected_invariant": [
+          "carrier_id",
+          "resolution_state",
+          "centre_values",
+          "result_id",
+          "certificate_id"
+        ],
+        "relation_id": "MR-07"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Symmetry candidate-order permutation",
+      "vector_hash": "sha256:5f479a6d6e8cec463ec1f1e3ce2c2f75086208210a33af44a1c9fd17459437db",
+      "vector_id": "SEC-Y002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            "A",
+            "B",
+            "C"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "A",
+            "B",
+            "C"
+          ],
+          "symmetry_breaker": "B"
+        },
+        "carrier_id": "sha256:4ee400fcd75d8ffad2ce60edbe0b6d86006704941670c9a0e3c39fac19c03666",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:4ee400fcd75d8ffad2ce60edbe0b6d86006704941670c9a0e3c39fac19c03666",
+          "epoch_id": "NOT_MATERIAL",
+          "equivalence_class_id": "sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7",
+          "frame_id": "NOT_MATERIAL",
+          "measure_id": "NOT_MATERIAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "DECLARED_SYMMETRY_UNIQUENESS",
+          "precision_policy_id": "EXACT_SYMBOLIC",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_breaker_id": "sha256:7845b3a1c3fc1ea344c3e92ad7b6db647e3182208c2c8295210f6ac114fbd13d",
+          "symmetry_policy_id": "DECLARED_BREAKER_REQUIRED"
+        },
+        "dependency_fingerprint_id": "sha256:766bf4245b8c54bd9e59b4e6c5e1b45f63241dbc270d099492f640af71a4f714"
+      },
+      "category": "SYMMETRY",
+      "centre_profile": "SEC-PROFILE-SYMMETRY-BREAKER-1-D01",
+      "centre_profile_hash": "sha256:86b938904391f763630e75b43caf92001097a3026bb656fcc510ee88cc0917b5",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": "B",
+        "certificate_id": "sha256:bfb211991d7747e523b1e7ddfb902f0bc0b29e182b489d13c6c3e46307002df3",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:4ea132ca9412d67e13bf6a6e35bd2f8dcac9c70b8e2a9a2b429af49482ec5f90"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            "A",
+            "B",
+            "C"
+          ],
+          "carrier_type": "DECLARED_SYMMETRY_CLASS",
+          "equivalence_class": [
+            "A",
+            "B",
+            "C"
+          ],
+          "symmetry_breaker": "B"
+        },
+        "dependencies": {
+          "equivalence_class": "A|B|C",
+          "symmetry_breaker": "B"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Declared symmetry with admitted breaker",
+      "vector_hash": "sha256:4120cc60f3c1b25c667496154a6f430482df072200b8352c2f27f02d60855ff8",
+      "vector_id": "SEC-Y003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:3fb9518e66d61736202d293ad585b943d3cef36efb668bf0d7e2bbeee30f6635"
+      },
+      "category": "DEPENDENCIES",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:0927ccd5b1cfa23d419db599f3172d308a06553f1f1a59a60d0390e87ba4c88e",
+        "resolution_state": "INCOMPLETE",
+        "result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Missing medoid metric dependency",
+      "vector_hash": "sha256:c7dfb80bbb76266bd3ab80f840804e2b6f9003781cb5849ef2be6e620c4e2b5d",
+      "vector_id": "SEC-D001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "declared_conflict": "SINGLE_FRAME_REQUIRED",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": [
+            "FRAME_A",
+            "FRAME_B"
+          ],
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:e0c5dcc72bcfb287786dd558a4ec920830d1b382fa8efd746b306dce5c91440b"
+      },
+      "category": "DEPENDENCIES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:e4c030e60d366a28c361ab00c418540568aeca6d139fc81daa0a2150150651cb",
+        "resolution_state": "CONFLICT",
+        "result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "conflict": "SINGLE_FRAME_REQUIRED",
+          "frame": [
+            "FRAME_A",
+            "FRAME_B"
+          ]
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Conflicting reference-frame declarations",
+      "vector_hash": "sha256:123525667f82fa3b44c1200d0823dd6468090a9a6c466eeb092200af569c719b",
+      "vector_id": "SEC-D002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "CONTINUOUS_MANIFOLD_UNSUPPORTED",
+          "description": "bounded test placeholder"
+        },
+        "carrier_id": "sha256:59e316bef8b71d24f747cc9ede1e8634d6517fa7c601bb9667a4d3401c64050c",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:59e316bef8b71d24f747cc9ede1e8634d6517fa7c601bb9667a4d3401c64050c",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:825fbeee010f290148a45d17269c24bd98c061e5c3f0c8eb366ede6a6b8177db"
+      },
+      "category": "DEPENDENCIES",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:87d7dad13f25516b85b358bcca5f41e5cb04e78b0cef45b3d732a31222cf0519",
+        "resolution_state": "UNSUPPORTED",
+        "result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "CONTINUOUS_MANIFOLD_UNSUPPORTED",
+          "description": "bounded test placeholder"
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unsupported carrier type",
+      "vector_hash": "sha256:e9518e7cb23f0c3e7c922828ad85586a3b1ea312012abc08914b4246c69c2c37",
+      "vector_id": "SEC-D003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "evidence_class": "DEMONSTRATION_ONLY",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:bbf83464a855d361bde2ef4faa97f7e66e7e8359801dd3eebd4e153c8fcbb293"
+      },
+      "category": "DEPENDENCIES",
+      "centre_profile": "SEC-PROFILE-ABSTAIN-EVIDENCE-1-D01",
+      "centre_profile_hash": "sha256:49a65e25737f6247d661b6a52a419d3beafce6fa1e1cae36c3306e789fdfb676",
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:193c55d18cef89b1ac890436402759c141d0df89d3acf5e08edef3a2936cc9e7",
+        "resolution_state": "ABSTAIN",
+        "result_id": "sha256:2fb9f8708cf13fe265e62b5939f031fab436de882198765253a4544ddbede71e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "evidence_class": "DEMONSTRATION_ONLY",
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Explicit evidence-class abstention",
+      "vector_hash": "sha256:6fe4d3264e7e99644eb446551575a13b7ff3029a42204488e88f72a5dfd6d6e4",
+      "vector_id": "SEC-D004"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "CLAIMS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "claim": {
+        "candidate_type": "POINT",
+        "candidate_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "schema": "SEC-CLAIM-1-D01"
+      },
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:2d2d7f39135b14a1715ceeba78d2c9c9fcdd7e77fd34ac0903741ff6e994bcfb",
+        "claim_evaluation": "CLAIM_CONFIRMED",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:60425cf39aced74f21ca0c8a375d2c5bf364312cb0cc41450a7059f5f781171c"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Confirmed unique centre claim",
+      "vector_hash": "sha256:c972c2f869a011fa0e0ca3b4f304e3a5bef876809cb04f9d1fdfa54d1795de38",
+      "vector_id": "SEC-L001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"
+      },
+      "category": "CLAIMS",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "claim": {
+        "candidate_type": "POINT",
+        "candidate_value": [
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "schema": "SEC-CLAIM-1-D01"
+      },
+      "expected": {
+        "centre_type": "POINT_SET",
+        "centre_values": [
+          [
+            {
+              "d": "1",
+              "n": "0"
+            }
+          ],
+          [
+            {
+              "d": "1",
+              "n": "2"
+            }
+          ]
+        ],
+        "certificate_id": "sha256:d33d15e109bfe432dd652f80617fdd6e23ebac030d383146fa6a562a05c9e2e4",
+        "claim_evaluation": "CLAIM_MEMBER",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "2"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "2"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c",
+        "resolution_state": "MULTI_CENTRE",
+        "result_id": "sha256:d50d33fb8838452d2d3fec4dd74d3b618786d424de6b5732d55d87d58c2af4aa"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Claim is a member of a multi-centre result",
+      "vector_hash": "sha256:9c7140f166b79a6e9d1e5ce7d6c69f98ad6f12077d55ff9e2dc7069728d28e84",
+      "vector_id": "SEC-L002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "CLAIMS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "claim": {
+        "candidate_type": "POINT",
+        "candidate_value": [
+          {
+            "d": "1",
+            "n": "9"
+          },
+          {
+            "d": "1",
+            "n": "9"
+          }
+        ],
+        "schema": "SEC-CLAIM-1-D01"
+      },
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:802dab4f0e6e898127c6ff6d28b539307996680395025b1ca3f9cdaf5a35255e",
+        "claim_evaluation": "CLAIM_NOT_CENTRE",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:0e1951ac07cc6de3aadf2d492b93bc0b584a5c10f97413fe492b0c82c83b39e5"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Incorrect unique centre claim",
+      "vector_hash": "sha256:a43eb58cd99024296b19dbfee3c433489f9ca91e8e45dc70ad0e5e6f8990d5a0",
+      "vector_id": "SEC-L003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "NOT_MATERIAL",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:c7441795db190d56ebf1277be6b431f6387e61070d7899b1e701dd9ad00482f9"
+      },
+      "category": "CLAIMS",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "claim": {
+        "candidate_type": "POINT",
+        "candidate_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "schema": "SEC-CLAIM-1-D01"
+      },
+      "expected": {
+        "centre_type": "NONE",
+        "certificate_id": "sha256:a1479cecbd3e5c9de6bdba508233e6d5e20d3aa0251de2b5bd4dad814615abe0",
+        "claim_evaluation": "CLAIM_UNRESOLVED",
+        "resolution_state": "INCOMPLETE",
+        "result_id": "sha256:84587ba509022381c2934c4dff6068cb69e449190a324b745b274c9e57e7ea37"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {}
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Claim against incomplete centre problem",
+      "vector_hash": "sha256:907a2c41ae893a1bdd1be34bb03cc158445af44e81be9f378644689c5f6f7de5",
+      "vector_id": "SEC-L004"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "REPRESENTATION",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "metamorphic_relation": {
+        "base_vector": "SEC-C001",
+        "expected_invariant": [
+          "carrier_id",
+          "resolution_state",
+          "centre_value",
+          "result_id",
+          "certificate_id"
+        ],
+        "relation_id": "MR-04"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "source_variant": {
+        "presentation": {
+          "format": "decimal",
+          "label": "Display variant only"
+        }
+      },
+      "system_version": "0.5.0",
+      "title": "Presentation-only metadata variation",
+      "vector_hash": "sha256:dd1a44038a38d1293cb5757d6dab75ea65e186dfec86cba2d06589b8fdb7976b",
+      "vector_id": "SEC-R001"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "MANHATTAN_L1",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:29a3d453097a7ef2b9221c5dc00f69f653287246e83d5f31c8564067ff2226e1"
+      },
+      "category": "PROFILE_DIVERGENCE",
+      "centre_profile": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "centre_profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "certificate_id": "sha256:472c91ac5bea066dcfc99cfd26b96d5afc132353ee56e385c9189ef899dc41e6",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "10"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "12"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "2"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "10"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "10"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "18"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "8"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:cd5fe8f7966b805844d7fe854bad1e47a4494e68a7bfd9a61bf41192ff726e70",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:5371553212d11055f0d66860e74b25667ee1b327ac4e2db54dd8ad7fb2b38e50"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "MANHATTAN_L1"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Same support resolved under L1 medoid profile",
+      "vector_hash": "sha256:0dff5c8293072ddbe913090b03c3271837c93a084c3a570573a4c64462062a44",
+      "vector_id": "SEC-R002"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "carrier_id": "sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_1D_D01",
+          "measure_id": "UNIFORM_EXPLICIT",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED",
+          "objective_id": "FINITE_EXACT_MEDOID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NO_INFERENCE"
+        },
+        "dependency_fingerprint_id": "sha256:434934dea53dee2b1b4266765f5221917b920ce3495e7c1e11d5dbd5c6b2ddc0"
+      },
+      "category": "PROFILE_DIVERGENCE",
+      "centre_profile": "SEC-PROFILE-MEDOID-L2SQ-1-D01",
+      "centre_profile_hash": "sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "certificate_id": "sha256:1d571a38d8aceeddfd40ce4249421bf373cb96df4785c1f4ffaa15682cbf5bf6",
+        "field": {
+          "K_min": {
+            "d": "1",
+            "n": "68"
+          },
+          "entries": [
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "104"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "36"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "68"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "0"
+              }
+            },
+            {
+              "candidate": [
+                {
+                  "d": "1",
+                  "n": "10"
+                }
+              ],
+              "cost": {
+                "d": "1",
+                "n": "164"
+              },
+              "pressure": {
+                "d": "1",
+                "n": "96"
+              }
+            }
+          ]
+        },
+        "field_id": "sha256:22f468da7c0e7874ab74a75ba682aa3ebf08384dd3005dcbaa26132f77778ccf",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:2c13a0e530bebbb752c0167ff00a07cac0a6da1e7010fcb86c96d848df7fa2c7"
+      },
+      "input": {
+        "carrier": {
+          "candidates": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ],
+          "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+          "support": [
+            [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "2"
+              }
+            ],
+            [
+              {
+                "d": "1",
+                "n": "10"
+              }
+            ]
+          ]
+        },
+        "dependencies": {
+          "candidate_set": "DECLARED",
+          "frame": "FRAME_SEC_CARTESIAN_1D_D01",
+          "metric_id": "SQUARED_EUCLIDEAN_L2_SQUARED"
+        }
+      },
+      "metamorphic_relation": {
+        "base_vector": "SEC-R002",
+        "expected_property": "Metric change must change centre profile identity and may change the result.",
+        "relation_id": "MR-10"
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Same support resolved under squared-L2 medoid profile",
+      "vector_hash": "sha256:e390b6def6da62d7bf18ecfa65043e8da3001104f3327aad2bf72f70afc52236",
+      "vector_id": "SEC-R003"
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "TAMPER",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "4"
+                },
+                {
+                  "d": "1",
+                  "n": "4"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Carrier mutation must invalidate the original certificate",
+      "vector_hash": "sha256:47594d1f5f4e09a2baca2f8d2e9af60d1c0c0e5ca102a1ba2eff09ce67764176",
+      "vector_id": "SEC-T001",
+      "verification_expectation": {
+        "expected_first_mismatch": "CARRIER_ID_MISMATCH",
+        "mutation_class": "carrier",
+        "reference_vector": "SEC-C001",
+        "verification_state": "FAIL"
+      }
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "TAMPER",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_MUTATED"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Profile dependency mutation must invalidate the original certificate",
+      "vector_hash": "sha256:f2f60e8e7d3194b6e9b31f8a040a32b35b0da9778911864854ddd258c432b961",
+      "vector_id": "SEC-T002",
+      "verification_expectation": {
+        "expected_first_mismatch": "DEPENDENCY_ID_MISMATCH",
+        "mutation_class": "profile",
+        "reference_vector": "SEC-C001",
+        "verification_state": "FAIL"
+      }
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "TAMPER",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "999"
+          },
+          {
+            "d": "1",
+            "n": "999"
+          }
+        ],
+        "certificate_id": "sha256:0df95b1b8443daaf8aac19541456d57129ffb7cc923d9ca596fd4f5509ed99a1",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:43aa2211bb0b34e6182cf08864f924975ade4682db38203cadcf1a1929b1d023"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Result mutation must invalidate the original certificate",
+      "vector_hash": "sha256:859b19685182a7b8879d256546263b35a0e1fa83828a21a2211dd0b57bddc759",
+      "vector_id": "SEC-T003",
+      "verification_expectation": {
+        "expected_first_mismatch": "RESULT_ID_MISMATCH",
+        "mutation_class": "result",
+        "reference_vector": "SEC-C001",
+        "verification_state": "FAIL"
+      }
+    },
+    {
+      "canonical_expectations": {
+        "canonical_carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+        "dependency_fingerprint": {
+          "boundary_id": "IMPLICIT_IN_CANONICAL_CARRIER",
+          "carrier_id": "sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320",
+          "epoch_id": "NOT_MATERIAL",
+          "frame_id": "FRAME_SEC_CARTESIAN_2D_D01",
+          "measure_id": "EXPLICIT_POSITIVE_RATIONAL",
+          "metric_id": "NOT_MATERIAL",
+          "objective_id": "EXACT_WEIGHTED_CENTROID",
+          "precision_policy_id": "EXACT_RATIONAL",
+          "rules_profile": "SEC-RULES-1-D01",
+          "schema": "SEC-DEPENDENCY-1-D01",
+          "symmetry_policy_id": "NOT_MATERIAL"
+        },
+        "dependency_fingerprint_id": "sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"
+      },
+      "category": "TAMPER",
+      "centre_profile": "SEC-PROFILE-WCENTROID-1-D01",
+      "centre_profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "1"
+          }
+        ],
+        "certificate_id": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+        "resolution_state": "RESOLVED_POINT",
+        "result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"
+      },
+      "input": {
+        "carrier": {
+          "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+          "points": [
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "0"
+                },
+                {
+                  "d": "1",
+                  "n": "0"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            },
+            {
+              "point": [
+                {
+                  "d": "1",
+                  "n": "2"
+                },
+                {
+                  "d": "1",
+                  "n": "2"
+                }
+              ],
+              "weight": {
+                "d": "1",
+                "n": "1"
+              }
+            }
+          ]
+        },
+        "dependencies": {
+          "frame": "FRAME_SEC_CARTESIAN_2D_D01"
+        }
+      },
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CONFORMANCE-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Certificate mutation must fail verification",
+      "vector_hash": "sha256:5c60d9d721feb6f162d9fd32056dbeb575ec34d411f1c71276843cec5ed19cf8",
+      "vector_id": "SEC-T004",
+      "verification_expectation": {
+        "expected_first_mismatch": "CERTIFICATE_ID_MISMATCH",
+        "mutation_class": "certificate",
+        "reference_vector": "SEC-C001",
+        "verification_state": "FAIL"
+      }
+    }
+  ]
+}

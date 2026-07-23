@@ -1,0 +1,225 @@
+{
+  "angular_separation_deg": 32.350594616,
+  "area_profile_hash": "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+  "area_profile_id": "SEC-REAL-LAND-AREA-VECTOR-CENTRE-1-D02",
+  "area_resolution_certificate": {
+    "authority_scope": "EXACT_DATASET_BOUNDED_CLAIM",
+    "certificate_id": "sha256:4eae30aa06fa6892b247bbb58173a3eae03e5f8c23ce87670a91d0e9b63eeab5",
+    "claim_id": "sha256:da093c81a53997b92d129daa16d532f522a783a637cf10dd25c63cb6757fdf1f",
+    "claim_material": {
+      "authority_scope": "EXACT_DATASET_BOUNDED_CLAIM",
+      "carrier_id": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "centre_profile_id": "SEC-REAL-LAND-AREA-VECTOR-CENTRE-1-D02",
+      "claim_kind": "CENTRE_CLAIM",
+      "dependency_fingerprint_id": "sha256:edb901c657e3c2b2c1330bc82ce1237bfaac76bf66cf68563a4f982af712726d",
+      "schema": "SEC-CENTRE-CLAIM-IDENTITY-1-D01",
+      "system_version": "0.5.0"
+    },
+    "evidence_id": "sha256:70419b96bfb278b52032a7c0f1edb4439517d8435bdd2c43534b3c15e7454961",
+    "resolution_state": "RESOLVED_POINT",
+    "resolution_witness": {
+      "dataset_identity_checked": true,
+      "profile_hash_checked": true,
+      "resolved_state": true,
+      "state_is_explicit": true
+    },
+    "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+    "result_id_source": "DECLARED_RESULT_ID",
+    "result_material_hash": "sha256:4c9ae2f4306de139ba682762a78bcd3811d603dfe1782b6c985095c63173d03a",
+    "schema": "SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01",
+    "system_version": "0.5.0"
+  },
+  "area_result": {
+    "centre_type": "SPHERICAL_SURFACE_AREA_VECTOR_CENTRE_DIRECTION",
+    "evidence": {
+      "acquisition_mode": "LOCAL_FILE",
+      "algorithm_profile_hash": "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+      "dataset_byte_length": 138160,
+      "dataset_sha256": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "feature_count": 127,
+      "identity_quantization_decimal_places": 9,
+      "polygon_count": 127,
+      "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+      "ring_count": 128,
+      "schema": "SEC-REAL-LAND-CENTRE-EVIDENCE-1-D02",
+      "source_locator": "data/ne_110m_land.geojson",
+      "system_version": "0.5.0",
+      "vertex_count": 5015
+    },
+    "evidence_id": "sha256:70419b96bfb278b52032a7c0f1edb4439517d8435bdd2c43534b3c15e7454961",
+    "identity_quantization_decimal_places": 9,
+    "latitude_deg": 44.847286603,
+    "longitude_deg": 28.41498761,
+    "resolution_state": "RESOLVED_POINT",
+    "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+    "spherical_area_steradians": 3.627891494,
+    "surface_fraction": 0.288698432,
+    "unit_vector_xyz": [
+      0.623572892,
+      0.337375439,
+      0.705219584
+    ]
+  },
+  "boundary_profile_hash": "sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68",
+  "boundary_profile_id": "SEC-REAL-LAND-BOUNDARY-VECTOR-CENTRE-1-D01",
+  "boundary_resolution_certificate": {
+    "authority_scope": "EXACT_DATASET_BOUNDED_CLAIM",
+    "certificate_id": "sha256:1dc93e50142fe13981cd89fbc1c851e1c827c58fc2bbd69b2ab1a2bae201c8f1",
+    "claim_id": "sha256:c13ad64809c2617d40d6e67f2688f923ecd39fd6d435ca686e0440a4ad5e2356",
+    "claim_material": {
+      "authority_scope": "EXACT_DATASET_BOUNDED_CLAIM",
+      "carrier_id": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "centre_profile_id": "SEC-REAL-LAND-BOUNDARY-VECTOR-CENTRE-1-D01",
+      "claim_kind": "CENTRE_CLAIM",
+      "dependency_fingerprint_id": "sha256:d4195af909ff9d068286216ef2536b77a6d586bd826e866b858917502f1ce819",
+      "schema": "SEC-CENTRE-CLAIM-IDENTITY-1-D01",
+      "system_version": "0.5.0"
+    },
+    "evidence_id": "sha256:5f5925211a5423706eaf083851fc590266eefe3988ab6a32900e23775cc1b8fe",
+    "resolution_state": "RESOLVED_POINT",
+    "resolution_witness": {
+      "dataset_identity_checked": true,
+      "profile_hash_checked": true,
+      "resolved_state": true,
+      "state_is_explicit": true
+    },
+    "result_id": "sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29",
+    "result_id_source": "DECLARED_RESULT_ID",
+    "result_material_hash": "sha256:41fe05d431b12da8dd85e0f135eaf243e3bdc08b505b91b2410933ea607fd566",
+    "schema": "SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01",
+    "system_version": "0.5.0"
+  },
+  "boundary_result": {
+    "boundary_length_radians": 56.385112113,
+    "centre_type": "SPHERICAL_BOUNDARY_LENGTH_VECTOR_CENTRE_DIRECTION",
+    "evidence": {
+      "acquisition_mode": "LOCAL_FILE",
+      "algorithm_profile_hash": "sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68",
+      "dataset_byte_length": 138160,
+      "dataset_sha256": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "feature_count": 127,
+      "identity_quantization_decimal_places": 9,
+      "polygon_count": 127,
+      "result_id": "sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29",
+      "ring_count": 128,
+      "schema": "SEC-REAL-LAND-CENTRE-EVIDENCE-1-D03",
+      "source_locator": "data/ne_110m_land.geojson",
+      "system_version": "0.5.0",
+      "vertex_count": 5015
+    },
+    "evidence_id": "sha256:5f5925211a5423706eaf083851fc590266eefe3988ab6a32900e23775cc1b8fe",
+    "identity_quantization_decimal_places": 9,
+    "latitude_deg": 71.590921549,
+    "longitude_deg": 66.736078802,
+    "resolution_state": "RESOLVED_POINT",
+    "result_id": "sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29",
+    "unit_vector_xyz": [
+      0.124730361,
+      0.290123398,
+      0.948825986
+    ]
+  },
+  "checks": [
+    {
+      "check_id": "FROZEN_DATASET_IDENTITY",
+      "detail": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "pass": true
+    },
+    {
+      "check_id": "AREA_PROFILE_HASH_VALID",
+      "detail": "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+      "pass": true
+    },
+    {
+      "check_id": "BOUNDARY_PROFILE_HASH_VALID",
+      "detail": "sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68",
+      "pass": true
+    },
+    {
+      "check_id": "AREA_RESULT_RESOLVED",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "BOUNDARY_RESULT_RESOLVED",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SAME_EXACT_DATASET",
+      "detail": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+      "pass": true
+    },
+    {
+      "check_id": "DISTINCT_PROFILE_IDENTITIES",
+      "detail": [
+        "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+        "sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "DISTINCT_RESULT_IDENTITIES",
+      "detail": [
+        "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+        "sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "COORDINATES_DIVERGE",
+      "detail": [
+        44.847286603,
+        28.41498761,
+        71.590921549,
+        66.736078802
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SINGLE_DEPENDENCY_DIFFERENTIAL",
+      "detail": "SINGLE_DEPENDENCY_DIVERGENCE",
+      "pass": true
+    },
+    {
+      "check_id": "MEASURE_IS_DECLARED_DIFFERENCE",
+      "detail": [
+        "measure"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "AREA_CERTIFICATE_BINDS_RESULT_AND_EVIDENCE",
+      "detail": "sha256:4eae30aa06fa6892b247bbb58173a3eae03e5f8c23ce87670a91d0e9b63eeab5",
+      "pass": true
+    },
+    {
+      "check_id": "BOUNDARY_CERTIFICATE_BINDS_RESULT_AND_EVIDENCE",
+      "detail": "sha256:1dc93e50142fe13981cd89fbc1c851e1c827c58fc2bbd69b2ab1a2bae201c8f1",
+      "pass": true
+    }
+  ],
+  "dataset_sha256": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+  "evidence_id": "sha256:e6150e95d3e60ee24510ba0921172ec789008c52472007a3e4c394f2b900a71e",
+  "passed": 13,
+  "schema": "SEC-REAL-LAND-SAME-DATASET-DIFFERENTIAL-EVIDENCE-1-D01",
+  "status": "PASS",
+  "structural_differential": {
+    "changed_dependencies": [
+      "measure"
+    ],
+    "changed_dependency_count": 1,
+    "differential_id": "sha256:2b2d58ff302077d16cc480b31112da2b12e81a58a84a0d4c7fa8937bc57d760c",
+    "differential_state": "SINGLE_DEPENDENCY_DIVERGENCE",
+    "interpretation": "CONTROLLED_SINGLE_DECLARED_DIFFERENCE",
+    "left_claim_id": "sha256:5b2319aa45d7608cd82ecd89e5f1a50b306d59838e1e2f389b9853ae2b3193d1",
+    "left_result_id": "sha256:4c9ae2f4306de139ba682762a78bcd3811d603dfe1782b6c985095c63173d03a",
+    "result_equivalent": false,
+    "right_claim_id": "sha256:40e15850919f2f0ec142bdb56829716ff2cbd2cbe9714032519fc8adf5004707",
+    "right_result_id": "sha256:41fe05d431b12da8dd85e0f135eaf243e3bdc08b505b91b2410933ea607fd566",
+    "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+    "system_version": "0.5.0"
+  },
+  "system_version": "0.5.0",
+  "total": 13
+}

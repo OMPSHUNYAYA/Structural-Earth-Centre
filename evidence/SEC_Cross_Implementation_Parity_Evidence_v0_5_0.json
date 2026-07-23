@@ -1,0 +1,464 @@
+{
+  "evidence_id": "sha256:a08c55f02a5648c2f928ea58f6154e99ca81c2dc585e138fb4253d1caeae8ccd",
+  "evidence_profile": "SEC-PARITY-EVIDENCE-1-D01",
+  "frozen_identities": {
+    "corpus_id": "sha256:fbdad21cf55b17a02e5130c8a214d5859ff6a51a04be330e0448d80396ef7bd6",
+    "manifest_id": "sha256:3014a79d8e72830d06cee05431d2842b799edbc11a8946623f72a529a99ada99",
+    "profile_registry_id": "sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e",
+    "vector_set_id": "secv_9c24f0f89d5b5caf744f0ebb5b4ca2435e55b15dd744bd147ad24d843503ad5d"
+  },
+  "group_counts": {
+    "CLAIMS": {
+      "pass": 4,
+      "total": 4
+    },
+    "CORE_EXACTNESS": {
+      "pass": 6,
+      "total": 6
+    },
+    "DEPENDENCIES": {
+      "pass": 4,
+      "total": 4
+    },
+    "MEDOID": {
+      "pass": 5,
+      "total": 5
+    },
+    "METAMORPHIC": {
+      "pass": 4,
+      "total": 4
+    },
+    "PROFILE_DIVERGENCE": {
+      "pass": 2,
+      "total": 2
+    },
+    "REPRESENTATION": {
+      "pass": 1,
+      "total": 1
+    },
+    "STRUCTURAL_STATES": {
+      "pass": 6,
+      "total": 6
+    },
+    "SYMMETRY": {
+      "pass": 2,
+      "total": 2
+    },
+    "TAMPER": {
+      "pass": 4,
+      "total": 4
+    }
+  },
+  "identity_checks": {
+    "browser_corpus_identity_pass": true,
+    "browser_registry_identity_pass": true,
+    "cross_export_identity_match": true
+  },
+  "implementation_hashes": {
+    "browser_reference_sha256": "05e577365d6eb5ef08629fd407f4214070a1cf382b7c4ea64460c571a5c013d9",
+    "corpus_json_sha256": "35061585c327904de29669c75a813fd70dc9565d0afcb09d6bc9150b7588f50c",
+    "profile_registry_json_sha256": "737a7aeeb7dadabf7681790340fde9d1832021a3d18a9a60c01f4ada6856462c",
+    "python_reference_kernel_sha256": "778da63043f352e0e233188445b5a9d66c723b0655befe8620e437b48d894d02",
+    "vector_manifest_json_sha256": "737d81965f92c5c452c1ed6c093a2a32b0ebb8082c5628240fe6f67bf7da4c21"
+  },
+  "parity_fields": [
+    "resolution_state",
+    "centre_type",
+    "result",
+    "canonical_carrier",
+    "carrier_id",
+    "dependency_fingerprint",
+    "dependency_fingerprint_id",
+    "result_id",
+    "certificate_id",
+    "profile_hash"
+  ],
+  "parity_profile": "SEC-PARITY-1-D01",
+  "passed": 38,
+  "records": [
+    {
+      "browser_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-C001"
+    },
+    {
+      "browser_certificate_id": "sha256:e38140f26e96b06bc6325855ac20904b4238337712538c7b9f75dfc4766a8aa0",
+      "browser_result_id": "sha256:751f8c3199bfeeacbbd17f116822b65609dd0a0b01d74177dc30957703c02c35",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:e38140f26e96b06bc6325855ac20904b4238337712538c7b9f75dfc4766a8aa0",
+      "python_result_id": "sha256:751f8c3199bfeeacbbd17f116822b65609dd0a0b01d74177dc30957703c02c35",
+      "vector_id": "SEC-C002"
+    },
+    {
+      "browser_certificate_id": "sha256:584354ad33574499972a5a77add9517545c21c8d7db6529563fe143444d0b18f",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:584354ad33574499972a5a77add9517545c21c8d7db6529563fe143444d0b18f",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-C003"
+    },
+    {
+      "browser_certificate_id": "sha256:a87f16043910d0e6f17296d925e23ab9b9ed9ac941a82be10d85c07db2e24f9d",
+      "browser_result_id": "sha256:8f293703b750a5c35cc1df6af3628da871dce95219905ead33e75e2f0d23b5b2",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:a87f16043910d0e6f17296d925e23ab9b9ed9ac941a82be10d85c07db2e24f9d",
+      "python_result_id": "sha256:8f293703b750a5c35cc1df6af3628da871dce95219905ead33e75e2f0d23b5b2",
+      "vector_id": "SEC-C004"
+    },
+    {
+      "browser_certificate_id": "sha256:0d8ad03f3ad102bb01378105a1cf6094704c8033e2643583e289e1ca1e443e1a",
+      "browser_result_id": "sha256:6d3c6bb37eab35c22909b566fa4da65cdfbc316d2ee19dfa8ae8f895d88ceb43",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:0d8ad03f3ad102bb01378105a1cf6094704c8033e2643583e289e1ca1e443e1a",
+      "python_result_id": "sha256:6d3c6bb37eab35c22909b566fa4da65cdfbc316d2ee19dfa8ae8f895d88ceb43",
+      "vector_id": "SEC-C005"
+    },
+    {
+      "browser_certificate_id": "sha256:2f965a178e4013a44f6e044a0f2c64978bbbb5f475d11812c0432312541893d7",
+      "browser_result_id": "sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18",
+      "category": "CORE_EXACTNESS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:2f965a178e4013a44f6e044a0f2c64978bbbb5f475d11812c0432312541893d7",
+      "python_result_id": "sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18",
+      "vector_id": "SEC-C006"
+    },
+    {
+      "browser_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "METAMORPHIC",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-C007"
+    },
+    {
+      "browser_certificate_id": "sha256:548ca9123cdbb89b50324878d69fba274b55d25dea5212f31f2328279c678516",
+      "browser_result_id": "sha256:3147b80c0ad81e0092ecb548a0d06c9e4c01eb8f9bb16e80ee0ee74c2132e9a7",
+      "category": "METAMORPHIC",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:548ca9123cdbb89b50324878d69fba274b55d25dea5212f31f2328279c678516",
+      "python_result_id": "sha256:3147b80c0ad81e0092ecb548a0d06c9e4c01eb8f9bb16e80ee0ee74c2132e9a7",
+      "vector_id": "SEC-C008"
+    },
+    {
+      "browser_certificate_id": "sha256:0927ccd5b1cfa23d419db599f3172d308a06553f1f1a59a60d0390e87ba4c88e",
+      "browser_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "category": "DEPENDENCIES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:0927ccd5b1cfa23d419db599f3172d308a06553f1f1a59a60d0390e87ba4c88e",
+      "python_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "vector_id": "SEC-D001"
+    },
+    {
+      "browser_certificate_id": "sha256:e4c030e60d366a28c361ab00c418540568aeca6d139fc81daa0a2150150651cb",
+      "browser_result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992",
+      "category": "DEPENDENCIES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:e4c030e60d366a28c361ab00c418540568aeca6d139fc81daa0a2150150651cb",
+      "python_result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992",
+      "vector_id": "SEC-D002"
+    },
+    {
+      "browser_certificate_id": "sha256:87d7dad13f25516b85b358bcca5f41e5cb04e78b0cef45b3d732a31222cf0519",
+      "browser_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "category": "DEPENDENCIES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:87d7dad13f25516b85b358bcca5f41e5cb04e78b0cef45b3d732a31222cf0519",
+      "python_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "vector_id": "SEC-D003"
+    },
+    {
+      "browser_certificate_id": "sha256:193c55d18cef89b1ac890436402759c141d0df89d3acf5e08edef3a2936cc9e7",
+      "browser_result_id": "sha256:2fb9f8708cf13fe265e62b5939f031fab436de882198765253a4544ddbede71e",
+      "category": "DEPENDENCIES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:193c55d18cef89b1ac890436402759c141d0df89d3acf5e08edef3a2936cc9e7",
+      "python_result_id": "sha256:2fb9f8708cf13fe265e62b5939f031fab436de882198765253a4544ddbede71e",
+      "vector_id": "SEC-D004"
+    },
+    {
+      "browser_certificate_id": "sha256:2d2d7f39135b14a1715ceeba78d2c9c9fcdd7e77fd34ac0903741ff6e994bcfb",
+      "browser_result_id": "sha256:60425cf39aced74f21ca0c8a375d2c5bf364312cb0cc41450a7059f5f781171c",
+      "category": "CLAIMS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:2d2d7f39135b14a1715ceeba78d2c9c9fcdd7e77fd34ac0903741ff6e994bcfb",
+      "python_result_id": "sha256:60425cf39aced74f21ca0c8a375d2c5bf364312cb0cc41450a7059f5f781171c",
+      "vector_id": "SEC-L001"
+    },
+    {
+      "browser_certificate_id": "sha256:d33d15e109bfe432dd652f80617fdd6e23ebac030d383146fa6a562a05c9e2e4",
+      "browser_result_id": "sha256:d50d33fb8838452d2d3fec4dd74d3b618786d424de6b5732d55d87d58c2af4aa",
+      "category": "CLAIMS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:d33d15e109bfe432dd652f80617fdd6e23ebac030d383146fa6a562a05c9e2e4",
+      "python_result_id": "sha256:d50d33fb8838452d2d3fec4dd74d3b618786d424de6b5732d55d87d58c2af4aa",
+      "vector_id": "SEC-L002"
+    },
+    {
+      "browser_certificate_id": "sha256:802dab4f0e6e898127c6ff6d28b539307996680395025b1ca3f9cdaf5a35255e",
+      "browser_result_id": "sha256:0e1951ac07cc6de3aadf2d492b93bc0b584a5c10f97413fe492b0c82c83b39e5",
+      "category": "CLAIMS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:802dab4f0e6e898127c6ff6d28b539307996680395025b1ca3f9cdaf5a35255e",
+      "python_result_id": "sha256:0e1951ac07cc6de3aadf2d492b93bc0b584a5c10f97413fe492b0c82c83b39e5",
+      "vector_id": "SEC-L003"
+    },
+    {
+      "browser_certificate_id": "sha256:a1479cecbd3e5c9de6bdba508233e6d5e20d3aa0251de2b5bd4dad814615abe0",
+      "browser_result_id": "sha256:84587ba509022381c2934c4dff6068cb69e449190a324b745b274c9e57e7ea37",
+      "category": "CLAIMS",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:a1479cecbd3e5c9de6bdba508233e6d5e20d3aa0251de2b5bd4dad814615abe0",
+      "python_result_id": "sha256:84587ba509022381c2934c4dff6068cb69e449190a324b745b274c9e57e7ea37",
+      "vector_id": "SEC-L004"
+    },
+    {
+      "browser_certificate_id": "sha256:8dffadddb4949f5268972e088c9bbf57b0fa58f2811f302bc2ab9feb6d8cded8",
+      "browser_result_id": "sha256:10d10647b0d124e33c43da6e5333137a1bd6d834ed099ba75f90961edd02fd80",
+      "category": "MEDOID",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:8dffadddb4949f5268972e088c9bbf57b0fa58f2811f302bc2ab9feb6d8cded8",
+      "python_result_id": "sha256:10d10647b0d124e33c43da6e5333137a1bd6d834ed099ba75f90961edd02fd80",
+      "vector_id": "SEC-M001"
+    },
+    {
+      "browser_certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+      "browser_result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2",
+      "category": "MEDOID",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+      "python_result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2",
+      "vector_id": "SEC-M002"
+    },
+    {
+      "browser_certificate_id": "sha256:9e557205b9dcc945470ab3f7299eb0a0fd21d30f9e0ccc6b0f0d41003ef01f31",
+      "browser_result_id": "sha256:6d2ed948993c84f2c3d514db1366d57929fdc40eba2bd3dca2689203f7735d7f",
+      "category": "MEDOID",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:9e557205b9dcc945470ab3f7299eb0a0fd21d30f9e0ccc6b0f0d41003ef01f31",
+      "python_result_id": "sha256:6d2ed948993c84f2c3d514db1366d57929fdc40eba2bd3dca2689203f7735d7f",
+      "vector_id": "SEC-M003"
+    },
+    {
+      "browser_certificate_id": "sha256:fbc8a68fdc1798ab7c99271c14b435ac1c9e0288974e8ee3f0f5ea414f471088",
+      "browser_result_id": "sha256:fc0b00532d6aee2ec9d7b8c04c39a17c4483c0b0661cbcd128c2eebbabcb92c4",
+      "category": "MEDOID",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:fbc8a68fdc1798ab7c99271c14b435ac1c9e0288974e8ee3f0f5ea414f471088",
+      "python_result_id": "sha256:fc0b00532d6aee2ec9d7b8c04c39a17c4483c0b0661cbcd128c2eebbabcb92c4",
+      "vector_id": "SEC-M004"
+    },
+    {
+      "browser_certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+      "browser_result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2",
+      "category": "METAMORPHIC",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46",
+      "python_result_id": "sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2",
+      "vector_id": "SEC-M005"
+    },
+    {
+      "browser_certificate_id": "sha256:c8f5acf748cc569e6a3e85b9c34c4a7f97a3a857634c038a6c6570cefb0c47ac",
+      "browser_result_id": "sha256:354ed5a0d7ed9f04656aedb20244c340cc783d663cc20a493caee3a1bc99778e",
+      "category": "MEDOID",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:c8f5acf748cc569e6a3e85b9c34c4a7f97a3a857634c038a6c6570cefb0c47ac",
+      "python_result_id": "sha256:354ed5a0d7ed9f04656aedb20244c340cc783d663cc20a493caee3a1bc99778e",
+      "vector_id": "SEC-M006"
+    },
+    {
+      "browser_certificate_id": "sha256:c3740511d77ffc24e5fbbcd4dd559fe2442962bbe1ad4bf0ca392330d9aaad2e",
+      "browser_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:c3740511d77ffc24e5fbbcd4dd559fe2442962bbe1ad4bf0ca392330d9aaad2e",
+      "python_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "vector_id": "SEC-M007"
+    },
+    {
+      "browser_certificate_id": "sha256:3758fbc23b945926bb7895dc41c6c91b7439f064134fd709d596b374536de7a7",
+      "browser_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:3758fbc23b945926bb7895dc41c6c91b7439f064134fd709d596b374536de7a7",
+      "python_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "vector_id": "SEC-M008"
+    },
+    {
+      "browser_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "REPRESENTATION",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-R001"
+    },
+    {
+      "browser_certificate_id": "sha256:472c91ac5bea066dcfc99cfd26b96d5afc132353ee56e385c9189ef899dc41e6",
+      "browser_result_id": "sha256:5371553212d11055f0d66860e74b25667ee1b327ac4e2db54dd8ad7fb2b38e50",
+      "category": "PROFILE_DIVERGENCE",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:472c91ac5bea066dcfc99cfd26b96d5afc132353ee56e385c9189ef899dc41e6",
+      "python_result_id": "sha256:5371553212d11055f0d66860e74b25667ee1b327ac4e2db54dd8ad7fb2b38e50",
+      "vector_id": "SEC-R002"
+    },
+    {
+      "browser_certificate_id": "sha256:1d571a38d8aceeddfd40ce4249421bf373cb96df4785c1f4ffaa15682cbf5bf6",
+      "browser_result_id": "sha256:2c13a0e530bebbb752c0167ff00a07cac0a6da1e7010fcb86c96d848df7fa2c7",
+      "category": "PROFILE_DIVERGENCE",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:1d571a38d8aceeddfd40ce4249421bf373cb96df4785c1f4ffaa15682cbf5bf6",
+      "python_result_id": "sha256:2c13a0e530bebbb752c0167ff00a07cac0a6da1e7010fcb86c96d848df7fa2c7",
+      "vector_id": "SEC-R003"
+    },
+    {
+      "browser_certificate_id": "sha256:6d03b555ee36f7459218d4390e772bf84650b8607d43c50b059ab71dcbf9fb5e",
+      "browser_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:6d03b555ee36f7459218d4390e772bf84650b8607d43c50b059ab71dcbf9fb5e",
+      "python_result_id": "sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba",
+      "vector_id": "SEC-S001"
+    },
+    {
+      "browser_certificate_id": "sha256:e9c5d5170b1b2f51cd61f9635104f289b168e50a26bdba1f85fdc3b3cee6f0d0",
+      "browser_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:e9c5d5170b1b2f51cd61f9635104f289b168e50a26bdba1f85fdc3b3cee6f0d0",
+      "python_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "vector_id": "SEC-S002"
+    },
+    {
+      "browser_certificate_id": "sha256:b911ff15e4c63bbc9f6fc0abfef649db820f6af84f398c28b60d28f14df4baa5",
+      "browser_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:b911ff15e4c63bbc9f6fc0abfef649db820f6af84f398c28b60d28f14df4baa5",
+      "python_result_id": "sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0",
+      "vector_id": "SEC-S003"
+    },
+    {
+      "browser_certificate_id": "sha256:4d1feb95d0308c04cb5d549783f4917b5e098f0f62d2fe271e6f8dc8f1bafe3d",
+      "browser_result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992",
+      "category": "STRUCTURAL_STATES",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:4d1feb95d0308c04cb5d549783f4917b5e098f0f62d2fe271e6f8dc8f1bafe3d",
+      "python_result_id": "sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992",
+      "vector_id": "SEC-S004"
+    },
+    {
+      "browser_certificate_id": "sha256:54cd52cb871ad911e9d4b45722458645a343150705ab5667b973942dd7ecaa31",
+      "browser_result_id": "sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18",
+      "category": "TAMPER",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:54cd52cb871ad911e9d4b45722458645a343150705ab5667b973942dd7ecaa31",
+      "python_result_id": "sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18",
+      "vector_id": "SEC-T001"
+    },
+    {
+      "browser_certificate_id": "sha256:1080057d676de76099b780167c0707f41e1624cc4693987196f09dbec126f68f",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "TAMPER",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:1080057d676de76099b780167c0707f41e1624cc4693987196f09dbec126f68f",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-T002"
+    },
+    {
+      "browser_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "TAMPER",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-T003"
+    },
+    {
+      "browser_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "browser_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "category": "TAMPER",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486",
+      "python_result_id": "sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e",
+      "vector_id": "SEC-T004"
+    },
+    {
+      "browser_certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+      "browser_result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070",
+      "category": "SYMMETRY",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+      "python_result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070",
+      "vector_id": "SEC-Y001"
+    },
+    {
+      "browser_certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+      "browser_result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070",
+      "category": "METAMORPHIC",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741",
+      "python_result_id": "sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070",
+      "vector_id": "SEC-Y002"
+    },
+    {
+      "browser_certificate_id": "sha256:bfb211991d7747e523b1e7ddfb902f0bc0b29e182b489d13c6c3e46307002df3",
+      "browser_result_id": "sha256:4ea132ca9412d67e13bf6a6e35bd2f8dcac9c70b8e2a9a2b429af49482ec5f90",
+      "category": "SYMMETRY",
+      "mismatches": [],
+      "pass": true,
+      "python_certificate_id": "sha256:bfb211991d7747e523b1e7ddfb902f0bc0b29e182b489d13c6c3e46307002df3",
+      "python_result_id": "sha256:4ea132ca9412d67e13bf6a6e35bd2f8dcac9c70b8e2a9a2b429af49482ec5f90",
+      "vector_id": "SEC-Y003"
+    }
+  ],
+  "schema": "SEC-CROSS-IMPLEMENTATION-PARITY-EVIDENCE-1-D01",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 38
+}

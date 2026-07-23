@@ -1,0 +1,278 @@
+STRUCTURAL EARTH CENTRE
+STRUCTURAL CENTRE DIFFERENTIAL, STABILITY, AND CERTIFICATION
+Release v0.5.0
+
+1. SCOPE
+
+This document specifies the structural innovation layer retained and qualified in SEC v0.5.0.
+
+Profiles:
+
+SEC-STRUCTURAL-CENTRE-INNOVATION-1-D01
+SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01
+SEC-CENTRE-STABILITY-ENVELOPE-1-D01
+SEC-SYMMETRY-CERTIFICATE-1-D01
+SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01
+SEC-CENTRE-CLAIM-IDENTITY-1-D01
+
+2. STRUCTURAL CENTRE DIFFERENTIAL
+
+Inputs:
+
+left claim structure
+right claim structure
+left bounded result
+right bounded result
+
+The resolver canonicalizes declared dependency maps, compares keys and values, and separately compares the declared profile identifier.
+
+Outputs:
+
+changed_dependencies
+changed_dependency_count
+result_equivalent
+left_claim_id
+right_claim_id
+left_result_id
+right_result_id
+differential_state
+differential_id
+
+States:
+
+NO_STRUCTURAL_DIFFERENCE
+CLAIM_DISTINCT_RESULT_EQUIVALENT
+SINGLE_DEPENDENCY_DIVERGENCE
+MULTI_DEPENDENCY_DIVERGENCE
+UNRESOLVED_COMPARISON
+
+A single changed dependency is eligible for the interpretation:
+
+CONTROLLED_SINGLE_DECLARED_DIFFERENCE
+
+This interpretation is structural and bounded to the supplied comparison contract.
+
+3. CENTRE STABILITY ENVELOPE
+
+Input:
+
+explicit finite samples of exact rational centre coordinates
+
+plus:
+
+a declared perturbation-family description
+
+The sample order is non-authoritative.
+
+Duplicate samples do not alter the resulting region.
+
+Resolution rules:
+
+no admitted samples -> INCOMPLETE
+
+malformed or unsupported rational representation -> UNSUPPORTED
+
+mixed dimensions -> CONFLICT
+
+one distinct point -> RESOLVED_POINT
+
+more than one distinct compatible point -> RESOLVED_REGION
+
+The region is represented as:
+
+AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE
+
+with:
+
+dimension
+lower_bound
+upper_bound
+
+The region is the minimal axis-aligned rational box containing the distinct declared sample results.
+
+It does not claim to be a probability region, confidence interval, physical error ellipsoid, or complete uncertainty set.
+
+4. REGION MEMBERSHIP
+
+A point p is a member of the current region R exactly when every axis lies within its inclusive rational bounds.
+
+For dimension k:
+
+lower_i <= p_i <= upper_i for every i in 1..k
+
+Dimension mismatch is not silently coerced.
+
+5. SYMMETRY CERTIFICATE
+
+Inputs:
+
+candidate set
+declared equivalence class
+optional symmetry breaker
+
+Rules:
+
+empty equivalence class -> INCOMPLETE
+
+breaker outside equivalence class -> CONFLICT
+
+valid breaker -> UNIQUE_CENTRE_ADMITTED
+
+multiple equivalent members with no breaker -> UNIQUE_CENTRE_REFUSED
+
+single-member equivalence class -> UNIQUE_CENTRE_ADMITTED
+
+The certificate identity binds the full canonical certificate body.
+
+6. CLAIM IDENTITY
+
+Claim identity material contains:
+
+carrier_id
+centre_profile_id
+dependency_fingerprint_id
+authority_scope
+claim_kind
+system version
+schema
+
+The claim identity intentionally remains distinct from a coordinate or result identity.
+
+7. CENTRE RESOLUTION CERTIFICATE
+
+The certificate can bind an independently established result identity.
+
+Fields include:
+
+claim_id
+claim_material
+result_id
+result_material_hash
+result_id_source
+resolution_state
+resolution_witness
+authority_scope
+optional symmetry_certificate_id
+optional stability_envelope_id
+optional evidence_id
+certificate_id
+
+result_id_source is:
+
+DECLARED_RESULT_ID
+
+when an existing result identity is supplied, or:
+
+STRUCTURAL_MATERIAL_HASH
+
+when the certificate derives its result reference directly from the supplied result material.
+
+This distinction prevents a certificate from silently replacing a domain-specific result identity with a new unrelated hash.
+
+8. AUTHORITY LIMIT
+
+A certificate is evidence about the bounded declared resolution structure.
+
+It does not:
+
+approve a physical claim outside its authority scope
+create a missing dependency
+turn an unsupported claim into a supported claim
+prove causality from multiple changed dependencies
+infer perturbation results that were never admitted
+
+9. FROZEN INNOVATION CORPUS
+
+Vector set:
+
+secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973
+
+Vector corpus:
+
+sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49
+
+Innovation profile hash:
+
+sha256:79b1e301e3180cd959e4169bdcb9786825c06ae519c3c6d16222105efb1b532b
+
+Python audit:
+
+24/24 PASS
+
+Audit evidence:
+
+sha256:6821172bdea22cf559730eb534ad81a570d19b5fb4b1ed0ada18df7e6589ccb9
+
+Python/JavaScript parity:
+
+18/18 PASS
+
+Parity evidence:
+
+sha256:31961a9e9e52f2e54c9739bae04823395ce909c2b3a063f01af178d8d0991451
+
+10. SAME-DATASET APPLICATION
+
+The same exact frozen land dataset is evaluated under two centre measures.
+
+Area-vector result:
+
+44.847286603, 28.41498761
+
+Boundary-vector result:
+
+71.590921549, 66.736078802
+
+Angular separation:
+
+32.350594616 degrees
+
+Changed dependency:
+
+measure
+
+Differential state:
+
+SINGLE_DEPENDENCY_DIVERGENCE
+
+Differential ID:
+
+sha256:2b2d58ff302077d16cc480b31112da2b12e81a58a84a0d4c7fa8937bc57d760c
+
+Both resolution certificates bind their real result IDs and evidence IDs while separately binding their certificate-view result material hashes.
+
+11. VERIFICATION SURFACES
+
+Python innovation resolver:
+
+python verify/SEC_Structural_Centre_Resolver_v0_5_0.py --audit
+
+Python/JavaScript innovation parity:
+
+python verify/SEC_Structural_Centre_Innovation_Parity_Auditor_v0_5_0.py --root .
+
+Same-dataset differential:
+
+python verify/SEC_Real_Land_Profile_Differential_v0_5_0.py --root .
+
+Dedicated browser laboratory:
+
+await SEC_INNOVATION_AUDIT.runAll()
+
+Integrated browser laboratory:
+
+await SEC_LAB_AUDIT.runAll()
+
+12. DESIGN PRINCIPLE
+
+The innovation layer does not seek novelty by adding terminology alone.
+
+Its executable contribution is the combination of:
+
+controlled dependency differential
+bounded region-valued stability
+machine-checkable symmetry refusal
+claim/result/evidence separation
+resolution certificates that preserve existing result identities
+
+within one deterministic structural resolution system.

@@ -1,0 +1,317 @@
+STRUCTURAL EARTH CENTRE
+STRUCTURAL PORTABILITY PROOF
+Release v0.5.0
+
+1. PURPOSE
+
+This document specifies the bounded Structural Portability Proof introduced in SEC v0.5.0.
+
+The purpose is to test whether selected structural primitives remain semantically stable when the subject matter changes.
+
+The proof does not claim universal portability.
+
+Its bounded contract is:
+
+same generic structural primitives + two declared domain adapters + frozen exact vectors
+-> matched generic structural semantics and reproducible qualification evidence
+
+2. GENERIC STRUCTURAL KERNEL
+
+Generic kernel profile:
+
+SEC-GENERIC-STRUCTURAL-KERNEL-1-D01
+
+Profile hash:
+
+sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9
+
+The generic operation set is:
+
+CLAIM_RELATION
+RESULT_SPECTRUM
+RESOLUTION_FRONTIER
+RESOLUTION_CERTIFICATE
+
+The generic kernel operates on domain-neutral structural material such as:
+
+domain_id
+scope_id
+profile_id
+dependencies
+result
+repair options
+certificate inputs
+
+The generic kernel does not contain centre mathematics or synthetic admissibility rules.
+
+3. SEPARATION CONTRACT
+
+The portability architecture separates:
+
+generic structural semantics
+
+from:
+
+domain-specific resolution semantics
+
+The profile declares:
+
+- domain adapters may resolve subject matter;
+- the generic kernel contains no domain-specific resolution rules;
+- relation, spectrum, frontier, and certificate semantics are shared.
+
+This is tested directly by the portability audit.
+
+4. CENTRE DOMAIN ADAPTER
+
+Adapter profile:
+
+SEC-PORTABILITY-ADAPTER-CENTRE-1-D01
+
+Profile hash:
+
+sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2
+
+The adapter is intentionally small and exact.
+
+Subject contract:
+
+- one-dimensional finite non-empty exact rational points;
+- required dependencies: frame and measure;
+- exact rational arithmetic;
+- supported profile: CENTRE_EXACT_MEAN_1D.
+
+The domain result is bounded to:
+
+RESOLVED + CENTRE_POINT
+
+This adapter exists to supply centre-specific subject matter without placing centre mathematics inside the generic kernel.
+
+5. SYNTHETIC ADMISSIBILITY DOMAIN ADAPTER
+
+Adapter profile:
+
+SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01
+
+Profile hash:
+
+sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1
+
+Required dependencies:
+
+eligibility_class
+evidence_status
+
+The bounded synthetic rules include:
+
+STANDARD -> ADMITTED
+BLOCKED -> REFUSED
+
+Admitted evidence statuses are:
+
+VERIFIED
+ATTESTED
+
+Every resolved decision carries:
+
+execution_authority = NONE
+
+The adapter is a structural demonstration. It does not authorize a real-world action.
+
+6. PORTABILITY PROFILE
+
+Portability profile:
+
+SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01
+
+Profile hash:
+
+sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f
+
+Proof scope:
+
+TWO_BOUNDED_SYNTHETIC_DOMAINS_WITH_EXACT_REPRODUCIBLE_VECTORS
+
+Proof dimensions:
+
+CLAIM_RELATION_SEMANTICS
+RESULT_SPECTRUM_SEMANTICS
+RESOLUTION_FRONTIER_SEMANTICS
+RESOLUTION_CERTIFICATE_BINDING
+PYTHON_JAVASCRIPT_PARITY
+
+7. FROZEN PORTABILITY CORPUS
+
+The portability corpus contains 24 frozen vectors.
+
+It includes paired centre-domain and admissibility-domain cases covering:
+
+- claim equivalence;
+- left refinement;
+- compatible overlap;
+- declaration conflict;
+- convergent claim-diverse spectra;
+- divergent result families;
+- mixed-resolution families;
+- unique minimal frontiers;
+- multiple minimal frontiers;
+- no admissible frontier;
+- resolution certificates;
+- direct domain resolution.
+
+Vector set:
+
+secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4
+
+Vector corpus:
+
+sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7
+
+8. CROSS-DOMAIN STRUCTURAL INVARIANCE
+
+The audit does not require the two domains to produce the same subject-matter result.
+
+It requires matched structural cases to preserve the same generic semantics.
+
+Examples include:
+
+CLAIM_EQUIVALENT <-> CLAIM_EQUIVALENT
+
+LEFT_REFINES_RIGHT <-> LEFT_REFINES_RIGHT
+
+COMPATIBLE_OVERLAP <-> COMPATIBLE_OVERLAP
+
+DECLARATION_CONFLICT <-> DECLARATION_CONFLICT
+
+RESULT_CONVERGENT_CLAIM_DIVERSE <-> RESULT_CONVERGENT_CLAIM_DIVERSE
+
+RESULT_DIVERGENT_FAMILY <-> RESULT_DIVERGENT_FAMILY
+
+MIXED_RESOLUTION_FAMILY <-> MIXED_RESOLUTION_FAMILY
+
+UNIQUE_MINIMAL_FRONTIER <-> UNIQUE_MINIMAL_FRONTIER
+
+MULTIPLE_MINIMAL_FRONTIERS <-> MULTIPLE_MINIMAL_FRONTIERS
+
+NO_ADMISSIBLE_FRONTIER <-> NO_ADMISSIBLE_FRONTIER
+
+The governing distinction is:
+
+same structural law != same subject-matter answer
+
+9. PORTABILITY CERTIFICATE
+
+The portability certificate binds the bounded proof configuration:
+
+portability profile
+generic kernel profile
+centre adapter profile
+admissibility adapter profile
+frozen vector set
+frozen vector corpus
+
+Portability certificate:
+
+sha256:660af7631ca9e7cc630ec3695c0cb78ead5fa43f62e09be6e4555361b3a8eb21
+
+The certificate identifies the declared portability configuration.
+
+It does not certify every possible future adapter or domain.
+
+10. QUALIFICATION
+
+Python structural portability audit:
+
+40/40 PASS
+
+Audit evidence:
+
+sha256:41933da5589cb12615d2a8d470f725918d70c7fad3da033c6d663fc2344ec4d1
+
+Python/JavaScript portability parity:
+
+27/27 PASS
+
+Parity evidence:
+
+sha256:7b99708a80daf405825f5ca4aed764e0803a9eb38ed369a092c93e5f947e358f
+
+The 40-check audit includes:
+
+- profile, vector-set, and corpus identity checks;
+- 24 frozen vector checks;
+- matched relation invariance checks;
+- matched spectrum invariance checks;
+- matched frontier invariance checks;
+- certificate tamper sensitivity;
+- generic-kernel/domain-adapter separation;
+- portability-certificate reconstruction.
+
+11. VERIFICATION COMMANDS
+
+Python audit:
+
+python verify/SEC_Structural_Portability_Kernel_v0_5_0.py --profiles profiles --audit --verbose
+
+Python/JavaScript parity:
+
+python verify/SEC_Structural_Portability_Parity_Auditor_v0_5_0.py --root . --verbose
+
+Browser laboratory:
+
+Open:
+
+demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html
+
+Run:
+
+await SEC_PORTABILITY_AUDIT.runAll({verbose:true})
+
+Expected:
+
+40/40 PASS
+
+12. RELATION TO THE CENTRE STACK
+
+The existing centre stack remains a separate qualified architecture.
+
+It includes:
+
+- exact centre core;
+- bounded Earth profiles;
+- real-land computation;
+- Structural Centre Differential;
+- Centre Stability Envelope;
+- Symmetry Certificates;
+- Centre Resolution Certificates;
+- Structural Claim Relation;
+- Centre Spectrum;
+- Resolution Frontier;
+- exact graph-centre demonstration.
+
+The integrated centre laboratory remains:
+
+132/132 PASS
+
+The portability proof is qualified separately at:
+
+40/40 PASS
+
+This separation prevents the portability proof from being hidden inside a larger centre-specific count.
+
+13. CLAIM BOUNDARY
+
+The current proof does not establish:
+
+- universal portability across every domain;
+- completeness of the generic structural primitives;
+- semantic equivalence between all possible domain claims;
+- causal inference from claim relations;
+- production authority for the synthetic admissibility adapter;
+- automatic execution authority;
+- permission to invent undeclared repairs;
+- third-party verification.
+
+The strongest bounded claim is:
+
+under the frozen v0.5.0 portability corpus, the same declared generic claim-relation, result-spectrum, resolution-frontier, and resolution-certificate semantics reproduce across two distinct bounded domain adapters, with independent Python/JavaScript parity.

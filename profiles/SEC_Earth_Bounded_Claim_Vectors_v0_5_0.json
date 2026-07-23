@@ -1,0 +1,311 @@
+{
+  "carrier_registry_id": "sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216",
+  "comparisons": [
+    {
+      "comparison_id": "SEC-EARTH-CMP001",
+      "expected_relation": "SAME_COORDINATE_DISTINCT_PROFILE_AND_CARRIER",
+      "left_vector_id": "SEC-EARTH-E001",
+      "right_vector_id": "SEC-EARTH-E002",
+      "title": "Same zero coordinate under distinct Earth-centre profiles"
+    }
+  ],
+  "profile_registry_id": "sha256:252d5945bad22ac90aaee972a8e33cdf094dc81d8762de92e6730bb624962a26",
+  "schema": "SEC-EARTH-BOUNDED-VECTOR-SET-1-D01",
+  "source_registry_id": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+  "system_version": "0.5.0",
+  "vector_corpus_id": "sha256:fd9eb495e90004607ef052f970412d261a6f91287d651e2f44d986dadb9358bd",
+  "vector_count": 14,
+  "vector_set_id": "secearthv_761a8c1ff99a85c7e268a17d3bfe1f52f0689d89769469fcd3c752b6635f3ed6",
+  "vectors": [
+    {
+      "category": "MODEL_GEOMETRY",
+      "claim_scope": "MODEL_GEOMETRIC_CENTRE",
+      "dependencies": {
+        "frame": "SEC-EARTH-MODEL-CARTESIAN-3D-D01"
+      },
+      "expected": {
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "resolution_state": "RESOLVED_POINT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-IDEAL-SPHERE-GEOMETRIC-1-D01",
+      "title": "Normalized Earth sphere geometric centre",
+      "vector_hash": "sha256:83d3a38c09dfa6d236470784e89cc2417e408d26133158e64b2a5ce910692484",
+      "vector_id": "SEC-EARTH-E001"
+    },
+    {
+      "category": "MODEL_GEOMETRY",
+      "claim_scope": "REFERENCE_ELLIPSOID_GEOMETRIC_CENTRE",
+      "dependencies": {
+        "frame": "WGS84_ECEF_REFERENCE"
+      },
+      "expected": {
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "resolution_state": "RESOLVED_POINT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-WGS84-ELLIPSOID-GEOMETRIC-1-D01",
+      "title": "WGS 84 reference ellipsoid geometric centre",
+      "vector_hash": "sha256:af8ebe001f6a37604fd61cef727629ad2c762c107cfa87251721109802ebd3f6",
+      "vector_id": "SEC-EARTH-E002"
+    },
+    {
+      "category": "REFERENCE_SYSTEM",
+      "claim_scope": "WGS84_COORDINATE_SYSTEM_ORIGIN",
+      "dependencies": {
+        "frame": "WGS84_ECEF_REFERENCE"
+      },
+      "expected": {
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "resolution_state": "RESOLVED_POINT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-WGS84-REFERENCE-ORIGIN-1-D01",
+      "title": "WGS 84 coordinate-system origin",
+      "vector_hash": "sha256:65053ce30382d23c3a2635a8f55d5048dbe22625a1ec1a218f777037e6566797",
+      "vector_id": "SEC-EARTH-E003"
+    },
+    {
+      "category": "REFERENCE_SYSTEM",
+      "claim_scope": "ITRS_REFERENCE_SYSTEM_ORIGIN",
+      "dependencies": {
+        "frame": "ITRS_ABSTRACT_REFERENCE_SYSTEM",
+        "mass_scope": "WHOLE_EARTH_INCLUDING_OCEANS_AND_ATMOSPHERE"
+      },
+      "expected": {
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          },
+          {
+            "d": "1",
+            "n": "0"
+          }
+        ],
+        "resolution_state": "RESOLVED_POINT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-ITRS-GEOCENTRE-ORIGIN-1-D01",
+      "title": "ITRS whole-Earth reference-system origin",
+      "vector_hash": "sha256:af0b5fb4bf266976f3ff3816af84867cd168873b342a348514b3d3ca0222102e",
+      "vector_id": "SEC-EARTH-E004"
+    },
+    {
+      "category": "EVIDENCE_BOUNDARY",
+      "claim_scope": "INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+      "dependencies": {
+        "mass_scope": "WHOLE_EARTH_INCLUDING_OCEANS_AND_ATMOSPHERE"
+      },
+      "expected": {
+        "missing_dependencies": [
+          "frame_realization",
+          "epoch",
+          "evidence_bundle_id"
+        ],
+        "resolution_state": "INCOMPLETE"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-INSTANTANEOUS-PHYSICAL-GEOCENTRE-1-D01",
+      "title": "Instantaneous physical geocentre without epoch and evidence",
+      "vector_hash": "sha256:b94585d65696d423b4db35e51e244adea0c77e8bfa004adbb6dcc0c08c95f0b0",
+      "vector_id": "SEC-EARTH-E005"
+    },
+    {
+      "category": "EVIDENCE_BOUNDARY",
+      "claim_scope": "INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+      "dependencies": {
+        "epoch": "DECLARED_TEST_EPOCH",
+        "evidence_bundle_id": "DECLARED_TEST_EVIDENCE",
+        "frame_realization": "DECLARED_TEST_REALIZATION",
+        "mass_scope": [
+          "SOLID_EARTH_ONLY",
+          "WHOLE_EARTH_INCLUDING_OCEANS_AND_ATMOSPHERE"
+        ]
+      },
+      "expected": {
+        "resolution_state": "CONFLICT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-INSTANTANEOUS-PHYSICAL-GEOCENTRE-1-D01",
+      "title": "Conflicting mass scopes for physical geocentre",
+      "vector_hash": "sha256:1932c22d5b2e75b9a86df890f185fecd0a3be695db747812c54afc3c43eb4d82",
+      "vector_id": "SEC-EARTH-E006"
+    },
+    {
+      "category": "SURFACE",
+      "claim_scope": "DECLARED_SURFACE_REPRESENTATIVE",
+      "dependencies": {
+        "surface_symmetry": "NO_INTRINSIC_UNIQUE_SURFACE_POINT"
+      },
+      "expected": {
+        "resolution_state": "AMBIGUOUS"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-UNIQUE-SURFACE-REPRESENTATIVE-1-D01",
+      "title": "Unique surface centre requested without a symmetry breaker",
+      "vector_hash": "sha256:9ea1f16d25d90f41e2bc4edcfe871e9223bb2083095de04211812e6adee0a0f7",
+      "vector_id": "SEC-EARTH-E007"
+    },
+    {
+      "category": "SURFACE",
+      "claim_scope": "DECLARED_SURFACE_REPRESENTATIVE",
+      "dependencies": {
+        "surface_symmetry": "NO_INTRINSIC_UNIQUE_SURFACE_POINT",
+        "symmetry_breaker": "NORTH_POLE_BY_DECLARATION"
+      },
+      "expected": {
+        "centre_value": {
+          "id": "NORTH_POLE_BY_DECLARATION",
+          "kind": "DECLARED_SURFACE_POINT"
+        },
+        "resolution_state": "RESOLVED_POINT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-UNIQUE-SURFACE-REPRESENTATIVE-1-D01",
+      "title": "Surface representative resolved only by explicit declared breaker",
+      "vector_hash": "sha256:533327b79bab5dd9372a34a7baa6e519a91f0a541928f28ab638d57d83f3065e",
+      "vector_id": "SEC-EARTH-E008"
+    },
+    {
+      "category": "DATA_DEPENDENCY",
+      "claim_scope": "LAND_AREA_CENTRE",
+      "dependencies": {
+        "coastline_policy": "DECLARED_COASTLINE_POLICY",
+        "epoch": "DECLARED_EPOCH",
+        "metric": "DECLARED_GEODESIC_METRIC"
+      },
+      "expected": {
+        "missing_dependencies": [
+          "land_mask_id"
+        ],
+        "resolution_state": "INCOMPLETE"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-LAND-AREA-CENTRE-1-D01",
+      "title": "Land-area centre without a land-mask dataset",
+      "vector_hash": "sha256:e61bf8f868734537b77fc3c072db8cf407b1884e3c8e29fd6e15a1c3a1e97351",
+      "vector_id": "SEC-EARTH-E009"
+    },
+    {
+      "category": "DATA_DEPENDENCY",
+      "claim_scope": "LAND_AREA_CENTRE",
+      "dependencies": {
+        "coastline_policy": [
+          "POLICY_A",
+          "POLICY_B"
+        ],
+        "epoch": "DECLARED_EPOCH",
+        "land_mask_id": "DECLARED_LAND_MASK",
+        "metric": "DECLARED_GEODESIC_METRIC"
+      },
+      "expected": {
+        "resolution_state": "CONFLICT"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-LAND-AREA-CENTRE-1-D01",
+      "title": "Land-area centre with conflicting coastline policies",
+      "vector_hash": "sha256:2ed1c2374590fd50e3ad620c422a27415da7c1cf17ef3920986457f5308e1abf",
+      "vector_id": "SEC-EARTH-E010"
+    },
+    {
+      "category": "DATA_DEPENDENCY",
+      "claim_scope": "POPULATION_CENTRE",
+      "dependencies": {
+        "allocation_rule": "DECLARED_ALLOCATION_RULE",
+        "epoch": "DECLARED_EPOCH",
+        "metric": "DECLARED_GEODESIC_METRIC"
+      },
+      "expected": {
+        "missing_dependencies": [
+          "population_dataset_id"
+        ],
+        "resolution_state": "INCOMPLETE"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-POPULATION-CENTRE-1-D01",
+      "title": "Population centre without a population dataset",
+      "vector_hash": "sha256:8c013d11c2bc5cdccc047565a87763062b3af5dd23e4f91287f28b620e34707a",
+      "vector_id": "SEC-EARTH-E011"
+    },
+    {
+      "category": "OBJECTIVE_BOUNDARY",
+      "claim_scope": "GRAVITY_FIELD_CENTRE",
+      "dependencies": {
+        "epoch": "DECLARED_EPOCH",
+        "frame": "DECLARED_EARTH_FIXED_FRAME",
+        "gravity_model_id": "DECLARED_GRAVITY_MODEL"
+      },
+      "expected": {
+        "missing_dependencies": [
+          "objective"
+        ],
+        "resolution_state": "INCOMPLETE"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-GRAVITY-CENTRE-1-D01",
+      "title": "Gravity centre without an explicit objective",
+      "vector_hash": "sha256:a78293f1e3d1951f9cc27eb85b89fc7dbcc2f5e602e8360195b793decc27903e",
+      "vector_id": "SEC-EARTH-E012"
+    },
+    {
+      "category": "CLAIM_BOUNDARY",
+      "claim_scope": "INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+      "dependencies": {
+        "frame": "SEC-EARTH-MODEL-CARTESIAN-3D-D01"
+      },
+      "expected": {
+        "resolution_state": "UNSUPPORTED"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-IDEAL-SPHERE-GEOMETRIC-1-D01",
+      "title": "Model geometric centre cannot escalate to instantaneous physical geocentre",
+      "vector_hash": "sha256:ee54b205e2afcbaa047adad3179997f266aaf8559bd04cefd9701ec3e8c14dae",
+      "vector_id": "SEC-EARTH-E013"
+    },
+    {
+      "category": "CLAIM_BOUNDARY",
+      "claim_scope": "INSTANTANEOUS_PHYSICAL_GEOCENTRE",
+      "dependencies": {
+        "frame": "WGS84_ECEF_REFERENCE"
+      },
+      "expected": {
+        "resolution_state": "UNSUPPORTED"
+      },
+      "profile_id": "SEC-EARTH-PROFILE-WGS84-REFERENCE-ORIGIN-1-D01",
+      "title": "Reference-system origin cannot be presented as independently measured live geocentre",
+      "vector_hash": "sha256:c45cc3e012812553567f536d9f3ee3979c9dc6f19a2f307131fd3c852bf21092",
+      "vector_id": "SEC-EARTH-E014"
+    }
+  ]
+}

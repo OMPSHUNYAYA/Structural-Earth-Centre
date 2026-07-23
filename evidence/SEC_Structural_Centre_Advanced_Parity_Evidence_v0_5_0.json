@@ -1,0 +1,122 @@
+{
+  "checks": [
+    {
+      "check_id": "SYSTEM_VERSION",
+      "detail": "0.5.0",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_SET_ID",
+      "detail": "secadv_eb83c11f6082d243cb2dfdd1745c980167d41d4f4418a329741dab4b7300b067",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_CORPUS_ID",
+      "detail": "sha256:34ae50e716024ddec125b35ed38afd7fa3b06dbb151ce1348ba75ac2ea0ae62b",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R001",
+      "detail": "SEC-ADV-R001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R002",
+      "detail": "SEC-ADV-R002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R003",
+      "detail": "SEC-ADV-R003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R004",
+      "detail": "SEC-ADV-R004",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R005",
+      "detail": "SEC-ADV-R005",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-R006",
+      "detail": "SEC-ADV-R006",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-SP001",
+      "detail": "SEC-ADV-SP001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-SP002",
+      "detail": "SEC-ADV-SP002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-SP003",
+      "detail": "SEC-ADV-SP003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-SP004",
+      "detail": "SEC-ADV-SP004",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-SP005",
+      "detail": "SEC-ADV-SP005",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-F001",
+      "detail": "SEC-ADV-F001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-F002",
+      "detail": "SEC-ADV-F002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-F003",
+      "detail": "SEC-ADV-F003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-F004",
+      "detail": "SEC-ADV-F004",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-G001",
+      "detail": "SEC-ADV-G001",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-G002",
+      "detail": "SEC-ADV-G002",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-G003",
+      "detail": "SEC-ADV-G003",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-ADV-G004",
+      "detail": "SEC-ADV-G004",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:43c77dcea8e10a48c54a033829217eb85c63af03ed7fd6808d3f805938d348b1",
+  "passed": 22,
+  "schema": "SEC-STRUCTURAL-CENTRE-ADVANCED-PARITY-EVIDENCE-1-D01",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 22,
+  "vector_corpus_id": "sha256:34ae50e716024ddec125b35ed38afd7fa3b06dbb151ce1348ba75ac2ea0ae62b",
+  "vector_set_id": "secadv_eb83c11f6082d243cb2dfdd1745c980167d41d4f4418a329741dab4b7300b067"
+}

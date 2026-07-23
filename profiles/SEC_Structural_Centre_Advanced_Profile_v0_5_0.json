@@ -1,0 +1,30 @@
+{
+  "capabilities": [
+    {
+      "capability": "STRUCTURAL_CLAIM_RELATION",
+      "profile": "SEC-STRUCTURAL-CLAIM-RELATION-1-D01"
+    },
+    {
+      "capability": "CENTRE_SPECTRUM",
+      "profile": "SEC-CENTRE-SPECTRUM-1-D01"
+    },
+    {
+      "capability": "RESOLUTION_FRONTIER",
+      "profile": "SEC-RESOLUTION-FRONTIER-1-D01"
+    },
+    {
+      "capability": "EXACT_GRAPH_CENTRE_PORTABILITY",
+      "profile": "SEC-EXACT-GRAPH-CENTRE-1-D01"
+    }
+  ],
+  "principles": {
+    "frontier_is_bounded_to_declared_repair_options": true,
+    "graph_portability_uses_finite_exact_unweighted_shortest_paths": true,
+    "no_blind_averaging": true,
+    "relation_does_not_infer_causality": true
+  },
+  "profile_hash": "sha256:6e7b463298d0fcf2d89adb9cd4a5226d3a473d872823c98bab43cc3f03ced958",
+  "profile_id": "SEC-STRUCTURAL-CENTRE-ADVANCED-1-D01",
+  "schema": "SEC-STRUCTURAL-CENTRE-ADVANCED-PROFILE-1-D01",
+  "system_version": "0.5.0"
+}

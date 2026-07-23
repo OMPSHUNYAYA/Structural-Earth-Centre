@@ -1,0 +1,185 @@
+{
+  "architecture_profile": "SEC-ARCH-1-D01",
+  "canonicalization_profile": "SEC-CANON-1-D01",
+  "exact_arithmetic_profile": "SEC-EXACT-1-D01",
+  "profile_registry_id": "sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e",
+  "profiles": [
+    {
+      "abstention_rules": [],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "DERIVED_EXACT_POINT",
+      "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED",
+        "UNIFORM_DIMENSION_REQUIRED"
+      ],
+      "duplicate_policy": "MULTISET_PRESERVE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "EXPLICIT_REQUIRED",
+      "metric": "NOT_MATERIAL",
+      "objective": "EXACT_WEIGHTED_CENTROID",
+      "precision_policy": "EXACT_RATIONAL",
+      "profile_hash": "sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4",
+      "profile_id": "SEC-PROFILE-WCENTROID-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "frame"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "NOT_MATERIAL",
+      "tie_policy": "NOT_MATERIAL",
+      "weight_policy": "EXPLICIT_POSITIVE_RATIONAL"
+    },
+    {
+      "abstention_rules": [],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "EXPLICIT_FINITE_SET",
+      "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED",
+        "UNIFORM_DIMENSION_REQUIRED"
+      ],
+      "duplicate_policy": "SET_DEDUPLICATE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "EXPLICIT_REQUIRED",
+      "metric": "MANHATTAN_L1",
+      "objective": "FINITE_EXACT_MEDOID",
+      "precision_policy": "EXACT_RATIONAL",
+      "profile_hash": "sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508",
+      "profile_id": "SEC-PROFILE-MEDOID-L1-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "frame",
+        "candidate_set",
+        "metric"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "NO_INFERENCE",
+      "tie_policy": "RETURN_ALL_MINIMIZERS",
+      "weight_policy": "UNIFORM_EXPLICIT"
+    },
+    {
+      "abstention_rules": [],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "EXPLICIT_FINITE_SET",
+      "carrier_type": "FINITE_CANDIDATE_METRIC_SPACE",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED",
+        "UNIFORM_DIMENSION_REQUIRED"
+      ],
+      "duplicate_policy": "SET_DEDUPLICATE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "EXPLICIT_REQUIRED",
+      "metric": "SQUARED_EUCLIDEAN_L2_SQUARED",
+      "objective": "FINITE_EXACT_MEDOID",
+      "precision_policy": "EXACT_RATIONAL",
+      "profile_hash": "sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8",
+      "profile_id": "SEC-PROFILE-MEDOID-L2SQ-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "frame",
+        "candidate_set",
+        "metric"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "NO_INFERENCE",
+      "tie_policy": "RETURN_ALL_MINIMIZERS",
+      "weight_policy": "UNIFORM_EXPLICIT"
+    },
+    {
+      "abstention_rules": [],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "DECLARED_EQUIVALENCE_CLASS",
+      "carrier_type": "DECLARED_SYMMETRY_CLASS",
+      "conflict_rules": [
+        "AT_MOST_ONE_SYMMETRY_BREAKER"
+      ],
+      "duplicate_policy": "SET_DEDUPLICATE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "SYMBOLIC_ALLOWED",
+      "metric": "NOT_MATERIAL",
+      "objective": "DECLARED_SYMMETRY_UNIQUENESS",
+      "precision_policy": "EXACT_SYMBOLIC",
+      "profile_hash": "sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288",
+      "profile_id": "SEC-PROFILE-SYMMETRY-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "equivalence_class"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "DECLARED_EQUIVALENCE_REQUIRED",
+      "tie_policy": "REQUIRE_UNIQUE",
+      "weight_policy": "NOT_MATERIAL"
+    },
+    {
+      "abstention_rules": [],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "DECLARED_EQUIVALENCE_CLASS",
+      "carrier_type": "DECLARED_SYMMETRY_CLASS",
+      "conflict_rules": [
+        "AT_MOST_ONE_SYMMETRY_BREAKER"
+      ],
+      "duplicate_policy": "SET_DEDUPLICATE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "SYMBOLIC_ALLOWED",
+      "metric": "NOT_MATERIAL",
+      "objective": "DECLARED_SYMMETRY_UNIQUENESS",
+      "precision_policy": "EXACT_SYMBOLIC",
+      "profile_hash": "sha256:86b938904391f763630e75b43caf92001097a3026bb656fcc510ee88cc0917b5",
+      "profile_id": "SEC-PROFILE-SYMMETRY-BREAKER-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "equivalence_class",
+        "symmetry_breaker"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "DECLARED_BREAKER_REQUIRED",
+      "tie_policy": "REQUIRE_UNIQUE",
+      "weight_policy": "NOT_MATERIAL"
+    },
+    {
+      "abstention_rules": [
+        "EVIDENCE_CLASS_BELOW_VERIFIABLE"
+      ],
+      "boundary_policy": "IMPLICIT_IN_CANONICAL_CARRIER",
+      "candidate_policy": "DERIVED_EXACT_POINT",
+      "carrier_type": "FINITE_WEIGHTED_POINT_SET",
+      "conflict_rules": [
+        "SINGLE_FRAME_REQUIRED",
+        "UNIFORM_DIMENSION_REQUIRED"
+      ],
+      "duplicate_policy": "MULTISET_PRESERVE",
+      "epoch_policy": "NOT_MATERIAL",
+      "frame_policy": "EXPLICIT_REQUIRED",
+      "metric": "NOT_MATERIAL",
+      "objective": "EXACT_WEIGHTED_CENTROID",
+      "precision_policy": "EXACT_RATIONAL",
+      "profile_hash": "sha256:49a65e25737f6247d661b6a52a419d3beafce6fa1e1cae36c3306e789fdfb676",
+      "profile_id": "SEC-PROFILE-ABSTAIN-EVIDENCE-1-D01",
+      "profile_version": "0.5.0",
+      "required_dependencies": [
+        "frame",
+        "evidence_class"
+      ],
+      "result_schema": "SEC-RESULT-1-D01",
+      "rules_profile": "SEC-RULES-1-D01",
+      "schema": "SEC-CENTRE-PROFILE-1-D01",
+      "symmetry_policy": "NOT_MATERIAL",
+      "tie_policy": "NOT_MATERIAL",
+      "weight_policy": "EXPLICIT_POSITIVE_RATIONAL"
+    }
+  ],
+  "rules_profile": "SEC-RULES-1-D01",
+  "schema": "SEC-PROFILE-REGISTRY-1-D01",
+  "system_version": "0.5.0"
+}

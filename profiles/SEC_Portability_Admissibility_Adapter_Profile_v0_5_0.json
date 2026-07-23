@@ -1,0 +1,30 @@
+{
+  "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01",
+  "admitted_evidence_statuses": [
+    "VERIFIED",
+    "ATTESTED"
+  ],
+  "authority_limit": "DECISION_RESULT_ONLY_WITH_NO_EXECUTION_AUTHORITY",
+  "domain_id": "ADMISSIBILITY",
+  "domain_operations": [
+    "DOMAIN_RESOLVE",
+    "SYNTHETIC_ADMISSIBILITY"
+  ],
+  "eligibility_rules": {
+    "BLOCKED": "REFUSED",
+    "STANDARD": "ADMITTED"
+  },
+  "profile_hash": "sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1",
+  "required_dependencies": [
+    "eligibility_class",
+    "evidence_status"
+  ],
+  "resolution_contract": {
+    "execution_authority": "NONE",
+    "resolved_state": "RESOLVED",
+    "scope": "BOUNDED_SYNTHETIC_ADMISSIBILITY"
+  },
+  "schema": "SEC-PORTABILITY-DOMAIN-ADAPTER-PROFILE-1-D01",
+  "supported_profile_id": "ADMISSIBILITY_STANDARD",
+  "system_version": "0.5.0"
+}

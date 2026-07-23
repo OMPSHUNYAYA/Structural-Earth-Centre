@@ -1,0 +1,406 @@
+STRUCTURAL EARTH CENTRE
+CONCEPT AND ARCHITECTURE
+Release v0.5.0
+
+1. PURPOSE
+
+Structural Earth Centre is an executable framework for centre claims whose admissibility depends on declared structure.
+
+The project begins from a familiar observation:
+
+centre questions are not fully specified by the word centre.
+
+A meaningful claim may depend on:
+
+carrier
+boundary
+measure
+metric
+objective
+frame
+epoch
+rules
+evidence
+
+The project does not claim to originate that observation. Its contribution is the executable structural architecture built around it and, in v0.5.0, a bounded test of whether selected structural primitives remain stable when the subject matter changes.
+
+2. GOVERNING CENTRE RELATION
+
+centre resolution = resolve(carrier, boundary, measure, metric, objective, frame, epoch, rules, evidence)
+
+The output is not forced to be a coordinate.
+
+The centre stack may produce:
+
+RESOLVED_POINT
+RESOLVED_REGION
+MULTI_CENTRE
+AMBIGUOUS
+INCOMPLETE
+CONFLICT
+UNSUPPORTED
+ABSTAIN
+
+3. CENTRAL SEPARATIONS
+
+coordinate != centre claim
+
+centre claim != centre result
+
+claim identity != result identity
+
+result identity != evidence identity
+
+same coordinate != same claim identity
+
+same dataset != same centre profile
+
+claim relation != result relation
+
+generic structural semantics != domain adapter semantics
+
+4. POSITIONING
+
+SEC uses Earth-centre questions because they are intuitive and dependency-sensitive.
+
+It is not presented as a replacement for mature domain-specific reference systems or measurement practice.
+
+Its broader research direction is structural computational claim resolution.
+
+The v0.5.0 portability proof does not assert that every domain can be represented by the current generic kernel. It demonstrates matched structural semantics across two bounded declared adapters.
+
+5. CENTRE ARCHITECTURAL PIPELINE
+
+raw input
+-> input admission
+-> claim normalization
+-> dependency resolution
+-> mathematical resolution
+-> symmetry analysis
+-> stability analysis
+-> differential analysis
+-> claim relation / spectrum / frontier
+-> resolution certificate
+-> evidence
+
+Each stage has bounded authority.
+
+Input admission does not decide the centre.
+
+The mathematical resolver does not create provenance.
+
+A certificate does not create external truth.
+
+Presentation does not change the underlying result.
+
+6. STRUCTURAL CENTRE PROFILE
+
+A centre profile can be expressed conceptually as:
+
+P = (X, B, M, D, O, F, T, R, E)
+
+where:
+
+X = carrier
+B = boundary
+M = measure
+D = metric
+O = objective
+F = frame
+T = epoch or time scope
+R = rules
+E = evidence requirements
+
+The implementation may represent these dependencies through profile registries and fingerprints rather than one literal tuple.
+
+7. STRUCTURAL CENTRE DIFFERENTIAL
+
+The Structural Centre Differential compares two bounded claims.
+
+For claims A and B:
+
+Delta(A,B) = declared dependency differences + result equivalence relation
+
+The current states are:
+
+NO_STRUCTURAL_DIFFERENCE
+CLAIM_DISTINCT_RESULT_EQUIVALENT
+SINGLE_DEPENDENCY_DIVERGENCE
+MULTI_DEPENDENCY_DIVERGENCE
+UNRESOLVED_COMPARISON
+
+A controlled single change has special explanatory value:
+
+same admitted comparison context + exactly one declared dependency change + result divergence
+-> SINGLE_DEPENDENCY_DIVERGENCE
+
+This remains a bounded structural interpretation, not automatic causal proof.
+
+8. CENTRE STABILITY ENVELOPE
+
+Let N be an explicitly declared finite perturbation family and let C(n) be the centre result for admitted member n.
+
+The conceptual solution family is:
+
+S_N = { C(n) : n in N and C(n) is admitted }
+
+The executable profile resolves:
+
+|S_N| = 0 -> INCOMPLETE
+
+all members identical -> RESOLVED_POINT
+
+multiple compatible exact rational points -> RESOLVED_REGION
+
+incompatible dimensions -> CONFLICT
+
+unsupported sample representation -> UNSUPPORTED
+
+The current region is the smallest axis-aligned exact rational envelope containing the distinct declared sample points.
+
+It does not infer an unobserved continuum.
+
+9. SYMMETRY AND RESOLUTION CERTIFICATES
+
+If an equivalence class contains multiple candidates and no symmetry breaker is declared:
+
+UNIQUE_CENTRE_REFUSED
+
+If a valid breaker selects a member:
+
+UNIQUE_CENTRE_ADMITTED
+
+The Centre Resolution Certificate can bind:
+
+claim_id
+claim_material
+result_id
+result_material_hash
+result_id_source
+resolution_state
+resolution_witness
+authority_scope
+optional symmetry_certificate_id
+optional stability_envelope_id
+optional evidence_id
+
+A certificate binds declared structural evidence. It does not create authority outside its scope.
+
+10. IDENTITY MODEL
+
+SEC distinguishes:
+
+coordinate representation
+claim identity
+result identity
+evidence identity
+
+This permits:
+
+- different claims with the same coordinate;
+- different profiles with different coordinates over the same dataset;
+- the same result identity supported by different evidence identities.
+
+11. SAME-DATASET EMPIRICAL DIFFERENTIAL
+
+Frozen land dataset identity:
+
+sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9
+
+Area-vector result:
+
+latitude 44.847286603
+longitude 28.41498761
+result_id sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa
+
+Boundary-vector result:
+
+latitude 71.590921549
+longitude 66.736078802
+result_id sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29
+
+Angular separation:
+
+32.350594616 degrees
+
+Controlled declared difference:
+
+measure
+
+Differential state:
+
+SINGLE_DEPENDENCY_DIVERGENCE
+
+The experiment isolates a structural profile change over the same exact dataset bytes.
+
+12. INPUT ADMISSION AND NUMERICAL CONTRACTS
+
+The real-land boundary applies admission before resolution.
+
+Invalid raw input is refused through INPUT_REJECTED rather than silently coerced into an ordinary centre result.
+
+The exact core uses rational arithmetic.
+
+The real-land path uses floating-point spherical functions with 9-decimal identity quantization for identity-bearing fields.
+
+raw transcendental intermediate != identity material
+
+13. ADVANCED CENTRE STRUCTURAL LAYER
+
+The retained advanced centre layer provides:
+
+Structural Claim Relation
+Centre Spectrum
+Resolution Frontier
+exact finite graph-centre resolution
+
+The Structural Claim Relation separates claim relation from result relation.
+
+The Centre Spectrum preserves families of structurally distinct centre claims without blind averaging.
+
+The Resolution Frontier identifies minimal repair sets only from explicitly declared repair options.
+
+The exact graph-centre profile demonstrates non-geographical carrier support while remaining a centre problem.
+
+Current qualification:
+
+30/30 PASS
+
+Independent Python/JavaScript advanced parity:
+
+22/22 PASS
+
+14. v0.5.0 GENERIC STRUCTURAL PORTABILITY LAYER
+
+The portability layer introduces a domain-neutral generic kernel profile:
+
+SEC-GENERIC-STRUCTURAL-KERNEL-1-D01
+
+Shared primitives:
+
+CLAIM_RELATION
+RESULT_SPECTRUM
+RESOLUTION_FRONTIER
+RESOLUTION_CERTIFICATE
+
+The generic kernel is deliberately separated from domain-specific resolution rules.
+
+The same primitives are exercised through two bounded adapters:
+
+CENTRE
+
+ADMISSIBILITY
+
+The centre adapter uses an exact one-dimensional rational mean under declared frame and measure dependencies.
+
+The synthetic admissibility adapter resolves bounded ADMITTED or REFUSED outcomes under declared eligibility and evidence dependencies and carries:
+
+execution_authority = NONE
+
+15. CROSS-DOMAIN STRUCTURAL INVARIANCE
+
+The portability audit uses matched cases across both domains.
+
+It tests whether corresponding generic structures preserve:
+
+claim-relation semantics
+result-spectrum semantics
+resolution-frontier semantics
+resolution-certificate binding
+
+The claim is not:
+
+two domains have the same subject-matter answers
+
+The bounded claim is:
+
+matched generic structural cases preserve the same declared generic semantics under the frozen two-domain corpus
+
+Current structural portability audit:
+
+40/40 PASS
+
+Independent Python/JavaScript portability parity:
+
+27/27 PASS
+
+16. PORTABILITY CERTIFICATE
+
+The portability certificate binds:
+
+portability profile
+generic kernel profile
+centre adapter profile
+admissibility adapter profile
+frozen vector set
+frozen vector corpus
+
+Current portability certificate:
+
+sha256:660af7631ca9e7cc630ec3695c0cb78ead5fa43f62e09be6e4555361b3a8eb21
+
+It identifies the bounded proof configuration. It does not certify universal portability.
+
+17. VERIFICATION ARCHITECTURE
+
+The centre stack qualifies:
+
+38/38 exact core
+38/38 core Python/browser parity
+20/20 Earth profiles
+26/26 real-land resolver self-test
+9/9 reproducibility self-test
+9/9 stored reproducibility
+24/24 structural innovation
+18/18 structural innovation parity
+13/13 same-dataset differential
+30/30 advanced centre structural audit
+22/22 advanced centre parity
+132/132 integrated centre browser laboratory
+
+The separate portability layer qualifies:
+
+40/40 structural portability audit
+27/27 structural portability parity
+
+The repository verification runner provides one command-line entry point for the 13 command-line verification stages. It also checks freeze hygiene and enforces SHA256SUMS.txt completeness and digest verification across corpus, data, demo, evidence, profiles, and verify when manifest checking is enabled.
+
+The real-land resolver self-test evidence is stored at:
+
+evidence/SEC_Real_Land_Centre_Resolver_Self_Test_v0_5_0.json
+
+Keeping the portability proof separate from the integrated centre count makes its verification boundary explicit.
+
+18. RELATED CONCEPTUAL TRADITIONS
+
+SEC does not claim to originate explicit handling of incomplete information, conflicting information, partial results, abstention, typed success/failure states, artifact identity, provenance separation, refinement relations, minimal repairs, or graph centres.
+
+Those ideas have broad histories across mathematics, logic, programming, databases, decision systems, scientific computing, and software assurance.
+
+SEC's bounded contribution is the executable integration and the declared portability experiment over the current profiles and frozen corpora.
+
+19. CURRENT LIMITS
+
+The current stability envelope is finite-family bounded.
+
+The current region representation is axis-aligned in exact rational coordinate space.
+
+The current same-dataset differential demonstrates one controlled measure change.
+
+The real-land profiles use a spherical model.
+
+The generic portability kernel is tested over two bounded adapters only.
+
+The synthetic admissibility adapter has no execution authority.
+
+The project does not claim comprehensive geodetic novelty, universal domain completeness, or third-party verification.
+
+20. CENTRAL PRINCIPLE
+
+A centre is not merely a coordinate.
+
+A centre is a bounded structural resolution under declared dependencies.
+
+The v0.5.0 portability proof adds a second principle:
+
+structural semantics should be attributed to the declared generic machinery only when they survive a bounded change of subject matter without moving domain-specific rules into the generic kernel.

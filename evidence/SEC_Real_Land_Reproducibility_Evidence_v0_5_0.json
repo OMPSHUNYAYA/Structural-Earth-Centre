@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "check_id": "FETCH_RESULT_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "FETCH_EVIDENCE_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "OFFLINE_RESULT_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "OFFLINE_EVIDENCE_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "DATASET_IDENTITY_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "PROFILE_IDENTITY_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "STRUCTURAL_RESULT_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "RESULT_ID_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "PROVENANCE_IS_SEPARATE_FROM_RESULT_ID",
+      "pass": true
+    }
+  ],
+  "dataset_sha256": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+  "fetch_evidence_id": "sha256:02afa907767a19b3967d41e83fecb0670c13abaf29b89940720a68c222fd5895",
+  "offline_evidence_id": "sha256:70419b96bfb278b52032a7c0f1edb4439517d8435bdd2c43534b3c15e7454961",
+  "passed": 9,
+  "reproducibility_evidence_id": "sha256:866879f8eb735348bf93e822eb525e7d46b7765e500f1ce27c67b774bc63670e",
+  "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+  "schema": "SEC-REAL-LAND-REPRODUCIBILITY-EVIDENCE-1-D02",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 9
+}

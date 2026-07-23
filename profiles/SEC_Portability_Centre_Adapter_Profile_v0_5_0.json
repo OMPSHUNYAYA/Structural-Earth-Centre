@@ -1,0 +1,30 @@
+{
+  "adapter_profile_id": "SEC-PORTABILITY-ADAPTER-CENTRE-1-D01",
+  "admitted_measures": [
+    "UNIFORM_POINT_MASS",
+    "DECLARED_EQUAL_WEIGHTS"
+  ],
+  "authority_limit": "SYNTHETIC_EXACT_PORTABILITY_DEMONSTRATION_ONLY",
+  "domain_id": "CENTRE",
+  "domain_operations": [
+    "DOMAIN_RESOLVE",
+    "CENTRE_EXACT_MEAN"
+  ],
+  "profile_hash": "sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2",
+  "required_dependencies": [
+    "frame",
+    "measure"
+  ],
+  "resolution_contract": {
+    "arithmetic": "EXACT_RATIONAL",
+    "outcome": "CENTRE_POINT",
+    "resolved_state": "RESOLVED"
+  },
+  "schema": "SEC-PORTABILITY-DOMAIN-ADAPTER-PROFILE-1-D01",
+  "subject_contract": {
+    "dimension": 1,
+    "points": "NON_EMPTY_FINITE_EXACT_RATIONAL_SEQUENCE"
+  },
+  "supported_profile_id": "CENTRE_EXACT_MEAN_1D",
+  "system_version": "0.5.0"
+}

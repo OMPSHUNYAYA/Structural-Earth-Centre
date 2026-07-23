@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Structural Earth Centre Portability Laboratory v0.5.0</title>
+<style>
+:root{color-scheme:light}
+body{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;max-width:1120px;margin:32px auto;padding:0 20px;background:#f7faf9;color:#17201d}
+h1{font-size:30px;margin-bottom:6px}h2{font-size:20px}
+.card{background:#fff;border:1px solid #d7e3df;border-radius:14px;padding:18px;margin:16px 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.metric{font-size:24px;font-weight:750}.label{font-size:13px;color:#5d6b66}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#e7f2ee;margin:4px 6px 4px 0;font-size:13px}
+button{padding:11px 17px;border-radius:9px;border:1px solid #74847e;background:#fff;font-weight:700;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12)}
+button:hover{background:#f3f7f5}button:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.12)}button:focus-visible{outline:3px solid #8fbdb0;outline-offset:2px}
+code{background:#eef4f2;padding:2px 5px;border-radius:5px}
+pre{white-space:pre-wrap;word-break:break-word;background:#101815;color:#eaf5f1;padding:16px;border-radius:10px;min-height:130px}
+.pass{color:#0a6b36}.fail{color:#a31919}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:8px;border-bottom:1px solid #e2e9e6;text-align:left}
+</style>
+</head>
+<body>
+<h1>Structural Earth Centre — Structural Portability Laboratory</h1>
+<p>Release <strong>v0.5.0</strong></p>
+
+<div class="card">
+  <span class="pill">Shared Generic Kernel</span>
+  <span class="pill">Centre Adapter</span>
+  <span class="pill">Admissibility Adapter</span>
+  <span class="pill">Cross-Domain Invariance</span>
+  <span class="pill">Exact Reproducible Vectors</span>
+</div>
+
+<div class="grid">
+  <div class="card"><div class="label">Portability audit</div><div class="metric" id="status">NOT RUN</div></div>
+  <div class="card"><div class="label">Audit total</div><div class="metric" id="total">-</div></div>
+  <div class="card"><div class="label">Frozen vectors</div><div class="metric">24</div></div>
+  <div class="card"><div class="label">Parity target</div><div class="metric">27/27</div></div>
+</div>
+
+<div class="card">
+  <h2>Run the portability proof</h2>
+  <p>The same generic claim-relation, result-spectrum, resolution-frontier, and certificate functions are exercised through two bounded domain adapters.</p>
+  <p>Console command: <code>await SEC_PORTABILITY_AUDIT.runAll({verbose:true})</code></p>
+  <button id="run">Run 40-Check Portability Audit</button>
+</div>
+
+<div class="card">
+  <h2>Cross-domain structural invariants</h2>
+  <table>
+    <thead><tr><th>Primitive</th><th>Centre domain</th><th>Admissibility domain</th><th>Shared semantics</th></tr></thead>
+    <tbody>
+      <tr><td>Claim relation</td><td>4 paired cases</td><td>4 paired cases</td><td>Yes</td></tr>
+      <tr><td>Result spectrum</td><td>3 paired cases</td><td>3 paired cases</td><td>Yes</td></tr>
+      <tr><td>Resolution frontier</td><td>3 paired cases</td><td>3 paired cases</td><td>Yes</td></tr>
+      <tr><td>Resolution certificate</td><td>Bound claim/result</td><td>Bound claim/result</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<pre id="out">Ready.</pre>
+
+<script>
+(function(global){
+  "use strict";
+
+  const SYSTEM_VERSION="0.5.0";
+  const PORTABILITY_PROFILE="SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01";
+  const GENERIC_KERNEL_PROFILE="SEC-GENERIC-STRUCTURAL-KERNEL-1-D01";
+  const CENTRE_ADAPTER_PROFILE="SEC-PORTABILITY-ADAPTER-CENTRE-1-D01";
+  const ADMISSIBILITY_ADAPTER_PROFILE="SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01";
+  const CLAIM_RELATION_SCHEMA="SEC-GENERIC-CLAIM-RELATION-1-D01";
+  const RESULT_SPECTRUM_SCHEMA="SEC-GENERIC-RESULT-SPECTRUM-1-D01";
+  const RESOLUTION_FRONTIER_SCHEMA="SEC-GENERIC-RESOLUTION-FRONTIER-1-D01";
+  const RESOLUTION_CERTIFICATE_SCHEMA="SEC-GENERIC-RESOLUTION-CERTIFICATE-1-D01";
+  const PORTABILITY_CERTIFICATE_SCHEMA="SEC-STRUCTURAL-PORTABILITY-CERTIFICATE-1-D01";
+  const RESOLVED_STATE="RESOLVED";
+
+  function clone(value){return JSON.parse(JSON.stringify(value));}
+  function canonicalStringify(value){
+    if(value===null)return "null";
+    if(typeof value==="string"||typeof value==="number"||typeof value==="boolean")return JSON.stringify(value);
+    if(Array.isArray(value))return "["+value.map(canonicalStringify).join(",")+"]";
+    if(typeof value==="object"){
+      const keys=Object.keys(value).sort();
+      return "{"+keys.map(key=>JSON.stringify(key)+":"+canonicalStringify(value[key])).join(",")+"}";
+    }
+    throw new TypeError("Unsupported canonical value type");
+  }
+  function utf8Bytes(text){
+    if(typeof TextEncoder!=="undefined")return new TextEncoder().encode(text);
+    return Uint8Array.from(Buffer.from(text,"utf8"));
+  }
+  function sha256Hex(text){
+    const bytes=utf8Bytes(text);
+    const K=new Uint32Array([
+      0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+      0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+      0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+      0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+      0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+      0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+      0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+      0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+    ]);
+    const H=new Uint32Array([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]);
+    const bitLen=BigInt(bytes.length)*8n;
+    const paddedLen=Math.ceil((bytes.length+9)/64)*64;
+    const data=new Uint8Array(paddedLen);data.set(bytes);data[bytes.length]=0x80;
+    for(let i=0;i<8;i++)data[paddedLen-1-i]=Number((bitLen>>BigInt(8*i))&0xffn);
+    const W=new Uint32Array(64);const rotr=(x,n)=>(x>>>n)|(x<<(32-n));
+    for(let offset=0;offset<data.length;offset+=64){
+      for(let i=0;i<16;i++){const j=offset+i*4;W[i]=((data[j]<<24)|(data[j+1]<<16)|(data[j+2]<<8)|data[j+3])>>>0;}
+      for(let i=16;i<64;i++){const x=W[i-15],y=W[i-2];const s0=(rotr(x,7)^rotr(x,18)^(x>>>3))>>>0;const s1=(rotr(y,17)^rotr(y,19)^(y>>>10))>>>0;W[i]=(W[i-16]+s0+W[i-7]+s1)>>>0;}
+      let [a,b,c,d,e,f,g,h]=H;
+      for(let i=0;i<64;i++){
+        const S1=(rotr(e,6)^rotr(e,11)^rotr(e,25))>>>0;const ch=((e&f)^((~e)&g))>>>0;
+        const t1=(h+S1+ch+K[i]+W[i])>>>0;const S0=(rotr(a,2)^rotr(a,13)^rotr(a,22))>>>0;
+        const maj=((a&b)^(a&c)^(b&c))>>>0;const t2=(S0+maj)>>>0;
+        h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b;b=a;a=(t1+t2)>>>0;
+      }
+      H[0]=(H[0]+a)>>>0;H[1]=(H[1]+b)>>>0;H[2]=(H[2]+c)>>>0;H[3]=(H[3]+d)>>>0;
+      H[4]=(H[4]+e)>>>0;H[5]=(H[5]+f)>>>0;H[6]=(H[6]+g)>>>0;H[7]=(H[7]+h)>>>0;
+    }
+    return Array.from(H).map(value=>value.toString(16).padStart(8,"0")).join("");
+  }
+  function structuralHash(value){return "sha256:"+sha256Hex(canonicalStringify(value));}
+  function cmap(value){return JSON.parse(canonicalStringify(value||{}));}
+  function compareCanonical(a,b){const x=canonicalStringify(a),y=canonicalStringify(b);return x<y?-1:x>y?1:0;}
+  function omit(obj,key){const out=clone(obj);delete out[key];return out;}
+  function verifySelfHash(obj,field){return obj[field]===structuralHash(omit(obj,field));}
+  function isConflict(value){return Array.isArray(value)&&value.length>1;}
+  function resolved(result){return result&&result.resolution_state===RESOLVED_STATE;}
+
+  function genericClaimMaterial(claim){
+    const dependencies=cmap(claim.dependencies||{});
+    if(Object.keys(dependencies).length>256)throw new Error("DEPENDENCY_LIMIT_EXCEEDED");
+    return {schema:"SEC-GENERIC-CLAIM-MATERIAL-1-D01",system_version:SYSTEM_VERSION,domain_id:claim.domain_id||"UNDECLARED",scope_id:claim.scope_id||"UNDECLARED",profile_id:claim.profile_id||"UNDECLARED",dependencies};
+  }
+  function genericClaimId(claim){return structuralHash(genericClaimMaterial(claim));}
+  function genericResultId(result){return structuralHash(cmap(result));}
+  function resultRelation(left,right){if(!resolved(left)||!resolved(right))return "UNRESOLVED_RESULT_RELATION";return canonicalStringify(cmap(left))===canonicalStringify(cmap(right))?"RESULT_EQUIVALENT":"RESULT_DIVERGENT";}
+
+  function buildClaimRelation(left,right){
+    const lm=genericClaimMaterial(left),rm=genericClaimMaterial(right),ld=lm.dependencies,rd=rm.dependencies;
+    const lk=Object.keys(ld),rk=Object.keys(rd),shared=lk.filter(key=>rk.includes(key)).sort();
+    const conflicts=shared.filter(key=>canonicalStringify(ld[key])!==canonicalStringify(rd[key]));
+    const left_only=lk.filter(key=>!rk.includes(key)).sort(),right_only=rk.filter(key=>!lk.includes(key)).sort();
+    const sameDomain=lm.domain_id===rm.domain_id;
+    const sameScope=sameDomain&&lm.scope_id===rm.scope_id&&lm.profile_id===rm.profile_id;
+    let relation;
+    if(!sameDomain)relation="DISJOINT_DOMAINS";
+    else if(conflicts.length)relation="DECLARATION_CONFLICT";
+    else if(sameScope&&!left_only.length&&!right_only.length)relation="CLAIM_EQUIVALENT";
+    else if(sameScope&&left_only.length&&!right_only.length)relation="LEFT_REFINES_RIGHT";
+    else if(sameScope&&right_only.length&&!left_only.length)relation="RIGHT_REFINES_LEFT";
+    else if(shared.length)relation="COMPATIBLE_OVERLAP";
+    else relation="DISJOINT_DECLARATIONS";
+    const body={schema:CLAIM_RELATION_SCHEMA,system_version:SYSTEM_VERSION,claim_relation:relation,result_relation:resultRelation(cmap(left.result||{}),cmap(right.result||{})),shared_dependencies:shared,conflicting_dependencies:conflicts,left_only_dependencies:left_only,right_only_dependencies:right_only,left_claim_id:structuralHash(lm),right_claim_id:structuralHash(rm)};
+    return {...body,claim_relation_id:structuralHash(body)};
+  }
+
+  function buildResultSpectrum(claims){
+    if((claims||[]).length>256){const body={schema:RESULT_SPECTRUM_SCHEMA,system_version:SYSTEM_VERSION,spectrum_state:"UNSUPPORTED",reason:"CLAIM_LIMIT_EXCEEDED"};return {...body,spectrum_id:structuralHash(body)};}
+    const members=(claims||[]).map((claim,index)=>{
+      const material=genericClaimMaterial(claim),result=cmap(claim.result||{});
+      return {member_id:String(claim.member_id||`M${String(index+1).padStart(4,"0")}`),claim_id:structuralHash(material),result_id:structuralHash(result),resolution_state:result.resolution_state||"UNDECLARED",claim_material:material,result};
+    }).sort((a,b)=>a.claim_id<b.claim_id?-1:a.claim_id>b.claim_id?1:a.result_id<b.result_id?-1:a.result_id>b.result_id?1:a.member_id<b.member_id?-1:a.member_id>b.member_id?1:0);
+    let state;
+    if(!members.length)state="INCOMPLETE";
+    else{
+      const resolvedMembers=members.filter(member=>member.resolution_state===RESOLVED_STATE);
+      if(!resolvedMembers.length)state="UNRESOLVED_FAMILY";
+      else if(resolvedMembers.length!==members.length)state="MIXED_RESOLUTION_FAMILY";
+      else{
+        const claimCount=new Set(members.map(member=>member.claim_id)).size,resultCount=new Set(members.map(member=>member.result_id)).size;
+        if(claimCount===1&&resultCount===1)state="SINGLE_CLAIM_FAMILY";
+        else if(resultCount===1)state="RESULT_CONVERGENT_CLAIM_DIVERSE";
+        else state="RESULT_DIVERGENT_FAMILY";
+      }
+    }
+    const body={schema:RESULT_SPECTRUM_SCHEMA,system_version:SYSTEM_VERSION,spectrum_state:state,member_count:members.length,resolved_member_count:members.filter(member=>member.resolution_state===RESOLVED_STATE).length,distinct_claim_count:new Set(members.map(member=>member.claim_id)).size,distinct_result_count:new Set(members.map(member=>member.result_id)).size,aggregation_policy:"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS",members};
+    return {...body,spectrum_id:structuralHash(body)};
+  }
+
+  function applyOperations(current,operations){
+    const result=cmap(current);
+    for(const operation of operations){
+      const op=operation.op,key=String(operation.key||"");
+      if(!key)throw new Error("REPAIR_KEY_REQUIRED");
+      if(op==="SET")result[key]=clone(operation.value);
+      else if(op==="REMOVE")delete result[key];
+      else throw new Error("UNSUPPORTED_REPAIR_OPERATION");
+    }
+    return cmap(result);
+  }
+  function combinations(items,size){
+    const out=[];
+    function walk(start,chosen){if(chosen.length===size){out.push(chosen.slice());return;}for(let i=start;i<items.length;i++){chosen.push(items[i]);walk(i+1,chosen);chosen.pop();}}
+    walk(0,[]);return out;
+  }
+
+  function buildResolutionFrontier(currentDependencies,{repairOptions,resolver,domainId,adapterProfileId}){
+    if((repairOptions||[]).length>16){const body={schema:RESOLUTION_FRONTIER_SCHEMA,system_version:SYSTEM_VERSION,frontier_state:"UNSUPPORTED",reason:"REPAIR_OPTION_LIMIT_EXCEEDED",domain_id:domainId,adapter_profile_id:adapterProfileId};return {...body,resolution_frontier_id:structuralHash(body)};}
+    const current=cmap(currentDependencies),currentResult=cmap(resolver(current));
+    if(resolved(currentResult)){
+      const body={schema:RESOLUTION_FRONTIER_SCHEMA,system_version:SYSTEM_VERSION,frontier_state:"ALREADY_ADMISSIBLE",domain_id:domainId,adapter_profile_id:adapterProfileId,current_dependencies:current,current_result:currentResult,minimal_repair_size:0,minimal_repair_sets:[],repair_policy:"DECLARED_OPTIONS_ONLY"};
+      return {...body,resolution_frontier_id:structuralHash(body)};
+    }
+    const options=(repairOptions||[]).map(cmap).sort(compareCanonical);
+    let minimalSets=[],minimalSize=null;
+    for(let size=1;size<=options.length;size++){
+      for(const combo of combinations(options,size)){
+        let repaired,result;
+        try{repaired=applyOperations(current,combo);result=cmap(resolver(repaired));}catch(_err){continue;}
+        if(resolved(result))minimalSets.push({operations:combo,resulting_dependencies:repaired,result});
+      }
+      if(minimalSets.length){minimalSize=size;break;}
+    }
+    let state;if(!minimalSets.length)state="NO_ADMISSIBLE_FRONTIER";else if(minimalSets.length===1)state="UNIQUE_MINIMAL_FRONTIER";else state="MULTIPLE_MINIMAL_FRONTIERS";
+    minimalSets.sort(compareCanonical);
+    const body={schema:RESOLUTION_FRONTIER_SCHEMA,system_version:SYSTEM_VERSION,frontier_state:state,domain_id:domainId,adapter_profile_id:adapterProfileId,current_dependencies:current,current_result:currentResult,minimal_repair_size:minimalSize,minimal_repair_sets:minimalSets,declared_repair_option_count:options.length,repair_policy:"DECLARED_OPTIONS_ONLY",invents_missing_evidence:false};
+    return {...body,resolution_frontier_id:structuralHash(body)};
+  }
+
+  function buildResolutionCertificate(claim,result,{adapterProfileId,evidenceId}){
+    const claimMaterial=genericClaimMaterial(claim),resultMaterial=cmap(result);
+    const body={schema:RESOLUTION_CERTIFICATE_SCHEMA,system_version:SYSTEM_VERSION,generic_kernel_profile:GENERIC_KERNEL_PROFILE,adapter_profile_id:adapterProfileId,claim_id:structuralHash(claimMaterial),result_id:structuralHash(resultMaterial),claim_material:claimMaterial,result_material:resultMaterial,evidence_id:evidenceId||"NO_EXTERNAL_EVIDENCE_DECLARED"};
+    return {...body,certificate_id:structuralHash(body)};
+  }
+
+  function absBig(value){return value<0n?-value:value;}
+  function gcd(a,b){a=absBig(a);b=absBig(b);while(b!==0n){const t=a%b;a=b;b=t;}return a;}
+  function rat(value){
+    let n,d;
+    if(typeof value==="bigint"){n=value;d=1n;}
+    else if(typeof value==="number"&&Number.isInteger(value)){n=BigInt(value);d=1n;}
+    else if(typeof value==="string"){
+      if(value.includes("/")){const parts=value.split("/");n=BigInt(parts[0]);d=BigInt(parts[1]);}
+      else{n=BigInt(value);d=1n;}
+    }else if(value&&typeof value==="object"&&!Array.isArray(value)&&("n" in value)&&("d" in value)){n=BigInt(value.n);d=BigInt(value.d);}
+    else throw new Error("UNSUPPORTED_RATIONAL");
+    if(d===0n)throw new Error("ZERO_DENOMINATOR");if(d<0n){n=-n;d=-d;}if(n===0n)return {n:0n,d:1n};const g=gcd(n,d);return {n:n/g,d:d/g};
+  }
+  function addRat(a,b){const x=rat(a),y=rat(b);return rat({n:(x.n*y.d+y.n*x.d).toString(),d:(x.d*y.d).toString()});}
+  function divRat(a,n){const x=rat(a);return rat({n:x.n.toString(),d:(x.d*BigInt(n)).toString()});}
+  function ratJSON(value){const x=rat(value);return {n:x.n.toString(),d:x.d.toString()};}
+
+  function resolveCentreAdapter(subject,dependencies,profileId="CENTRE_EXACT_MEAN_1D"){
+    const deps=cmap(dependencies),required=["frame","measure"],conflicts=required.filter(key=>isConflict(deps[key]));
+    if(conflicts.length)return {resolution_state:"CONFLICT",conflicting_dependencies:conflicts};
+    const missing=required.filter(key=>!(key in deps));if(missing.length)return {resolution_state:"INCOMPLETE",missing_dependencies:missing};
+    if(profileId!=="CENTRE_EXACT_MEAN_1D")return {resolution_state:"UNSUPPORTED",reason:"UNSUPPORTED_CENTRE_PROFILE"};
+    if(!new Set(["UNIFORM_POINT_MASS","DECLARED_EQUAL_WEIGHTS"]).has(deps.measure))return {resolution_state:"UNSUPPORTED",reason:"UNSUPPORTED_CENTRE_MEASURE"};
+    const points=subject.points||[];if(!Array.isArray(points)||!points.length||points.length>10000)return {resolution_state:"INCOMPLETE",reason:"NO_ADMITTED_POINTS"};
+    let sum=rat(0);for(const point of points)sum=addRat(sum,rat(point));const centre=divRat(sum,points.length);
+    return {resolution_state:RESOLVED_STATE,outcome:"CENTRE_POINT",value:[ratJSON(centre)]};
+  }
+
+  function resolveAdmissibilityAdapter(subject,dependencies,profileId="ADMISSIBILITY_STANDARD"){
+    const deps=cmap(dependencies),required=["eligibility_class","evidence_status"],conflicts=required.filter(key=>isConflict(deps[key]));
+    if(conflicts.length)return {resolution_state:"CONFLICT",conflicting_dependencies:conflicts};
+    const missing=required.filter(key=>!(key in deps));if(missing.length)return {resolution_state:"INCOMPLETE",missing_dependencies:missing};
+    if(profileId!=="ADMISSIBILITY_STANDARD")return {resolution_state:"UNSUPPORTED",reason:"UNSUPPORTED_ADMISSIBILITY_PROFILE"};
+    if(!new Set(["VERIFIED","ATTESTED"]).has(deps.evidence_status))return {resolution_state:"ABSTAIN",reason:"EVIDENCE_STATUS_NOT_ADMITTED"};
+    let outcome;if(deps.eligibility_class==="STANDARD")outcome="ADMITTED";else if(deps.eligibility_class==="BLOCKED")outcome="REFUSED";else return {resolution_state:"UNSUPPORTED",reason:"UNSUPPORTED_ELIGIBILITY_CLASS"};
+    return {resolution_state:RESOLVED_STATE,outcome,decision_scope:"BOUNDED_SYNTHETIC_ADMISSIBILITY",execution_authority:"NONE"};
+  }
+
+  function resolveAdapter(domainId,subject,dependencies,profileId){
+    if(domainId==="CENTRE")return resolveCentreAdapter(subject,dependencies,profileId);
+    if(domainId==="ADMISSIBILITY")return resolveAdmissibilityAdapter(subject,dependencies,profileId);
+    return {resolution_state:"UNSUPPORTED",reason:"UNKNOWN_DOMAIN_ADAPTER"};
+  }
+  function adapterProfileId(domainId){if(domainId==="CENTRE")return CENTRE_ADAPTER_PROFILE;if(domainId==="ADMISSIBILITY")return ADMISSIBILITY_ADAPTER_PROFILE;throw new Error("UNKNOWN_DOMAIN_ADAPTER");}
+
+  function evaluateVector(vector){
+    const operation=vector.operation,data=vector.input||{};
+    if(operation==="CLAIM_RELATION")return buildClaimRelation(data.left,data.right);
+    if(operation==="RESULT_SPECTRUM")return buildResultSpectrum(data.claims);
+    if(operation==="RESOLUTION_FRONTIER"){
+      const resolver=dependencies=>resolveAdapter(data.domain_id,data.subject,dependencies,data.profile_id);
+      return buildResolutionFrontier(data.current_dependencies,{repairOptions:data.repair_options,resolver,domainId:data.domain_id,adapterProfileId:adapterProfileId(data.domain_id)});
+    }
+    if(operation==="RESOLUTION_CERTIFICATE")return buildResolutionCertificate(data.claim,data.result,{adapterProfileId:adapterProfileId(data.domain_id),evidenceId:data.evidence_id});
+    if(operation==="DOMAIN_RESOLVE")return resolveAdapter(data.domain_id,data.subject,data.dependencies,data.profile_id);
+    throw new Error("UNKNOWN_PORTABILITY_OPERATION");
+  }
+
+  function buildPortabilityCertificate(corpus,portabilityProfile,genericProfile,centreAdapterProfile,admissibilityAdapterProfile){
+    const body={schema:PORTABILITY_CERTIFICATE_SCHEMA,system_version:SYSTEM_VERSION,portability_profile_id:PORTABILITY_PROFILE,portability_profile_hash:portabilityProfile.profile_hash,generic_kernel_profile_id:GENERIC_KERNEL_PROFILE,generic_kernel_profile_hash:genericProfile.profile_hash,adapter_profiles:[
+      {domain_id:"ADMISSIBILITY",adapter_profile_id:ADMISSIBILITY_ADAPTER_PROFILE,adapter_profile_hash:admissibilityAdapterProfile.profile_hash},
+      {domain_id:"CENTRE",adapter_profile_id:CENTRE_ADAPTER_PROFILE,adapter_profile_hash:centreAdapterProfile.profile_hash}
+    ],vector_set_id:corpus.vector_set_id,vector_corpus_id:corpus.vector_corpus_id,proof_scope:"SHARED_GENERIC_PRIMITIVES_ACROSS_TWO_BOUNDED_DOMAIN_ADAPTERS"};
+    return {...body,portability_certificate_id:structuralHash(body)};
+  }
+
+  function auditVectorCorpus(corpus,profiles,{verbose=false}={}){
+    const checks=[];const add=(check_id,pass,detail)=>{checks.push({check_id,pass:!!pass,detail});if(verbose)console.log(pass?"PASS":"FAIL",check_id,detail);};
+    const profileList=[profiles.portability,profiles.generic,profiles.centre,profiles.admissibility];
+    add("PROFILE_IDENTITIES",profileList.every(profile=>verifySelfHash(profile,"profile_hash")),profileList.map(profile=>profile.profile_hash));
+    add("CORPUS_ID",verifySelfHash(corpus,"vector_corpus_id"),corpus.vector_corpus_id);
+    const actualSet="secport_"+sha256Hex(canonicalStringify((corpus.vectors||[]).map(vector=>vector.vector_hash)));
+    add("VECTOR_SET_ID",actualSet===corpus.vector_set_id,actualSet);
+    const vectorMap={};
+    for(const vector of corpus.vectors||[]){
+      vectorMap[vector.vector_id]=vector;const actual=evaluateVector(vector),pass=verifySelfHash(vector,"vector_hash")&&canonicalStringify(actual)===canonicalStringify(vector.expected);
+      const detail=actual.claim_relation||actual.spectrum_state||actual.frontier_state||actual.resolution_state||"CERTIFICATE";add(vector.vector_id,pass,detail);
+    }
+    [["SEC-PORT-RC001","SEC-PORT-RA001"],["SEC-PORT-RC002","SEC-PORT-RA002"],["SEC-PORT-RC003","SEC-PORT-RA003"],["SEC-PORT-RC004","SEC-PORT-RA004"]].forEach((pair,index)=>{
+      const left=evaluateVector(vectorMap[pair[0]]),right=evaluateVector(vectorMap[pair[1]]);add(`RELATION_SEMANTICS_DOMAIN_INVARIANT_${index+1}`,left.claim_relation===right.claim_relation,[left.claim_relation,right.claim_relation]);
+    });
+    [["SEC-PORT-SC001","SEC-PORT-SA001"],["SEC-PORT-SC002","SEC-PORT-SA002"],["SEC-PORT-SC003","SEC-PORT-SA003"]].forEach((pair,index)=>{
+      const left=evaluateVector(vectorMap[pair[0]]),right=evaluateVector(vectorMap[pair[1]]);add(`SPECTRUM_SEMANTICS_DOMAIN_INVARIANT_${index+1}`,left.spectrum_state===right.spectrum_state,[left.spectrum_state,right.spectrum_state]);
+    });
+    [["SEC-PORT-FC001","SEC-PORT-FA001"],["SEC-PORT-FC002","SEC-PORT-FA002"],["SEC-PORT-FC003","SEC-PORT-FA003"]].forEach((pair,index)=>{
+      const left=evaluateVector(vectorMap[pair[0]]),right=evaluateVector(vectorMap[pair[1]]);add(`FRONTIER_SEMANTICS_DOMAIN_INVARIANT_${index+1}`,left.frontier_state===right.frontier_state&&left.minimal_repair_size===right.minimal_repair_size,[left.frontier_state,right.frontier_state,left.minimal_repair_size,right.minimal_repair_size]);
+    });
+    const certificateVector=vectorMap["SEC-PORT-CA001"],certificate=evaluateVector(certificateVector),tamperedInput=clone(certificateVector.input);tamperedInput.result.outcome="REFUSED";const tampered=evaluateVector({...certificateVector,input:tamperedInput});
+    add("CERTIFICATE_TAMPER_SENSITIVITY",certificate.certificate_id!==tampered.certificate_id,tampered.certificate_id);
+    const genericOps=new Set(profiles.generic.generic_operations||[]),adapterOps=new Set([...(profiles.centre.domain_operations||[]),...(profiles.admissibility.domain_operations||[])]);
+    add("GENERIC_KERNEL_ADAPTER_SEPARATION",canonicalStringify(Array.from(genericOps).sort())===canonicalStringify(["CLAIM_RELATION","RESOLUTION_CERTIFICATE","RESOLUTION_FRONTIER","RESULT_SPECTRUM"])&&adapterOps.has("DOMAIN_RESOLVE")&&!genericOps.has("CENTRE_EXACT_MEAN")&&!genericOps.has("SYNTHETIC_ADMISSIBILITY"),Array.from(genericOps).sort());
+    const portabilityCertificate=buildPortabilityCertificate(corpus,profiles.portability,profiles.generic,profiles.centre,profiles.admissibility),certificateBody=omit(portabilityCertificate,"portability_certificate_id");
+    add("PORTABILITY_CERTIFICATE_RECONSTRUCTS",structuralHash(certificateBody)===portabilityCertificate.portability_certificate_id,portabilityCertificate.portability_certificate_id);
+    const passed=checks.filter(check=>check.pass).length,total=checks.length;
+    const core={schema:"SEC-STRUCTURAL-PORTABILITY-AUDIT-1-D01",system_version:SYSTEM_VERSION,status:passed===total?"PASS":"FAIL",passed,total,portability_profile_id:PORTABILITY_PROFILE,generic_kernel_profile_id:GENERIC_KERNEL_PROFILE,vector_set_id:corpus.vector_set_id,vector_corpus_id:corpus.vector_corpus_id,portability_certificate:portabilityCertificate,checks};
+    return {...core,evidence_id:structuralHash(core)};
+  }
+
+  const api={SYSTEM_VERSION,PORTABILITY_PROFILE,GENERIC_KERNEL_PROFILE,CENTRE_ADAPTER_PROFILE,ADMISSIBILITY_ADAPTER_PROFILE,canonicalStringify,structuralHash,genericClaimMaterial,genericClaimId,genericResultId,buildClaimRelation,buildResultSpectrum,buildResolutionFrontier,buildResolutionCertificate,resolveCentreAdapter,resolveAdmissibilityAdapter,resolveAdapter,evaluateVector,buildPortabilityCertificate,auditVectorCorpus};
+  if(typeof module!=="undefined"&&module.exports)module.exports=api;
+  global.SEC_PORTABILITY_CORE=api;
+})(typeof globalThis!=="undefined"?globalThis:this);
+
+</script>
+<script>
+"use strict";
+const SEC_PORTABILITY_VECTORS = {"admissibility_adapter_profile":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","admissibility_adapter_profile_hash":"sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1","centre_adapter_profile":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","centre_adapter_profile_hash":"sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2","generic_kernel_profile":"SEC-GENERIC-STRUCTURAL-KERNEL-1-D01","generic_kernel_profile_hash":"sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9","portability_profile":"SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01","portability_profile_hash":"sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f","schema":"SEC-STRUCTURAL-PORTABILITY-VECTORS-1-D01","system_version":"0.5.0","vector_corpus_id":"sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7","vector_count":24,"vector_set_id":"secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4","vectors":[{"category":"CLAIM_RELATION","expected":{"claim_relation":"CLAIM_EQUIVALENT","claim_relation_id":"sha256:69577411d3c2358821fcac19af490c01ff2908cf36dcbe1bbd79b04501d7c102","conflicting_dependencies":[],"left_claim_id":"sha256:4f7816429547a3af1738ebc96d0393b52f259c7a48a011e1b174c32d1deb81ea","left_only_dependencies":[],"result_relation":"RESULT_EQUIVALENT","right_claim_id":"sha256:4f7816429547a3af1738ebc96d0393b52f259c7a48a011e1b174c32d1deb81ea","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["frame"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"frame":"F1"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C"},"right":{"dependencies":{"frame":"F1"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Equivalent centre claims","vector_hash":"sha256:aac9c3fe8a20c5f8e0c2f406585a15600a50a8c48c5113ee5f6db79b8517624d","vector_id":"SEC-PORT-RC001"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"CLAIM_EQUIVALENT","claim_relation_id":"sha256:c31030b3324a23d999aac090a3ba0ce7a10831e6ac232683af8d6c41069fdb82","conflicting_dependencies":[],"left_claim_id":"sha256:fb24f0caf2a8bcf09a34265ed2b3d0989a38f2b0436ffc59c66bd84550240b7a","left_only_dependencies":[],"result_relation":"RESULT_EQUIVALENT","right_claim_id":"sha256:fb24f0caf2a8bcf09a34265ed2b3d0989a38f2b0436ffc59c66bd84550240b7a","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["evidence_status"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"},"right":{"dependencies":{"evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Equivalent admissibility claims","vector_hash":"sha256:aa99876fa6e0f9515899bde98e2c0768bafcc667c2ee3db642e063dbb2ed4e0d","vector_id":"SEC-PORT-RA001"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"LEFT_REFINES_RIGHT","claim_relation_id":"sha256:e56782bdf04cd51aa4721151bb5e260968713d6987cbd2d6c0a2d02c51be4700","conflicting_dependencies":[],"left_claim_id":"sha256:b48100ab96fa73fd006a46b21d03bea1a336b362b46afc4fe3cee73f7ea2af65","left_only_dependencies":["epoch"],"result_relation":"RESULT_EQUIVALENT","right_claim_id":"sha256:4f7816429547a3af1738ebc96d0393b52f259c7a48a011e1b174c32d1deb81ea","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["frame"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"epoch":"E1","frame":"F1"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C"},"right":{"dependencies":{"frame":"F1"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Centre claim refinement","vector_hash":"sha256:de956f65084dc0a6df505f4cf461193634123e0664c514309e1d138350a23779","vector_id":"SEC-PORT-RC002"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"LEFT_REFINES_RIGHT","claim_relation_id":"sha256:9bbfc73f8798cf808cc8ca7c3998055af98136f0a4d2204b9d08fbbdd1113413","conflicting_dependencies":[],"left_claim_id":"sha256:e8c8f75cdd122daf06e4dde7df5b41616d8dab9dfe704d8782ca9456e86207c0","left_only_dependencies":["review_class"],"result_relation":"RESULT_EQUIVALENT","right_claim_id":"sha256:fb24f0caf2a8bcf09a34265ed2b3d0989a38f2b0436ffc59c66bd84550240b7a","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["evidence_status"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"evidence_status":"VERIFIED","review_class":"R1"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"},"right":{"dependencies":{"evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Admissibility claim refinement","vector_hash":"sha256:e0fa9ab5c616c5dfa38beeedb803e0402574b677e0d687e03d449e1394031e80","vector_id":"SEC-PORT-RA002"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"COMPATIBLE_OVERLAP","claim_relation_id":"sha256:afc118a54864c235219a202c283662826e9cf664da5cb5a49ddb881da10f62cc","conflicting_dependencies":[],"left_claim_id":"sha256:ef7f580767b881a42e6332140cf08032baa29754285f83efb4c7d70b98af7fdc","left_only_dependencies":["measure"],"result_relation":"RESULT_DIVERGENT","right_claim_id":"sha256:2d171bfdaa728c77025418b088d0f85099de938f158c897fd91be31c43eb825f","right_only_dependencies":["objective"],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["frame"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"frame":"F1","measure":"M1"},"domain_id":"CENTRE","profile_id":"P-C1","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C1"},"right":{"dependencies":{"frame":"F1","objective":"O2"},"domain_id":"CENTRE","profile_id":"P-C2","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"2"}]},"scope_id":"SCOPE-C2"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Compatible overlapping centre claims","vector_hash":"sha256:b176fc33bcb8e98bcb4d098834d5fc9fdc4ad13e246155df6bcfd26b33392ce2","vector_id":"SEC-PORT-RC003"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"COMPATIBLE_OVERLAP","claim_relation_id":"sha256:d75cc58d3dcef2ef5e2391b7a5d47c5d4942bca5571c2c6095fc5dffb5581809","conflicting_dependencies":[],"left_claim_id":"sha256:2a0ee8d550a2d54b4550d6a6ea1b7c46961db08651c42f73f5c295190d437ac0","left_only_dependencies":["rule_set"],"result_relation":"RESULT_DIVERGENT","right_claim_id":"sha256:0775182c78d74f2289005c5b1d03caa2643278ecfb9420f3ce2dcd27536d210f","right_only_dependencies":["review_class"],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["evidence_status"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"evidence_status":"VERIFIED","rule_set":"R1"},"domain_id":"ADMISSIBILITY","profile_id":"P-A1","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A1"},"right":{"dependencies":{"evidence_status":"VERIFIED","review_class":"R2"},"domain_id":"ADMISSIBILITY","profile_id":"P-A2","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"REFUSED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A2"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Compatible overlapping admissibility claims","vector_hash":"sha256:211f718efa8aec605b478e0b844bd28bc8f9cadbdcbe0b98c290274372185452","vector_id":"SEC-PORT-RA003"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"DECLARATION_CONFLICT","claim_relation_id":"sha256:2929e342530adc42ca7f7d26c2daeace76fe5da34b18bc9b0787927d7fd24fc6","conflicting_dependencies":["frame"],"left_claim_id":"sha256:4f7816429547a3af1738ebc96d0393b52f259c7a48a011e1b174c32d1deb81ea","left_only_dependencies":[],"result_relation":"RESULT_DIVERGENT","right_claim_id":"sha256:fde9f6411c2a996f58ea1dd9e70ad527074b65a73e48f7915c79e30957b6ae86","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["frame"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"frame":"F1"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"SCOPE-C"},"right":{"dependencies":{"frame":"F2"},"domain_id":"CENTRE","profile_id":"P-C","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"2"}]},"scope_id":"SCOPE-C"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Conflicting centre declarations","vector_hash":"sha256:f0f3386a431e2c3d49c2e1986b94f16449152a9132ee23c171a461b68dbe9960","vector_id":"SEC-PORT-RC004"},{"category":"CLAIM_RELATION","expected":{"claim_relation":"DECLARATION_CONFLICT","claim_relation_id":"sha256:9a2e5a2e576e6a7ffbe7ec8af4aface162362fcc406c1dce82fc3d43a2120603","conflicting_dependencies":["evidence_status"],"left_claim_id":"sha256:fb24f0caf2a8bcf09a34265ed2b3d0989a38f2b0436ffc59c66bd84550240b7a","left_only_dependencies":[],"result_relation":"RESULT_DIVERGENT","right_claim_id":"sha256:48a692dd5f5fd838fb0cece58e9d6a4599002105ec55c5b8b73a95617df385c6","right_only_dependencies":[],"schema":"SEC-GENERIC-CLAIM-RELATION-1-D01","shared_dependencies":["evidence_status"],"system_version":"0.5.0"},"input":{"left":{"dependencies":{"evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"},"right":{"dependencies":{"evidence_status":"ATTESTED"},"domain_id":"ADMISSIBILITY","profile_id":"P-A","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"REFUSED","resolution_state":"RESOLVED"},"scope_id":"SCOPE-A"}},"operation":"CLAIM_RELATION","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Conflicting admissibility declarations","vector_hash":"sha256:9cdf1831a6b1cf4b77bb5b1b7094369e06f45ce064b3706141441539bdcc1e2f","vector_id":"SEC-PORT-RA004"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":1,"member_count":2,"members":[{"claim_id":"sha256:1e2783c864e3aa33a53076204a216bb4d676f01c77155957ab2269ddc6c945b0","claim_material":{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"C1","resolution_state":"RESOLVED","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"result_id":"sha256:08cc8762239eab7038638dc7063412b26cf81d26bb9fdff7c83ff354efea2c9f"},{"claim_id":"sha256:f520fa0961200ea21371d64ad7682782b9a7982c869a0e205ecaca0fbdc9d6d2","claim_material":{"dependencies":{"measure":"M2"},"domain_id":"CENTRE","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"C2","resolution_state":"RESOLVED","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"result_id":"sha256:08cc8762239eab7038638dc7063412b26cf81d26bb9fdff7c83ff354efea2c9f"}],"resolved_member_count":2,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:dc23d9fb3462e046bc3b48caae8935e624bbcd33a2707f7c59b285532d476d2b","spectrum_state":"RESULT_CONVERGENT_CLAIM_DIVERSE","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","member_id":"C1","profile_id":"P1","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"S1"},{"dependencies":{"measure":"M2"},"domain_id":"CENTRE","member_id":"C2","profile_id":"P2","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Convergent centre result across distinct claims","vector_hash":"sha256:a29781fca0e9d537e22aa516a8177414419ac9cef8d9a769b631e3d420518828","vector_id":"SEC-PORT-SC001"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":1,"member_count":2,"members":[{"claim_id":"sha256:5bef7172740f414217ffc0adedecea2b88630b2d233306a2b6e5cb3674f2f619","claim_material":{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"A1","resolution_state":"RESOLVED","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"result_id":"sha256:ed679c3d98ede57d1c807cc4f2ac7ac3b475336129b860564e4653109efe47ec"},{"claim_id":"sha256:d69f48cdfd3fef1e6435f49c400a42cd7c0a534997441398a638a8ca9c164cb7","claim_material":{"dependencies":{"rule_set":"R2"},"domain_id":"ADMISSIBILITY","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"A2","resolution_state":"RESOLVED","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"result_id":"sha256:ed679c3d98ede57d1c807cc4f2ac7ac3b475336129b860564e4653109efe47ec"}],"resolved_member_count":2,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:fa3ab887240dabff3af3953db9aaf91966716dd4b6bdf1840e102bd6d2218aac","spectrum_state":"RESULT_CONVERGENT_CLAIM_DIVERSE","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","member_id":"A1","profile_id":"P1","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"S1"},{"dependencies":{"rule_set":"R2"},"domain_id":"ADMISSIBILITY","member_id":"A2","profile_id":"P2","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Convergent admissibility result across distinct claims","vector_hash":"sha256:311b5542c647ce138b8def3d69ba14f710e963d43b560be75fe2dd808badc580","vector_id":"SEC-PORT-SA001"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":2,"member_count":2,"members":[{"claim_id":"sha256:1e2783c864e3aa33a53076204a216bb4d676f01c77155957ab2269ddc6c945b0","claim_material":{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"C1","resolution_state":"RESOLVED","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"result_id":"sha256:08cc8762239eab7038638dc7063412b26cf81d26bb9fdff7c83ff354efea2c9f"},{"claim_id":"sha256:f520fa0961200ea21371d64ad7682782b9a7982c869a0e205ecaca0fbdc9d6d2","claim_material":{"dependencies":{"measure":"M2"},"domain_id":"CENTRE","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"C2","resolution_state":"RESOLVED","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"2"}]},"result_id":"sha256:830a28c6a569d5b6d88bf2a5b597017827a074061154628adff783c244ca366a"}],"resolved_member_count":2,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:ab073dbe769e835fe9db64d6b063592a59272c7c5273f5c9f2eec8ad33afce56","spectrum_state":"RESULT_DIVERGENT_FAMILY","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","member_id":"C1","profile_id":"P1","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"S1"},{"dependencies":{"measure":"M2"},"domain_id":"CENTRE","member_id":"C2","profile_id":"P2","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"2"}]},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Divergent centre result family","vector_hash":"sha256:c9a5022e51634d5c80a9c568bb2c7b0f88f77f170f0837dab0822dd54b31ec69","vector_id":"SEC-PORT-SC002"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":2,"member_count":2,"members":[{"claim_id":"sha256:5bef7172740f414217ffc0adedecea2b88630b2d233306a2b6e5cb3674f2f619","claim_material":{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"A1","resolution_state":"RESOLVED","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"result_id":"sha256:ed679c3d98ede57d1c807cc4f2ac7ac3b475336129b860564e4653109efe47ec"},{"claim_id":"sha256:d69f48cdfd3fef1e6435f49c400a42cd7c0a534997441398a638a8ca9c164cb7","claim_material":{"dependencies":{"rule_set":"R2"},"domain_id":"ADMISSIBILITY","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"A2","resolution_state":"RESOLVED","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"REFUSED","resolution_state":"RESOLVED"},"result_id":"sha256:f354a400335610d13e97df97eddf313394910d98aff6edb8b293774127bf5b8f"}],"resolved_member_count":2,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:ac33760ba8ac74d390481d3000dde4164a2d411eb4c448ccb529e6d85bea89eb","spectrum_state":"RESULT_DIVERGENT_FAMILY","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","member_id":"A1","profile_id":"P1","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"S1"},{"dependencies":{"rule_set":"R2"},"domain_id":"ADMISSIBILITY","member_id":"A2","profile_id":"P2","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"REFUSED","resolution_state":"RESOLVED"},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Divergent admissibility result family","vector_hash":"sha256:4989cac27732296e0ac2e4a11a482ab3f1f333c720b0408b18849a5abacab96f","vector_id":"SEC-PORT-SA002"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":2,"member_count":2,"members":[{"claim_id":"sha256:1e2783c864e3aa33a53076204a216bb4d676f01c77155957ab2269ddc6c945b0","claim_material":{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"C1","resolution_state":"RESOLVED","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"result_id":"sha256:08cc8762239eab7038638dc7063412b26cf81d26bb9fdff7c83ff354efea2c9f"},{"claim_id":"sha256:eeec1541110f0e4f2f384fedbdd153f8fd01a91e6e7c0c5d44ffc17eed4f096d","claim_material":{"dependencies":{},"domain_id":"CENTRE","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"C2","resolution_state":"INCOMPLETE","result":{"missing_dependencies":["frame"],"resolution_state":"INCOMPLETE"},"result_id":"sha256:806bc17d9c706195ae4758cf8ca7c03fb4e9eacc928f1ec92e4e3da94871f9ef"}],"resolved_member_count":1,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:47e0f3ae24caf81c1e1c3ecad4ce00011044b936e052dfafda694c3438132810","spectrum_state":"MIXED_RESOLUTION_FAMILY","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"measure":"M1"},"domain_id":"CENTRE","member_id":"C1","profile_id":"P1","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"scope_id":"S1"},{"dependencies":{},"domain_id":"CENTRE","member_id":"C2","profile_id":"P2","result":{"missing_dependencies":["frame"],"resolution_state":"INCOMPLETE"},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Mixed-resolution centre family","vector_hash":"sha256:99c30f44c19e022c7949f8b478f9d95c4e1087bcad80b699e3862c74b8675e2d","vector_id":"SEC-PORT-SC003"},{"category":"RESULT_SPECTRUM","expected":{"aggregation_policy":"NO_BLIND_AGGREGATION_OF_STRUCTURALLY_DISTINCT_RESULTS","distinct_claim_count":2,"distinct_result_count":2,"member_count":2,"members":[{"claim_id":"sha256:46626f8e7d65b5279922f769d02bac1ae75b2e71e860ce9b2bcdfdb6d0eacd16","claim_material":{"dependencies":{},"domain_id":"ADMISSIBILITY","profile_id":"P2","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S2","system_version":"0.5.0"},"member_id":"A2","resolution_state":"INCOMPLETE","result":{"missing_dependencies":["evidence_status"],"resolution_state":"INCOMPLETE"},"result_id":"sha256:276c6cd2a29d4139395a65f15b1a77f66fa7844d56e8d03ccb25b6ae7c93a2a2"},{"claim_id":"sha256:5bef7172740f414217ffc0adedecea2b88630b2d233306a2b6e5cb3674f2f619","claim_material":{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","profile_id":"P1","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"S1","system_version":"0.5.0"},"member_id":"A1","resolution_state":"RESOLVED","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"result_id":"sha256:ed679c3d98ede57d1c807cc4f2ac7ac3b475336129b860564e4653109efe47ec"}],"resolved_member_count":1,"schema":"SEC-GENERIC-RESULT-SPECTRUM-1-D01","spectrum_id":"sha256:0997c878e1f1325b45633e9a83a8ce43b4ed2453e91cf30885ac4475f588c391","spectrum_state":"MIXED_RESOLUTION_FAMILY","system_version":"0.5.0"},"input":{"claims":[{"dependencies":{"rule_set":"R1"},"domain_id":"ADMISSIBILITY","member_id":"A1","profile_id":"P1","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"scope_id":"S1"},{"dependencies":{},"domain_id":"ADMISSIBILITY","member_id":"A2","profile_id":"P2","result":{"missing_dependencies":["evidence_status"],"resolution_state":"INCOMPLETE"},"scope_id":"S2"}]},"operation":"RESULT_SPECTRUM","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Mixed-resolution admissibility family","vector_hash":"sha256:5159bceda5e5ce0e9cd0892edaea6d869a7c4917c3e141d692efcf239c818d00","vector_id":"SEC-PORT-SA003"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","current_dependencies":{"measure":"UNIFORM_POINT_MASS"},"current_result":{"missing_dependencies":["frame"],"resolution_state":"INCOMPLETE"},"declared_repair_option_count":2,"domain_id":"CENTRE","frontier_state":"UNIQUE_MINIMAL_FRONTIER","invents_missing_evidence":false,"minimal_repair_sets":[{"operations":[{"key":"frame","op":"SET","value":"FRAME-1"}],"result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"resulting_dependencies":{"frame":"FRAME-1","measure":"UNIFORM_POINT_MASS"}}],"minimal_repair_size":1,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:def8e2076c99fe00098a620d7116ddfa80e55c8d427176c36e424644de055803","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{"measure":"UNIFORM_POINT_MASS"},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","repair_options":[{"key":"frame","op":"SET","value":"FRAME-1"},{"key":"epoch","op":"SET","value":"E1"}],"subject":{"points":[0,2]}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Unique minimal centre frontier","vector_hash":"sha256:8f53f9715672e4214336d262a12c6d74b7e8caffd651dafb0440f023cb4fb0e4","vector_id":"SEC-PORT-FC001"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","current_dependencies":{"eligibility_class":"STANDARD"},"current_result":{"missing_dependencies":["evidence_status"],"resolution_state":"INCOMPLETE"},"declared_repair_option_count":2,"domain_id":"ADMISSIBILITY","frontier_state":"UNIQUE_MINIMAL_FRONTIER","invents_missing_evidence":false,"minimal_repair_sets":[{"operations":[{"key":"evidence_status","op":"SET","value":"VERIFIED"}],"result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"resulting_dependencies":{"eligibility_class":"STANDARD","evidence_status":"VERIFIED"}}],"minimal_repair_size":1,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:61b1f564ec45a8a16c69078777687e0d829e1742dc405b58d8e6c577ae372016","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{"eligibility_class":"STANDARD"},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","repair_options":[{"key":"evidence_status","op":"SET","value":"VERIFIED"},{"key":"review_note","op":"SET","value":"R1"}],"subject":{"request_id":"SYNTHETIC-REQUEST-001"}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Unique minimal admissibility frontier","vector_hash":"sha256:8b018d7100784c9caff321732c808047bc2a3804efd1195be8e82cf8c5beef5d","vector_id":"SEC-PORT-FA001"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","current_dependencies":{"frame":"FRAME-1","measure":["UNIFORM_POINT_MASS","DECLARED_EQUAL_WEIGHTS"]},"current_result":{"conflicting_dependencies":["measure"],"resolution_state":"CONFLICT"},"declared_repair_option_count":2,"domain_id":"CENTRE","frontier_state":"MULTIPLE_MINIMAL_FRONTIERS","invents_missing_evidence":false,"minimal_repair_sets":[{"operations":[{"key":"measure","op":"SET","value":"DECLARED_EQUAL_WEIGHTS"}],"result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"resulting_dependencies":{"frame":"FRAME-1","measure":"DECLARED_EQUAL_WEIGHTS"}},{"operations":[{"key":"measure","op":"SET","value":"UNIFORM_POINT_MASS"}],"result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"resulting_dependencies":{"frame":"FRAME-1","measure":"UNIFORM_POINT_MASS"}}],"minimal_repair_size":1,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:411192862b19e321415b76ac501aa6125e242608fd2c02adc5fdc61669981ed1","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{"frame":"FRAME-1","measure":["UNIFORM_POINT_MASS","DECLARED_EQUAL_WEIGHTS"]},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","repair_options":[{"key":"measure","op":"SET","value":"UNIFORM_POINT_MASS"},{"key":"measure","op":"SET","value":"DECLARED_EQUAL_WEIGHTS"}],"subject":{"points":[0,2]}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Multiple minimal centre frontiers","vector_hash":"sha256:8d49db343ff4e657319c8bc6a25c39f14597afea92986cfeb97b0f56721b4a60","vector_id":"SEC-PORT-FC002"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","current_dependencies":{"eligibility_class":"STANDARD","evidence_status":["VERIFIED","ATTESTED"]},"current_result":{"conflicting_dependencies":["evidence_status"],"resolution_state":"CONFLICT"},"declared_repair_option_count":2,"domain_id":"ADMISSIBILITY","frontier_state":"MULTIPLE_MINIMAL_FRONTIERS","invents_missing_evidence":false,"minimal_repair_sets":[{"operations":[{"key":"evidence_status","op":"SET","value":"ATTESTED"}],"result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"resulting_dependencies":{"eligibility_class":"STANDARD","evidence_status":"ATTESTED"}},{"operations":[{"key":"evidence_status","op":"SET","value":"VERIFIED"}],"result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"resulting_dependencies":{"eligibility_class":"STANDARD","evidence_status":"VERIFIED"}}],"minimal_repair_size":1,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:6f8ad16f29e3f00a7a8a686f6192556b96d3457a02fd857103d8a3f4600af704","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{"eligibility_class":"STANDARD","evidence_status":["VERIFIED","ATTESTED"]},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","repair_options":[{"key":"evidence_status","op":"SET","value":"VERIFIED"},{"key":"evidence_status","op":"SET","value":"ATTESTED"}],"subject":{"request_id":"SYNTHETIC-REQUEST-001"}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Multiple minimal admissibility frontiers","vector_hash":"sha256:3917b72777a6d6c21d1787f6369ecd65b232fa5220e8692c442bfce00d2a4e19","vector_id":"SEC-PORT-FA002"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","current_dependencies":{},"current_result":{"missing_dependencies":["frame","measure"],"resolution_state":"INCOMPLETE"},"declared_repair_option_count":1,"domain_id":"CENTRE","frontier_state":"NO_ADMISSIBLE_FRONTIER","invents_missing_evidence":false,"minimal_repair_sets":[],"minimal_repair_size":null,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:53067e806282feea343040bb60da8c70139e8b7d4c7af705b0f08b08c5f64142","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","repair_options":[{"key":"frame","op":"SET","value":"FRAME-1"}],"subject":{"points":[0,2]}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"No declared centre frontier","vector_hash":"sha256:f346df543d547df7201829cef030db28d98f9da378bf6e14a86ed444df060e78","vector_id":"SEC-PORT-FC003"},{"category":"RESOLUTION_FRONTIER","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","current_dependencies":{},"current_result":{"missing_dependencies":["eligibility_class","evidence_status"],"resolution_state":"INCOMPLETE"},"declared_repair_option_count":1,"domain_id":"ADMISSIBILITY","frontier_state":"NO_ADMISSIBLE_FRONTIER","invents_missing_evidence":false,"minimal_repair_sets":[],"minimal_repair_size":null,"repair_policy":"DECLARED_OPTIONS_ONLY","resolution_frontier_id":"sha256:b12ec3ef8d0d32f62f1d6365d6f3eaf238bd58207edf1eeed0d2ac4bfa0d7e98","schema":"SEC-GENERIC-RESOLUTION-FRONTIER-1-D01","system_version":"0.5.0"},"input":{"current_dependencies":{},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","repair_options":[{"key":"evidence_status","op":"SET","value":"VERIFIED"}],"subject":{"request_id":"SYNTHETIC-REQUEST-001"}},"operation":"RESOLUTION_FRONTIER","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"No declared admissibility frontier","vector_hash":"sha256:c2249886891377bc2363eeb90ba7dc79c99e67d614a122d841cc5bc4507728f5","vector_id":"SEC-PORT-FA003"},{"category":"RESOLUTION_CERTIFICATE","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","certificate_id":"sha256:e48ba055764ab28b6a98900a9bc17eb2ab06f49d9071f3c4b273ea739ac46555","claim_id":"sha256:b7204ec7cbb63a89df449f8231d46dc0e510a2c41ffb017f605769f16f97174a","claim_material":{"dependencies":{"frame":"FRAME-1","measure":"UNIFORM_POINT_MASS"},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"EXACT_MEAN_TEST","system_version":"0.5.0"},"evidence_id":"sha256:1111111111111111111111111111111111111111111111111111111111111111","generic_kernel_profile":"SEC-GENERIC-STRUCTURAL-KERNEL-1-D01","result_id":"sha256:08cc8762239eab7038638dc7063412b26cf81d26bb9fdff7c83ff354efea2c9f","result_material":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]},"schema":"SEC-GENERIC-RESOLUTION-CERTIFICATE-1-D01","system_version":"0.5.0"},"input":{"claim":{"dependencies":{"frame":"FRAME-1","measure":"UNIFORM_POINT_MASS"},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","scope_id":"EXACT_MEAN_TEST"},"domain_id":"CENTRE","evidence_id":"sha256:1111111111111111111111111111111111111111111111111111111111111111","result":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"1"}]}},"operation":"RESOLUTION_CERTIFICATE","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Centre portability resolution certificate","vector_hash":"sha256:7771dbafb19dbc2eafbbd17607f62fd2985806a36c538da347e3be14f9b39ad3","vector_id":"SEC-PORT-CC001"},{"category":"RESOLUTION_CERTIFICATE","expected":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","certificate_id":"sha256:d9fb6723b11d29b91fc2ae295113e061891cda2e635614f23f4f8c002bc3b7c1","claim_id":"sha256:0f3f53cce5ce6809b55ec464271c0e8c2444ab5720a83746943deed9e9740da8","claim_material":{"dependencies":{"eligibility_class":"STANDARD","evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","schema":"SEC-GENERIC-CLAIM-MATERIAL-1-D01","scope_id":"SYNTHETIC_REQUEST","system_version":"0.5.0"},"evidence_id":"sha256:2222222222222222222222222222222222222222222222222222222222222222","generic_kernel_profile":"SEC-GENERIC-STRUCTURAL-KERNEL-1-D01","result_id":"sha256:ed679c3d98ede57d1c807cc4f2ac7ac3b475336129b860564e4653109efe47ec","result_material":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"schema":"SEC-GENERIC-RESOLUTION-CERTIFICATE-1-D01","system_version":"0.5.0"},"input":{"claim":{"dependencies":{"eligibility_class":"STANDARD","evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","scope_id":"SYNTHETIC_REQUEST"},"domain_id":"ADMISSIBILITY","evidence_id":"sha256:2222222222222222222222222222222222222222222222222222222222222222","result":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"}},"operation":"RESOLUTION_CERTIFICATE","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Admissibility portability resolution certificate","vector_hash":"sha256:51de4e03933c42fac03342fc82576bfe3cb5029a908b9ecdf4821331a91c22a9","vector_id":"SEC-PORT-CA001"},{"category":"DOMAIN_RESOLUTION","expected":{"outcome":"CENTRE_POINT","resolution_state":"RESOLVED","value":[{"d":"1","n":"2"}]},"input":{"dependencies":{"frame":"FRAME-1","measure":"UNIFORM_POINT_MASS"},"domain_id":"CENTRE","profile_id":"CENTRE_EXACT_MEAN_1D","subject":{"points":[0,2,4]}},"operation":"DOMAIN_RESOLVE","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Exact centre adapter resolution","vector_hash":"sha256:c525ff4b8bc7e20d8de12b2c02a6f53a05f774eacd982a706396b9a68cb17256","vector_id":"SEC-PORT-DC001"},{"category":"DOMAIN_RESOLUTION","expected":{"decision_scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY","execution_authority":"NONE","outcome":"ADMITTED","resolution_state":"RESOLVED"},"input":{"dependencies":{"eligibility_class":"STANDARD","evidence_status":"VERIFIED"},"domain_id":"ADMISSIBILITY","profile_id":"ADMISSIBILITY_STANDARD","subject":{"request_id":"SYNTHETIC-REQUEST-002"}},"operation":"DOMAIN_RESOLVE","schema":"SEC-STRUCTURAL-PORTABILITY-VECTOR-1-D01","system_version":"0.5.0","title":"Synthetic admissibility adapter resolution","vector_hash":"sha256:adfb9d94d7cd665e44c4b051e1483e76a8eebf3e754f217013bf5e0875b1abc9","vector_id":"SEC-PORT-DA001"}]};
+const SEC_PORTABILITY_PROFILES = {"admissibility":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","admitted_evidence_statuses":["VERIFIED","ATTESTED"],"authority_limit":"DECISION_RESULT_ONLY_WITH_NO_EXECUTION_AUTHORITY","domain_id":"ADMISSIBILITY","domain_operations":["DOMAIN_RESOLVE","SYNTHETIC_ADMISSIBILITY"],"eligibility_rules":{"BLOCKED":"REFUSED","STANDARD":"ADMITTED"},"profile_hash":"sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1","required_dependencies":["eligibility_class","evidence_status"],"resolution_contract":{"execution_authority":"NONE","resolved_state":"RESOLVED","scope":"BOUNDED_SYNTHETIC_ADMISSIBILITY"},"schema":"SEC-PORTABILITY-DOMAIN-ADAPTER-PROFILE-1-D01","supported_profile_id":"ADMISSIBILITY_STANDARD","system_version":"0.5.0"},"centre":{"adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","admitted_measures":["UNIFORM_POINT_MASS","DECLARED_EQUAL_WEIGHTS"],"authority_limit":"SYNTHETIC_EXACT_PORTABILITY_DEMONSTRATION_ONLY","domain_id":"CENTRE","domain_operations":["DOMAIN_RESOLVE","CENTRE_EXACT_MEAN"],"profile_hash":"sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2","required_dependencies":["frame","measure"],"resolution_contract":{"arithmetic":"EXACT_RATIONAL","outcome":"CENTRE_POINT","resolved_state":"RESOLVED"},"schema":"SEC-PORTABILITY-DOMAIN-ADAPTER-PROFILE-1-D01","subject_contract":{"dimension":1,"points":"NON_EMPTY_FINITE_EXACT_RATIONAL_SEQUENCE"},"supported_profile_id":"CENTRE_EXACT_MEAN_1D","system_version":"0.5.0"},"generic":{"canonicalization":"SORTED_KEY_CANONICAL_JSON_UTF8","generic_operations":["CLAIM_RELATION","RESULT_SPECTRUM","RESOLUTION_FRONTIER","RESOLUTION_CERTIFICATE"],"identity_algorithm":"SHA256","limits":{"max_claims":256,"max_dependencies":256,"max_repair_options":16},"non_claims":["NO_UNIVERSAL_DOMAIN_COMPLETENESS","NO_CAUSAL_INFERENCE","NO_AUTOMATIC_EXECUTION_AUTHORITY","NO_REPAIR_INVENTION_OUTSIDE_DECLARED_OPTIONS"],"profile_hash":"sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9","profile_id":"SEC-GENERIC-STRUCTURAL-KERNEL-1-D01","resolved_state":"RESOLVED","schema":"SEC-GENERIC-STRUCTURAL-KERNEL-PROFILE-1-D01","separation_contract":{"domain_adapters_may_resolve_subject_matter":true,"generic_kernel_contains_domain_specific_resolution_rules":false,"generic_relation_spectrum_frontier_and_certificate_semantics_are_shared":true},"system_version":"0.5.0"},"portability":{"domain_adapters":[{"adapter_profile_hash":"sha256:268d710e4b320e6eee9a674282a1f499832ac27e0d2135948a7dc28b89b49ef2","adapter_profile_id":"SEC-PORTABILITY-ADAPTER-CENTRE-1-D01","domain_id":"CENTRE"},{"adapter_profile_hash":"sha256:f706969920fe3a01ffc79188dfba4c3fb897c22e94c02b81805083a31ee516f1","adapter_profile_id":"SEC-PORTABILITY-ADAPTER-ADMISSIBILITY-1-D01","domain_id":"ADMISSIBILITY"}],"generic_kernel_profile_hash":"sha256:60b473acd3458abe23d0a095e1b3a1d81ce4e61cd517c9b7d244e5c5efa508a9","generic_kernel_profile_id":"SEC-GENERIC-STRUCTURAL-KERNEL-1-D01","principles":{"certificate_binds_kernel_adapter_claim_and_result":true,"domain_specific_rules_are_adapter_bounded":true,"no_blind_aggregation":true,"no_repair_invention":true,"same_generic_primitives_across_domains":true},"profile_hash":"sha256:30aaec976f2b38bfe0b1d8e6f201ed941b0432af515b477293d926d60f9ed51f","profile_id":"SEC-STRUCTURAL-PORTABILITY-PROOF-1-D01","proof_dimensions":["CLAIM_RELATION_SEMANTICS","RESULT_SPECTRUM_SEMANTICS","RESOLUTION_FRONTIER_SEMANTICS","RESOLUTION_CERTIFICATE_BINDING","PYTHON_JAVASCRIPT_PARITY"],"proof_scope":"TWO_BOUNDED_SYNTHETIC_DOMAINS_WITH_EXACT_REPRODUCIBLE_VECTORS","schema":"SEC-STRUCTURAL-PORTABILITY-PROFILE-1-D01","system_version":"0.5.0"}};
+
+(function(global){
+  let lastResult=null;
+  async function runAll(options={}){
+    const verbose=!!options.verbose;
+    const result=SEC_PORTABILITY_CORE.auditVectorCorpus(
+      SEC_PORTABILITY_VECTORS,
+      SEC_PORTABILITY_PROFILES,
+      {verbose}
+    );
+    lastResult=result;
+    const status=document.getElementById("status");
+    const total=document.getElementById("total");
+    const out=document.getElementById("out");
+    if(status){
+      status.textContent=result.status;
+      status.className="metric "+(result.status==="PASS"?"pass":"fail");
+    }
+    if(total)total.textContent=`${result.passed}/${result.total}`;
+    if(out){
+      out.textContent=[
+        `STATUS ${result.status}`,
+        `TOTAL ${result.passed}/${result.total} ${result.status}`,
+        `VECTOR SET ${result.vector_set_id}`,
+        `CORPUS ${result.vector_corpus_id}`,
+        `PORTABILITY CERTIFICATE ${result.portability_certificate.portability_certificate_id}`,
+        `EVIDENCE ID ${result.evidence_id}`,
+        "",
+        ...result.checks.map(check=>`${check.pass?"PASS":"FAIL"} ${check.check_id} ${typeof check.detail==="string"?check.detail:JSON.stringify(check.detail)}`)
+      ].join("\n");
+    }
+    return result;
+  }
+  function last(){return lastResult;}
+  function evaluateVector(vectorId){
+    const vector=SEC_PORTABILITY_VECTORS.vectors.find(item=>item.vector_id===vectorId);
+    if(!vector)throw new Error("VECTOR_NOT_FOUND");
+    return SEC_PORTABILITY_CORE.evaluateVector(vector);
+  }
+  const api={runAll,last,evaluateVector,profiles:()=>SEC_PORTABILITY_PROFILES,vectors:()=>SEC_PORTABILITY_VECTORS};
+  global.SEC_PORTABILITY_AUDIT=api;
+  global.SEC_PORTABILITY_VECTORS=SEC_PORTABILITY_VECTORS;
+  document.getElementById("run").addEventListener("click",()=>runAll({verbose:false}));
+})(globalThis);
+</script>
+</body>
+</html>

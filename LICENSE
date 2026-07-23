@@ -1,0 +1,113 @@
+STRUCTURAL EARTH CENTRE LICENSE v1.0
+
+1. Scope
+
+This license applies to the Structural Earth Centre materials distributed with this
+repository unless a specific file or directory states otherwise.
+
+The covered materials are divided into:
+
+- reference implementation and machine-readable verification artifacts; and
+- documentation and architecture materials.
+
+Third-party datasets and other externally sourced materials are not relicensed by
+this license. Their applicable source terms, public-domain status, licenses, or
+other rights remain separate.
+
+2. Reference Implementation and Machine-Readable Verification Artifacts
+
+The reference implementation and machine-readable verification artifacts include,
+where present, browser demonstrations, reference kernels, verifiers, conformance
+corpora, vectors, profiles, registries, schemas, evidence files, and other
+implementation or verification files created for the Structural Earth Centre
+project.
+
+Permission is granted, without a license fee, to use, copy, modify, test, study,
+and redistribute these materials for lawful purposes, including commercial and
+non-commercial use, subject to the terms of this license.
+
+A substantial redistribution of these materials must retain this license and any
+applicable copyright or attribution notices included with the original materials.
+
+Modified implementation or verification files must be clearly identified as
+modified and must not imply that the modifications were verified, certified,
+endorsed, or authored by the original project maintainers.
+
+3. Documentation and Architecture Materials
+
+Documentation, architectural descriptions, specifications, diagrams, and
+explanatory materials may be copied and adapted for non-commercial research,
+education, review, and implementation work with appropriate attribution to the
+Structural Earth Centre project and the Shunyaya Framework.
+
+Commercial use of substantial portions of the documentation or architecture
+materials requires separate permission unless the use is limited to factual
+reference, interoperability, review, or implementation of independently written
+software without substantial copying of the protected materials.
+
+Nothing in this license is intended to restrict rights that may otherwise be
+available under applicable law.
+
+4. Attribution
+
+Attribution is not required for use, modification, or redistribution of the
+reference implementation or machine-readable verification artifacts, but it is
+appreciated.
+
+Where attribution is required for documentation or architecture materials, or
+where voluntary attribution is provided for the reference implementation, a
+reasonable attribution is:
+
+Structural Earth Centre
+Developed within the Shunyaya Framework
+
+Attribution may be provided in documentation, notices, credits, or another
+reasonable location appropriate to the form of redistribution or adaptation.
+
+5. Names and Marks
+
+This license does not grant trademark rights or permission to imply endorsement.
+
+The names Structural Earth Centre, Shunyaya, and related project names may be used
+for accurate factual reference and attribution.
+
+6. Verification and Assurance Claims
+
+A passing producer audit, conformance result, profile-validation result,
+cross-implementation parity result, reproducibility result, or separate
+reconstruction result applies only to the declared files, profiles, datasets,
+inputs, rules, and verification boundary associated with that result.
+
+Modified files, changed rules, changed profiles, changed vectors, changed datasets,
+or changed evidence require their own verification.
+
+Redistribution, modification, or use of the covered materials must not imply
+third-party verification, certification, production qualification, scientific
+validation, geodetic authority, legal approval, safety approval, or endorsement by
+the original project maintainers unless such a claim has been separately and
+expressly authorized.
+
+7. No Scientific, Geodetic, Security, or Safety Warranty
+
+THE SOFTWARE AND MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, NON-INFRINGEMENT, SECURITY, SAFETY, AVAILABILITY, ACCURACY,
+OR CORRECTNESS.
+
+Structural Earth Centre does not establish one universal centre of Earth and is
+not a replacement for professional geodesy, surveying, navigation systems,
+scientific measurement, authoritative reference systems, legal boundary
+determination, safety-critical systems, or domain-specific validation and
+controls.
+
+8. Limitation of Liability
+
+To the maximum extent permitted by applicable law, the authors and contributors
+shall not be liable for any claim, damages, loss, or other liability arising from
+use, modification, distribution, deployment, publication, interpretation, or
+reliance on the software or materials.
+
+9. Acceptance
+
+Using, modifying, or redistributing the covered materials indicates acceptance of
+these terms.

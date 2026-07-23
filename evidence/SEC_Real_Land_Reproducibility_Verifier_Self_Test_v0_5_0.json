@@ -1,0 +1,46 @@
+{
+  "checks": [
+    {
+      "check_id": "FETCH_RESULT_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "FETCH_EVIDENCE_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "OFFLINE_RESULT_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "OFFLINE_EVIDENCE_ID_VALID",
+      "pass": true
+    },
+    {
+      "check_id": "DATASET_IDENTITY_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "PROFILE_IDENTITY_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "STRUCTURAL_RESULT_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "RESULT_ID_MATCH",
+      "pass": true
+    },
+    {
+      "check_id": "PROVENANCE_IS_SEPARATE_FROM_RESULT_ID",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:c46d8f4d7aad8b7428b7b4a650d7fd6fec038f83a69619a430fb3e807df7ae54",
+  "passed": 9,
+  "schema": "SEC-REAL-LAND-REPRODUCIBILITY-SELF-TEST-1-D02",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 9
+}

@@ -1,0 +1,145 @@
+STRUCTURAL EARTH CENTRE
+BOUNDED EARTH CARRIER AND CENTRE PROFILE SPECIFICATION
+Release v0.5.0
+
+1. PURPOSE
+
+The bounded Earth layer maps recognizable Earth-centre questions into explicit claim dependencies and resolution states.
+
+It is a claim-boundary layer, not a universal geodetic model.
+
+2. EARTH PROFILE PRINCIPLE
+
+An Earth-centre claim is not admitted merely because a coordinate can be displayed.
+
+The profile must declare the carrier and the dependencies material to the claim.
+
+3. CURRENT BOUNDED VECTOR LAYER
+
+The frozen Earth vector set contains 14 vectors.
+
+The validator performs 20 checks covering:
+
+vector expectations
+source registry identity
+carrier registry identity
+centre-profile registry identity
+cross-registry linkage
+bounded claim authority
+
+Current result:
+
+20/20 PASS
+
+4. EARTH IDENTITIES
+
+SOURCE REGISTRY
+sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238
+
+CARRIER REGISTRY
+sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216
+
+PROFILE REGISTRY
+sha256:252d5945bad22ac90aaee972a8e33cdf094dc81d8762de92e6730bb624962a26
+
+VECTOR SET
+secearthv_761a8c1ff99a85c7e268a17d3bfe1f52f0689d89769469fcd3c752b6635f3ed6
+
+VECTOR CORPUS
+sha256:fd9eb495e90004607ef052f970412d261a6f91287d651e2f44d986dadb9358bd
+
+VALIDATION EVIDENCE
+sha256:383707738bdf3a6cb2c4071a0dad17e009364852313cb27203d275c6baa4ca62
+
+5. EXPLICIT STATES
+
+The bounded Earth layer demonstrates that a claim can be:
+
+resolved
+ambiguous
+incomplete
+conflicting
+unsupported
+
+without forcing every question into a point coordinate.
+
+6. REAL-LAND PROFILES
+
+v0.5.0 includes two real-land profiles over the same frozen dataset.
+
+Area-vector profile:
+
+SEC-REAL-LAND-AREA-VECTOR-CENTRE-1-D02
+
+Profile hash:
+
+sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361
+
+Boundary-vector profile:
+
+SEC-REAL-LAND-BOUNDARY-VECTOR-CENTRE-1-D01
+
+Profile hash:
+
+sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68
+
+7. CONTROLLED SAME-DATASET DIFFERENTIAL
+
+Both profiles use the exact dataset identity:
+
+sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9
+
+Area measure result:
+
+44.847286603, 28.41498761
+
+Boundary measure result:
+
+71.590921549, 66.736078802
+
+The controlled comparison contract keeps the common surface model and objective family aligned while changing the declared measure.
+
+The Structural Centre Differential reports:
+
+SINGLE_DEPENDENCY_DIVERGENCE
+
+changed_dependencies = [measure]
+
+8. AUTHORITY
+
+The area-vector result is not silently promoted to:
+
+physical geocentre
+reference-frame origin
+population centre
+gravity centre
+universal geographic centre
+
+The boundary-vector result receives the same authority limitation.
+
+Each is a bounded result under its own profile.
+
+9. NUMERICAL POLICY
+
+Both real-land vector profiles declare 9-decimal identity quantization for identity-bearing floating-point result fields.
+
+This policy is separate from the exact rational core.
+
+10. DATA BOUNDARY
+
+The included dataset is a frozen input artifact.
+
+A different dataset hash defines a different data boundary and does not automatically inherit the current result identities.
+
+11. RELATION TO STRUCTURAL INNOVATION LAYER
+
+The Earth layer supplies domain-specific claim examples.
+
+The structural innovation layer supplies reusable mechanisms for:
+
+claim comparison
+stability regions
+symmetry witnesses
+resolution certificates
+
+The two layers remain separable so that Earth-specific assumptions do not become universal structural rules.

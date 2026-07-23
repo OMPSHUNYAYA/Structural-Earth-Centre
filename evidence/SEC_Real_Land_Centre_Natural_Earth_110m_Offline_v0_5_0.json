@@ -1,0 +1,31 @@
+{
+  "centre_type": "SPHERICAL_SURFACE_AREA_VECTOR_CENTRE_DIRECTION",
+  "evidence": {
+    "acquisition_mode": "LOCAL_FILE",
+    "algorithm_profile_hash": "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+    "dataset_byte_length": 138160,
+    "dataset_sha256": "sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9",
+    "feature_count": 127,
+    "identity_quantization_decimal_places": 9,
+    "polygon_count": 127,
+    "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+    "ring_count": 128,
+    "schema": "SEC-REAL-LAND-CENTRE-EVIDENCE-1-D02",
+    "source_locator": "data/ne_110m_land.geojson",
+    "system_version": "0.5.0",
+    "vertex_count": 5015
+  },
+  "evidence_id": "sha256:70419b96bfb278b52032a7c0f1edb4439517d8435bdd2c43534b3c15e7454961",
+  "identity_quantization_decimal_places": 9,
+  "latitude_deg": 44.847286603,
+  "longitude_deg": 28.41498761,
+  "resolution_state": "RESOLVED_POINT",
+  "result_id": "sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa",
+  "spherical_area_steradians": 3.627891494,
+  "surface_fraction": 0.288698432,
+  "unit_vector_xyz": [
+    0.623572892,
+    0.337375439,
+    0.705219584
+  ]
+}

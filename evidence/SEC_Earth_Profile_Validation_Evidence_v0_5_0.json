@@ -1,0 +1,115 @@
+{
+  "carrier_registry_id": "sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216",
+  "checks": [
+    {
+      "check_id": "SOURCE_REGISTRY_ID",
+      "detail": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+      "pass": true
+    },
+    {
+      "check_id": "CARRIER_REGISTRY_ID",
+      "detail": "sha256:f4f5ce4e13f98445df5e9f6bfbb642ead472c5e714b3fee713017ef9abee0216",
+      "pass": true
+    },
+    {
+      "check_id": "PROFILE_REGISTRY_ID",
+      "detail": "sha256:252d5945bad22ac90aaee972a8e33cdf094dc81d8762de92e6730bb624962a26",
+      "pass": true
+    },
+    {
+      "check_id": "VECTOR_CORPUS_ID",
+      "detail": "sha256:fd9eb495e90004607ef052f970412d261a6f91287d651e2f44d986dadb9358bd",
+      "pass": true
+    },
+    {
+      "check_id": "REFERENCE_LINKS",
+      "detail": "source and carrier references",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E001",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E002",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E003",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E004",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E005",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E006",
+      "detail": "CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E007",
+      "detail": "AMBIGUOUS",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E008",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E009",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E010",
+      "detail": "CONFLICT",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E011",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E012",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E013",
+      "detail": "UNSUPPORTED",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-E014",
+      "detail": "UNSUPPORTED",
+      "pass": true
+    },
+    {
+      "check_id": "SEC-EARTH-CMP001",
+      "detail": "SAME_COORDINATE_DISTINCT_PROFILE_AND_CARRIER",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:383707738bdf3a6cb2c4071a0dad17e009364852313cb27203d275c6baa4ca62",
+  "passed": 20,
+  "profile_registry_id": "sha256:252d5945bad22ac90aaee972a8e33cdf094dc81d8762de92e6730bb624962a26",
+  "schema": "SEC-EARTH-PROFILE-VALIDATION-EVIDENCE-1-D01",
+  "source_registry_id": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 20,
+  "vector_corpus_id": "sha256:fd9eb495e90004607ef052f970412d261a6f91287d651e2f44d986dadb9358bd",
+  "vector_set_id": "secearthv_761a8c1ff99a85c7e268a17d3bfe1f52f0689d89769469fcd3c752b6635f3ed6"
+}

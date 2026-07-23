@@ -1,0 +1,199 @@
+STRUCTURAL EARTH CENTRE
+REAL-LAND CENTRE COMPUTATION
+Release v0.5.0
+
+1. PURPOSE
+
+This document defines the two current real-land computations over the included frozen polygon dataset.
+
+The results are bounded profile outputs, not universal claims about the one true geographic centre of Earth.
+
+2. FROZEN DATASET
+
+File:
+
+data/ne_110m_land.geojson
+
+Source:
+
+Natural Earth 1:110m Land data
+
+SHA-256:
+
+sha256:9e0729ee253ca7d7a5c4ae9395fb1902264c5377c52e224d13dd85010e2835d9
+
+3. INPUT ADMISSION
+
+Before computation, the resolver validates the input boundary.
+
+Refusal conditions include malformed JSON, invalid text encoding, invalid feature-collection structure, invalid coordinate types, non-finite values, longitude or latitude outside admitted geographic ranges, malformed positions, and invalid rings.
+
+A refused raw input produces:
+
+INPUT_REJECTED
+
+with a deterministic refusal identity.
+
+4. AREA-VECTOR PROFILE
+
+Profile:
+
+SEC-REAL-LAND-AREA-VECTOR-CENTRE-1-D02
+
+Profile hash:
+
+sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361
+
+The algorithm evaluates spherical polygon area contributions and their vector moments on a unit-sphere model.
+
+The normalized aggregate direction is converted to longitude and latitude.
+
+Identity-bearing result fields are quantized to 9 decimal places.
+
+Current result:
+
+RESOLVED_POINT
+
+latitude 44.847286603
+
+longitude 28.41498761
+
+surface fraction 0.288698432
+
+result_id sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa
+
+offline evidence_id sha256:70419b96bfb278b52032a7c0f1edb4439517d8435bdd2c43534b3c15e7454961
+
+5. BOUNDARY-VECTOR PROFILE
+
+Profile:
+
+SEC-REAL-LAND-BOUNDARY-VECTOR-CENTRE-1-D01
+
+Profile hash:
+
+sha256:03c1a077fd22375802eb9ba4ce2335417ae37c2fbff0bf9a8f843d7888308e68
+
+The algorithm evaluates each admitted boundary edge as a spherical arc.
+
+Each arc contributes its length and normalized midpoint direction to a boundary-length-weighted vector moment.
+
+The normalized aggregate direction is converted to longitude and latitude.
+
+Identity-bearing result fields are quantized to 9 decimal places.
+
+Current result:
+
+RESOLVED_POINT
+
+latitude 71.590921549
+
+longitude 66.736078802
+
+result_id sha256:fe0643edba6600d109be3b40f90cd362a1af9ee9696c069e7a50e9283bb40a29
+
+evidence_id sha256:5f5925211a5423706eaf083851fc590266eefe3988ab6a32900e23775cc1b8fe
+
+6. SAME-DATASET DIFFERENTIAL
+
+The same exact dataset bytes are used by both profiles.
+
+The result coordinates differ by:
+
+32.350594616 degrees
+
+The controlled comparison changes the declared measure:
+
+SPHERICAL_SURFACE_AREA
+
+versus:
+
+SPHERICAL_BOUNDARY_ARC_LENGTH
+
+The comparison result is:
+
+SINGLE_DEPENDENCY_DIVERGENCE
+
+changed_dependencies = [measure]
+
+Differential ID:
+
+sha256:2b2d58ff302077d16cc480b31112da2b12e81a58a84a0d4c7fa8937bc57d760c
+
+Differential evidence:
+
+sha256:e6150e95d3e60ee24510ba0921172ec789008c52472007a3e4c394f2b900a71e
+
+7. RESOLUTION CERTIFICATES
+
+Each real-land result has a Centre Resolution Certificate.
+
+The certificate preserves the real profile's actual result_id as its declared result identity.
+
+It separately binds the certificate-view result material through result_material_hash.
+
+It also binds the evidence_id.
+
+This prevents the certificate layer from silently replacing the result identity defined by the real-land profile.
+
+8. REPRODUCIBILITY
+
+The stored local-file and fetch-source provenance records bind the same exact dataset bytes and the same area result identity.
+
+Common result ID:
+
+sha256:ece1e949b32b52102a60e296fc6fa170528d569cec65c0af08ce44dde0aa42aa
+
+Stored reproducibility verification:
+
+9/9 PASS
+
+Reproducibility evidence ID:
+
+sha256:866879f8eb735348bf93e822eb525e7d46b7765e500f1ce27c67b774bc63670e
+
+9. REAL-LAND RESOLVER SELF-TEST
+
+Current result:
+
+26/26 PASS
+
+Self-test evidence:
+
+sha256:28dba835ea702d2a7c1fb1e425a9ee2cb2c763342f62720156a451998e5cb5a4
+
+Stored evidence file:
+
+evidence/SEC_Real_Land_Centre_Resolver_Self_Test_v0_5_0.json
+
+The self-test includes input admission, deterministic refusal, source-locator result-ID invariance, provenance evidence divergence, numerical identity-contract checks, and strict rejection of unsupported profile IDs with a declared comparison entry point.
+
+The standalone resolver accepts the area-vector profile. The boundary-vector profile is compared through:
+
+verify/SEC_Real_Land_Profile_Differential_v0_5_0.py
+
+10. NUMERICAL LIMIT
+
+The real-land computations use floating-point spherical operations.
+
+They do not claim that every raw intermediate bit is identical across every mathematics library or processor.
+
+The profile authority is instead attached to the 9-decimal identity-quantized structural result.
+
+11. DATASET LIMIT
+
+Changing the dataset bytes changes the dataset identity and creates a new computational boundary.
+
+No current result is automatically transferred to a different dataset.
+
+12. CLAIM LIMIT
+
+Neither real-land profile is a claim to:
+
+physical geocentre
+reference-system origin
+population centre
+gravity centre
+universal geographic centre
+
+Each result answers only its declared bounded profile.

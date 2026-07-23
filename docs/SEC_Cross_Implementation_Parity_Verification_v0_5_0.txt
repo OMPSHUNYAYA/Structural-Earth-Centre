@@ -1,0 +1,212 @@
+STRUCTURAL EARTH CENTRE
+CROSS-IMPLEMENTATION PARITY VERIFICATION
+Release v0.5.0
+
+1. PURPOSE
+
+SEC uses independent implementation agreement as one verification layer.
+
+Parity does not establish universal truth. It checks whether separately implemented resolution paths agree over frozen bounded corpora.
+
+2. EXACT CORE PARITY
+
+Python reference:
+
+demo/Structural_Earth_Centre_Reference_Kernel_v0_5_0.py
+
+Browser reference:
+
+demo/Structural_Earth_Centre_Browser_Reference_v0_5_0.html
+
+Parity auditor:
+
+verify/SEC_Cross_Implementation_Parity_Auditor_v0_5_0.py
+
+Frozen vector set:
+
+secv_9c24f0f89d5b5caf744f0ebb5b4ca2435e55b15dd744bd147ad24d843503ad5d
+
+Corpus:
+
+sha256:fbdad21cf55b17a02e5130c8a214d5859ff6a51a04be330e0448d80396ef7bd6
+
+Profile registry:
+
+sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e
+
+Manifest:
+
+sha256:3014a79d8e72830d06cee05431d2842b799edbc11a8946623f72a529a99ada99
+
+Current result:
+
+38/38 PASS
+
+Parity evidence:
+
+sha256:a08c55f02a5648c2f928ea58f6154e99ca81c2dc585e138fb4253d1caeae8ccd
+
+3. STRUCTURAL INNOVATION PARITY
+
+Python resolver:
+
+verify/SEC_Structural_Centre_Resolver_v0_5_0.py
+
+Independent JavaScript reference:
+
+verify/SEC_Structural_Centre_Innovation_Reference_v0_5_0.js
+
+Parity extractor:
+
+verify/SEC_Structural_Centre_Innovation_Parity_Extractor_v0_5_0.js
+
+Parity auditor:
+
+verify/SEC_Structural_Centre_Innovation_Parity_Auditor_v0_5_0.py
+
+Frozen vector set:
+
+secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973
+
+Vector corpus:
+
+sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49
+
+Current result:
+
+18/18 PASS
+
+Parity evidence:
+
+sha256:31961a9e9e52f2e54c9739bae04823395ce909c2b3a063f01af178d8d0991451
+
+4. ADVANCED CENTRE STRUCTURAL PARITY
+
+Python resolver:
+
+verify/SEC_Structural_Centre_Advanced_Resolver_v0_5_0.py
+
+Independent JavaScript reference:
+
+verify/SEC_Structural_Centre_Advanced_Reference_v0_5_0.js
+
+Parity extractor:
+
+verify/SEC_Structural_Centre_Advanced_Parity_Extractor_v0_5_0.js
+
+Parity auditor:
+
+verify/SEC_Structural_Centre_Advanced_Parity_Auditor_v0_5_0.py
+
+Frozen vector set:
+
+secadv_eb83c11f6082d243cb2dfdd1745c980167d41d4f4418a329741dab4b7300b067
+
+Vector corpus:
+
+sha256:34ae50e716024ddec125b35ed38afd7fa3b06dbb151ce1348ba75ac2ea0ae62b
+
+Current result:
+
+22/22 PASS
+
+Parity evidence:
+
+sha256:43c77dcea8e10a48c54a033829217eb85c63af03ed7fd6808d3f805938d348b1
+
+5. STRUCTURAL PORTABILITY PARITY
+
+Python generic-kernel reference:
+
+verify/SEC_Structural_Portability_Kernel_v0_5_0.py
+
+Independent JavaScript generic-kernel reference:
+
+verify/SEC_Structural_Portability_Reference_v0_5_0.js
+
+Parity extractor:
+
+verify/SEC_Structural_Portability_Parity_Extractor_v0_5_0.js
+
+Parity auditor:
+
+verify/SEC_Structural_Portability_Parity_Auditor_v0_5_0.py
+
+Frozen vector set:
+
+secport_a392c25a59ae68f6505b183e26f96af64f842e30745df9e7ae9f68d895f99cd4
+
+Vector corpus:
+
+sha256:720b5c795efef23489ed800fd0b7bb3d1ec2b2e6e20fe0ec9c0f2aeca54c5ae7
+
+Current result:
+
+27/27 PASS
+
+Parity evidence:
+
+sha256:7b99708a80daf405825f5ca4aed764e0803a9eb38ed369a092c93e5f947e358f
+
+6. PARITY COVERAGE
+
+Exact core parity covers the frozen 38-vector core and identity metadata.
+
+Structural innovation parity covers:
+
+RESOLVED_POINT stability
+RESOLVED_REGION stability
+INCOMPLETE stability
+CONFLICT stability
+structural differential states
+symmetry admission and refusal
+resolution certificates
+innovation vector-set and corpus identities
+
+Advanced centre parity covers:
+
+claim relations
+result relations
+centre spectra
+resolution frontiers
+exact graph-centre outcomes
+advanced vector-set and corpus identities
+
+Structural portability parity covers:
+
+shared generic claim-relation semantics
+shared result-spectrum semantics
+shared resolution-frontier semantics
+shared resolution-certificate binding
+two bounded domain adapters
+portability vector-set and corpus identities
+
+7. BOUNDARIES
+
+Core parity does not claim that the browser independently recomputes the polygon dataset.
+
+Innovation parity does not claim that every future stability-region representation is covered.
+
+Advanced parity is bounded to the frozen claim-relation, spectrum, frontier, and graph-centre vectors.
+
+Portability parity is bounded to the generic kernel profile, two declared adapters, and frozen portability corpus.
+
+Parity agreement does not establish universal correctness or third-party verification.
+
+8. COMMANDS
+
+Core parity:
+
+python verify/SEC_Cross_Implementation_Parity_Auditor_v0_5_0.py --root . --verbose
+
+Innovation parity:
+
+python verify/SEC_Structural_Centre_Innovation_Parity_Auditor_v0_5_0.py --root . --verbose
+
+Advanced centre structural parity:
+
+python verify/SEC_Structural_Centre_Advanced_Parity_Auditor_v0_5_0.py --root . --verbose
+
+Structural portability parity:
+
+python verify/SEC_Structural_Portability_Parity_Auditor_v0_5_0.py --root . --verbose

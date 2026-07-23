@@ -1,0 +1,154 @@
+{
+  "checks": [
+    {
+      "check_id": "NORTH_POLYGON_RESOLVES",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "RING_REVERSAL_INVARIANCE",
+      "detail": [
+        68.680134805,
+        0.0
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "DATELINE_POLYGON_RESOLVES",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "HOLE_SUBTRACTION_RESOLVES",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "POLYGON_MULTIPOLYGON_EQUIVALENCE",
+      "detail": true,
+      "pass": true
+    },
+    {
+      "check_id": "DUPLICATE_AREA_DIRECTION_STABLE",
+      "detail": "RESOLVED_POINT",
+      "pass": true
+    },
+    {
+      "check_id": "EMPTY_INPUT_INCOMPLETE",
+      "detail": "INCOMPLETE",
+      "pass": true
+    },
+    {
+      "check_id": "UNSUPPORTED_GEOMETRY_REFUSED",
+      "detail": "UNSUPPORTED",
+      "pass": true
+    },
+    {
+      "check_id": "CYCLIC_RING_START_INVARIANCE",
+      "detail": true,
+      "pass": true
+    },
+    {
+      "check_id": "DATASET_IDENTITY_BINDS_RESULT",
+      "detail": [
+        "sha256:d31b784e2bd876a076e1a8324b4b18ea6f537af0d659c4f3e64e5d10dffb686f",
+        "sha256:c4fc76c2f4de3f0744c2515210b1824aa3bbce488423fba9b06f79682cd34c84"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SOURCE_LOCATOR_RESULT_ID_INVARIANCE",
+      "detail": [
+        "sha256:44589ccae620f19cc416cba90b050b03b1a5148eb2de842c56814bdf2690cb1a",
+        "sha256:44589ccae620f19cc416cba90b050b03b1a5148eb2de842c56814bdf2690cb1a"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "SOURCE_LOCATOR_EVIDENCE_ID_DIVERGENCE",
+      "detail": [
+        "sha256:4164ab5bb077c5a1f4c54c78612deef701557a72127af5b6ae708cc281a45557",
+        "sha256:2146fcd40892bdd525e44280c077a349ec94e4388fd29864e3d596b4a0511bdf"
+      ],
+      "pass": true
+    },
+    {
+      "check_id": "LATITUDE_ABOVE_RANGE_REJECTED",
+      "detail": "LATITUDE_OUT_OF_RANGE",
+      "pass": true
+    },
+    {
+      "check_id": "LATITUDE_BELOW_RANGE_REJECTED",
+      "detail": "LATITUDE_OUT_OF_RANGE",
+      "pass": true
+    },
+    {
+      "check_id": "LONGITUDE_ABOVE_RANGE_REJECTED",
+      "detail": "LONGITUDE_OUT_OF_RANGE",
+      "pass": true
+    },
+    {
+      "check_id": "LONGITUDE_BELOW_RANGE_REJECTED",
+      "detail": "LONGITUDE_OUT_OF_RANGE",
+      "pass": true
+    },
+    {
+      "check_id": "BOOLEAN_COORDINATE_REJECTED",
+      "detail": "NON_NUMERIC_COORDINATE",
+      "pass": true
+    },
+    {
+      "check_id": "NON_FINITE_COORDINATE_REJECTED",
+      "detail": "NON_FINITE_COORDINATE",
+      "pass": true
+    },
+    {
+      "check_id": "MALFORMED_POSITION_REJECTED",
+      "detail": "MALFORMED_POSITION",
+      "pass": true
+    },
+    {
+      "check_id": "RING_TOO_SHORT_REJECTED",
+      "detail": "RING_TOO_SHORT",
+      "pass": true
+    },
+    {
+      "check_id": "RING_NOT_CLOSED_REJECTED",
+      "detail": "RING_NOT_CLOSED",
+      "pass": true
+    },
+    {
+      "check_id": "MALFORMED_JSON_REJECTED",
+      "detail": "INVALID_JSON",
+      "pass": true
+    },
+    {
+      "check_id": "INVALID_UTF8_REJECTED",
+      "detail": "INVALID_UTF8",
+      "pass": true
+    },
+    {
+      "check_id": "INPUT_REFUSAL_HAS_NO_RESULT_ID",
+      "detail": "refusal identity is separate from result identity",
+      "pass": true
+    },
+    {
+      "check_id": "IDENTITY_QUANTIZATION_DECLARED",
+      "detail": 9,
+      "pass": true
+    },
+    {
+      "check_id": "PROFILE_ID_MISMATCH_HAS_BOUNDED_GUIDANCE",
+      "detail": "PROFILE_ID_MISMATCH",
+      "pass": true
+    }
+  ],
+  "evidence_id": "sha256:28dba835ea702d2a7c1fb1e425a9ee2cb2c763342f62720156a451998e5cb5a4",
+  "passed": 26,
+  "profile_hash": "sha256:264e68d25e9c8edbfcd2af00f2d99dc81a92d057f47347f02e073a9290e94361",
+  "profile_id": "SEC-REAL-LAND-AREA-VECTOR-CENTRE-1-D02",
+  "schema": "SEC-REAL-LAND-CENTRE-SELF-TEST-1-D05",
+  "status": "PASS",
+  "system_version": "0.5.0",
+  "total": 26
+}

@@ -1,0 +1,287 @@
+STRUCTURAL EARTH CENTRE
+CORE MATHEMATICAL AND RESOLUTION SPECIFICATION
+Release v0.5.0
+
+1. PURPOSE
+
+This specification defines the mathematical and resolution contracts used by the exact core and the structural innovation layer retained in SEC v0.5.0.
+
+2. EXACT CORE CONTRACT
+
+For the frozen exact core:
+
+same canonical carrier + same centre profile + same declared dependencies + same rules
+-> same bounded result and identity
+
+The exact core uses rational arithmetic for its numerical profiles.
+
+3. CANONICALIZATION
+
+Canonicalization normalizes structural representation before identity and resolution.
+
+Canonicalization does not invent missing dependencies.
+
+Canonicalization does not change claim authority.
+
+4. DEPENDENCY FINGERPRINT
+
+A dependency fingerprint binds the dependencies material to a bounded centre claim.
+
+Conceptually:
+
+CDF = (carrier, boundary, measure, metric, objective, frame, epoch, precision policy, symmetry policy, rules)
+
+Not every profile requires every field to be material.
+
+A profile must declare which dependencies are required and which are not material.
+
+5. EXACT WEIGHTED CENTROID
+
+For exact weighted points p_i with positive rational weights w_i:
+
+C = sum(w_i * p_i) / sum(w_i)
+
+The result is exact rational arithmetic.
+
+6. FINITE MEDOID
+
+For finite candidate set X and distance d:
+
+cost(c) = sum(d(c,x)) for x in X
+
+C = argmin cost(c)
+
+The profile can preserve all exact minimizers through MULTI_CENTRE rather than forcing one candidate.
+
+7. STRUCTURAL STATES
+
+The project-wide state vocabulary includes:
+
+RESOLVED_POINT
+RESOLVED_REGION
+MULTI_CENTRE
+AMBIGUOUS
+INCOMPLETE
+CONFLICT
+UNSUPPORTED
+ABSTAIN
+
+State support is profile-bounded.
+
+The 38-vector exact core supports its frozen state set.
+
+The structural innovation layer provides executable RESOLVED_REGION through a separate qualified profile.
+
+8. SYMMETRY RULE
+
+If multiple declared candidates are equivalent under the admitted structure and no symmetry breaker is supplied, unique resolution is refused.
+
+This is not a universal theorem about all possible representations. It is the declared rule of the bounded symmetry profile.
+
+9. STRUCTURAL CENTRE DIFFERENTIAL
+
+For bounded claim structures A and B, define:
+
+changed(A,B) = canonical declared dependency keys whose values differ, plus profile identity when the compared profile identifiers differ
+
+Result equivalence is evaluated independently from claim equivalence.
+
+This supports:
+
+same structure + same result -> NO_STRUCTURAL_DIFFERENCE
+
+different structure + same result -> CLAIM_DISTINCT_RESULT_EQUIVALENT
+
+one changed dependency + different resolved result -> SINGLE_DEPENDENCY_DIVERGENCE
+
+multiple changed dependencies + different resolved result -> MULTI_DEPENDENCY_DIVERGENCE
+
+an unresolved side -> UNRESOLVED_COMPARISON
+
+10. STABILITY ENVELOPE
+
+Let S be a finite list of admitted exact rational result points.
+
+Canonicalization removes ordering authority and identifies distinct points.
+
+If S is empty:
+
+INCOMPLETE
+
+If point dimensions conflict:
+
+CONFLICT
+
+If exactly one distinct point remains:
+
+RESOLVED_POINT
+
+If multiple distinct compatible points remain:
+
+RESOLVED_REGION
+
+For dimension k, the exact region is:
+
+R = product_i [min_j p_j_i, max_j p_j_i]
+
+This is the minimal axis-aligned exact rational envelope of the declared samples.
+
+11. STABILITY AUTHORITY
+
+The envelope does not infer unseen results.
+
+The statement:
+
+p is inside R
+
+means only that p satisfies the region's coordinate bounds.
+
+It does not mean p was itself an observed or admitted perturbation result.
+
+12. CLAIM IDENTITY
+
+A claim identity binds:
+
+carrier identity
+centre profile identity
+dependency fingerprint identity
+authority scope
+claim kind
+system version
+
+Claim identity is independent of coordinate equality.
+
+13. RESULT IDENTITY
+
+Each result-producing profile defines its own result identity material.
+
+The exact core and real-land profiles therefore need not use one universal result-ID formula.
+
+14. RESOLUTION CERTIFICATE
+
+The certificate profile is:
+
+SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01
+
+A certificate binds:
+
+claim identity
+result identity
+result material hash
+result identity source
+resolution state
+resolution witness
+optional evidence identity
+optional symmetry certificate identity
+optional stability envelope identity
+
+If declared_result_id is present:
+
+result_id = declared_result_id
+result_id_source = DECLARED_RESULT_ID
+
+Otherwise:
+
+result_id = structural_hash(result material)
+result_id_source = STRUCTURAL_MATERIAL_HASH
+
+In both cases:
+
+result_material_hash = structural_hash(result material)
+
+15. CERTIFICATE IDENTITY
+
+certificate_id = structural_hash(canonical certificate body excluding certificate_id)
+
+Any bound field change changes the certificate identity.
+
+16. INPUT ADMISSION VERSUS RESOLUTION
+
+Raw parsing and geographic validation occur before real-land centre resolution.
+
+Invalid raw input is not assigned an ordinary centre result.
+
+It is refused through INPUT_REJECTED with a reason code and refusal identity.
+
+17. NUMERICAL CONTRACTS
+
+Exact core:
+
+EXACT_RATIONAL
+
+Real-land profiles:
+
+FLOATING_POINT_COMPUTATION + 9_DECIMAL_IDENTITY_QUANTIZATION
+
+The profile-declared quantized structural result is identity-bearing.
+
+Raw transcendental intermediates are not.
+
+18. CORE FROZEN IDENTITIES
+
+VECTOR SET
+secv_9c24f0f89d5b5caf744f0ebb5b4ca2435e55b15dd744bd147ad24d843503ad5d
+
+CORPUS
+sha256:fbdad21cf55b17a02e5130c8a214d5859ff6a51a04be330e0448d80396ef7bd6
+
+PROFILE REGISTRY
+sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e
+
+MANIFEST
+sha256:3014a79d8e72830d06cee05431d2842b799edbc11a8946623f72a529a99ada99
+
+19. INNOVATION FROZEN IDENTITIES
+
+VECTOR SET
+secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973
+
+VECTOR CORPUS
+sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49
+
+PROFILE HASH
+sha256:79b1e301e3180cd959e4169bdcb9786825c06ae519c3c6d16222105efb1b532b
+
+20. QUALIFICATION
+
+Exact core:
+
+38/38 PASS
+
+Core cross-implementation parity:
+
+38/38 PASS
+
+Structural innovation audit:
+
+24/24 PASS
+
+Structural innovation Python/JavaScript parity:
+
+18/18 PASS
+
+21. RELATION TO STRUCTURAL PORTABILITY
+
+The v0.5.0 Structural Portability Proof is a separate layer built around a generic kernel with shared claim-relation, result-spectrum, resolution-frontier, and resolution-certificate semantics.
+
+Domain-specific centre and admissibility rules remain in declared adapters.
+
+Portability qualification:
+
+40/40 PASS
+
+Python/JavaScript portability parity:
+
+27/27 PASS
+
+The portability proof is specified in:
+
+SEC_Structural_Portability_Proof_v0_5_0.txt
+
+22. LIMITS
+
+The current exact stability region is axis-aligned.
+
+The current innovation corpus is a bounded conformance corpus, not a proof of usefulness in every domain.
+
+The current structural states are domain-specific resolution states, not a claim of equivalence to any one general logical algebra.

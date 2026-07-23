@@ -1,0 +1,229 @@
+STRUCTURAL EARTH CENTRE
+CLAIM RELATION, CENTRE SPECTRUM, RESOLUTION FRONTIER, AND GRAPH-CENTRE PORTABILITY
+Version 0.5.0
+
+1. PURPOSE
+
+This document specifies the retained advanced centre capabilities qualified in SEC v0.5.0.
+
+The advanced centre layer does not replace the exact core, Earth profiles, real-land computation, Structural Centre Differential, Centre Stability Envelope, Symmetry Certificate, or Centre Resolution Certificate.
+
+It provides four bounded capabilities:
+
+- Structural Claim Relation;
+- Centre Spectrum;
+- Resolution Frontier;
+- exact finite graph-centre resolution over a non-geographical carrier.
+
+These capabilities remain centre-oriented.
+
+The broader v0.5.0 cross-domain portability proof is specified separately in:
+
+SEC_Structural_Portability_Proof_v0_5_0.txt
+
+2. STRUCTURAL CLAIM RELATION
+
+Two centre claims may differ without being unrelated.
+
+The relation resolver compares:
+
+- carrier identity;
+- centre-profile identity;
+- declared dependency maps;
+- bounded result states and result material.
+
+It can return:
+
+CLAIM_EQUIVALENT
+LEFT_REFINES_RIGHT
+RIGHT_REFINES_LEFT
+COMPATIBLE_OVERLAP
+DECLARATION_CONFLICT
+DISJOINT_DECLARATIONS
+
+The accompanying result relation can be:
+
+RESULT_EQUIVALENT
+RESULT_DIVERGENT
+UNRESOLVED_RESULT_RELATION
+
+This separates:
+
+claim relation != result relation
+
+Two structurally different claims may converge to one result.
+
+Two compatible claims may also produce different results.
+
+A declaration conflict is not inferred merely from coordinate inequality.
+
+3. CENTRE SPECTRUM
+
+A family of centre claims should not be silently reduced to one average coordinate.
+
+The Centre Spectrum preserves each member claim and groups the family by claim identity and result identity.
+
+The bounded spectrum states are:
+
+SINGLE_CLAIM_FAMILY
+RESULT_CONVERGENT_CLAIM_DIVERSE
+RESULT_DIVERGENT_FAMILY
+MIXED_RESOLUTION_FAMILY
+UNRESOLVED_FAMILY
+INCOMPLETE
+UNSUPPORTED
+
+The governing policy is:
+
+NO_BLIND_AVERAGING_OF_STRUCTURALLY_DISTINCT_RESULTS
+
+A spectrum records:
+
+- member count;
+- resolved member count;
+- distinct claim count;
+- distinct result count;
+- result-equivalence classes;
+- pairwise structural claim relations.
+
+The spectrum does not assert that all members are equally authoritative.
+
+4. RESOLUTION FRONTIER
+
+An unresolved claim may be missing structure or contain a declared conflict.
+
+The Resolution Frontier asks:
+
+What is the smallest declared repair set that would make this bounded claim admissible?
+
+The current implementation evaluates only explicitly supplied repair options.
+
+It can return:
+
+ALREADY_ADMISSIBLE
+UNIQUE_MINIMAL_FRONTIER
+MULTIPLE_MINIMAL_FRONTIERS
+NO_ADMISSIBLE_FRONTIER
+UNSUPPORTED
+
+The frontier does not invent missing evidence, choose an undeclared repair, or claim that the smallest structural repair is the best real-world action.
+
+Its bounded principle is:
+
+declared repair options + admissibility contract -> minimal structural frontier
+
+5. EXACT GRAPH-CENTRE DEMONSTRATION
+
+The advanced centre layer includes a synthetic exact finite graph-centre demonstration.
+
+No additional external dataset is required.
+
+The carrier is a finite unweighted undirected graph.
+
+The current objective is:
+
+MINIMAX_SHORTEST_PATH
+
+For each node, the resolver computes exact shortest-path eccentricity.
+
+It can return:
+
+RESOLVED_POINT
+MULTI_CENTRE
+CONFLICT
+INCOMPLETE
+UNSUPPORTED
+
+This demonstration shows centre-carrier portability:
+
+same centre claim architecture + different carrier mathematics -> bounded centre resolution
+
+It remains a centre problem and does not by itself establish cross-domain portability beyond centre claims.
+
+6. RELATION TO THE v0.5.0 STRUCTURAL PORTABILITY PROOF
+
+The advanced graph demonstration and the v0.5.0 portability proof have different boundaries.
+
+Graph-centre demonstration:
+
+centre architecture + non-geographical graph carrier -> centre result
+
+Structural portability proof:
+
+shared generic structural kernel + centre adapter -> generic structural semantics
+
+shared generic structural kernel + non-centre admissibility adapter -> matched generic structural semantics
+
+The v0.5.0 portability proof therefore tests a broader architectural separation:
+
+generic structural semantics != domain adapter semantics
+
+7. RELATION TO OTHER SEC CAPABILITIES
+
+Structural Centre Differential -> which declared dependencies changed?
+
+Structural Claim Relation -> how are two claim structures related?
+
+Centre Spectrum -> what structured family of centre claims exists without blind collapse?
+
+Resolution Frontier -> what minimal declared repair set can reach admissibility?
+
+Stability Envelope -> what bounded solution object survives an admitted perturbation family?
+
+Symmetry Certificate -> does the declared structure justify uniqueness?
+
+Resolution Certificate -> what claim, result, witness, and evidence structure supports the bounded resolution?
+
+8. QUALIFICATION
+
+The advanced frozen vector corpus contains 19 vectors across:
+
+- claim relation;
+- centre spectrum;
+- resolution frontier;
+- exact graph-centre resolution.
+
+Current result:
+
+ADVANCED STRUCTURAL AUDIT = 30/30 PASS
+
+Python/JavaScript advanced parity:
+
+ADVANCED STRUCTURAL PARITY = 22/22 PASS
+
+Advanced profile:
+
+SEC-STRUCTURAL-CENTRE-ADVANCED-1-D01
+
+Advanced profile hash:
+
+sha256:6e7b463298d0fcf2d89adb9cd4a5226d3a473d872823c98bab43cc3f03ced958
+
+Advanced vector set:
+
+secadv_eb83c11f6082d243cb2dfdd1745c980167d41d4f4418a329741dab4b7300b067
+
+Advanced vector corpus:
+
+sha256:34ae50e716024ddec125b35ed38afd7fa3b06dbb151ce1348ba75ac2ea0ae62b
+
+Advanced audit evidence:
+
+sha256:4731690078d89a503ad2cebad654d0541ea4968c3092c96a3bc914ecd6e01443
+
+Advanced parity evidence:
+
+sha256:43c77dcea8e10a48c54a033829217eb85c63af03ed7fd6808d3f805938d348b1
+
+9. CLAIM BOUNDARY
+
+The current advanced centre implementation does not establish:
+
+- a universal algebra for every possible claim relation;
+- causal proof from structural relation;
+- optimal real-world repairs from a Resolution Frontier;
+- authority equivalence among members of a Centre Spectrum;
+- uncertainty coverage beyond explicitly declared families;
+- new graph-theoretic centre mathematics;
+- universal cross-domain portability;
+- third-party verification.

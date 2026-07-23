@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Structural Earth Centre Browser Reference v0.5.0</title>
+<style>
+:root{
+  color-scheme:light dark;
+  --bg:#f4f6f8;
+  --panel:#ffffff;
+  --text:#16202a;
+  --muted:#5b6670;
+  --line:#d9e0e6;
+  --accent:#245a73;
+  --good:#176b3a;
+  --bad:#9b2c2c;
+  --warn:#8a5a00;
+  --code:#eef2f5;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#11161b;--panel:#192027;--text:#ecf1f4;--muted:#aab5bd;--line:#34404a;
+    --accent:#8fc7e0;--good:#74d69b;--bad:#ff9a9a;--warn:#f0c36a;--code:#222b33;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+main{max-width:1180px;margin:0 auto;padding:28px 20px 60px}
+header{
+  padding:24px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:16px;
+  margin-bottom:18px;
+}
+h1{font-size:clamp(1.7rem,3vw,2.5rem);margin:0 0 6px}
+.subtitle{color:var(--muted);font-size:1.02rem}
+.relation{
+  margin-top:16px;
+  padding:12px 14px;
+  border-radius:10px;
+  background:var(--code);
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  overflow-wrap:anywhere;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:12px;
+  margin:18px 0;
+}
+.card{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:14px;
+  padding:16px;
+}
+.label{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.value{font-size:1.18rem;font-weight:700;margin-top:5px;overflow-wrap:anywhere}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+button,select{
+  font:inherit;
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--text);
+  border-radius:10px;
+  padding:10px 14px;
+}
+button{cursor:pointer;font-weight:650}
+button:hover{border-color:var(--accent)}
+button:active{transform:translateY(1px)}
+button:focus-visible,select:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 35%,transparent);outline-offset:2px}
+section{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  margin-top:16px;
+}
+section h2{font-size:1.12rem;margin:0 0 12px}
+#statusLine{font-weight:750}
+.pass{color:var(--good)}
+.fail{color:var(--bad)}
+.warn{color:var(--warn)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:650}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+pre{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  background:var(--code);
+  padding:14px;
+  border-radius:10px;
+  max-height:430px;
+  overflow:auto;
+}
+.small{font-size:.86rem;color:var(--muted)}
+.footer{margin-top:20px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Structural Earth Centre</h1>
+  <div class="subtitle">Independent Browser Reference v0.5.0</div>
+  <div class="relation">same frozen vector + same declared rules -> same independently reconstructed structural result</div>
+</header>
+
+<div class="grid">
+  <div class="card"><div class="label">System</div><div class="value">0.5.0</div></div>
+  <div class="card"><div class="label">Frozen vectors</div><div class="value" id="vectorCount">-</div></div>
+  <div class="card"><div class="label">Audit</div><div class="value" id="auditStatus">NOT RUN</div></div>
+  <div class="card"><div class="label">Last total</div><div class="value" id="auditTotal">-</div></div>
+</div>
+
+<div class="controls">
+  <button id="runAudit">Run Full Audit</button>
+  <select id="vectorSelect" aria-label="Choose conformance vector"></select>
+  <button id="runVector">Resolve Vector</button>
+</div>
+
+<section>
+  <h2>Audit Result</h2>
+  <div id="statusLine">Audit has not run.</div>
+  <pre id="auditOutput">Use Run Full Audit or run await SEC_AUDIT.runAll() in the browser console.</pre>
+</section>
+
+<section>
+  <h2>Vector Result</h2>
+  <pre id="vectorOutput">Select a vector and choose Resolve Vector.</pre>
+</section>
+
+<section>
+  <h2>Frozen Identities</h2>
+  <table>
+    <tbody>
+      <tr><th>Vector set</th><td id="vectorSetId"></td></tr>
+      <tr><th>Corpus</th><td id="corpusId"></td></tr>
+      <tr><th>Profile registry</th><td id="profileRegistryId"></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="footer">
+  Offline deterministic reference implementation. No external solver, service, library, or network connection is required.
+</div>
+</main>
+
+<script>
+"use strict";
+
+const SEC_FROZEN_CORPUS = {"architecture_profile":"SEC-ARCH-1-D01","canonicalization_profile":"SEC-CANON-1-D01","corpus_id":"sha256:fbdad21cf55b17a02e5130c8a214d5859ff6a51a04be330e0448d80396ef7bd6","exact_arithmetic_profile":"SEC-EXACT-1-D01","profile_registry_id":"sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-CORPUS-1-D01","system_version":"0.5.0","vector_count":38,"vector_profile":"SEC-VECTORS-1-D01","vector_set_id":"secv_9c24f0f89d5b5caf744f0ebb5b4ca2435e55b15dd744bd147ad24d843503ad5d","vectors":[{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Unique exact two-dimensional centroid","vector_hash":"sha256:63f8a611b5ff2943908690fc238cdb87409a8674206fa4f8bba1ea45f28fc08d","vector_id":"SEC-C001"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"2"}}]},"carrier_id":"sha256:61eaedb3eb06a40e0139c46282339daa402a90b052e40f1e983abffa8048cd0c","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:61eaedb3eb06a40e0139c46282339daa402a90b052e40f1e983abffa8048cd0c","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:8732d80c980dc46082c2ff4ebba106b44a16fec8b817d7938c34949e02f9eb34"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"3","n":"2"}],"certificate_id":"sha256:e38140f26e96b06bc6325855ac20904b4238337712538c7b9f75dfc4766a8aa0","resolution_state":"RESOLVED_POINT","result_id":"sha256:751f8c3199bfeeacbbd17f116822b65609dd0a0b01d74177dc30957703c02c35"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"2"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_1D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Fractional exact centroid","vector_hash":"sha256:7e814756ae570f1c0812e013220a51e58f49aca47e6438c6a750b12a2220ccf0","vector_id":"SEC-C002"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"-2"},{"d":"1","n":"4"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"4"},{"d":"1","n":"-2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:e7c35da4ae7abbdd79b09e812b124f25f0e47f0222bc427ec3919b5db5e12d5f","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:e7c35da4ae7abbdd79b09e812b124f25f0e47f0222bc427ec3919b5db5e12d5f","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:c26e5e58dad302eef713e9684bcff8928e98515c4b45c1a992fc1c76759f56a4"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:584354ad33574499972a5a77add9517545c21c8d7db6529563fe143444d0b18f","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"-2"},{"d":"1","n":"4"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"4"},{"d":"1","n":"-2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Centroid with negative coordinates","vector_hash":"sha256:04ff3d875d3cddaaa81310cdeb542a887ad675fec38099c39542b573734396f2","vector_id":"SEC-C003"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"4"},{"d":"1","n":"6"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:021f78cae8a4cd3bef2672b606a2501b2fe72cacbd9a6ed4068b652d30237ed0","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:021f78cae8a4cd3bef2672b606a2501b2fe72cacbd9a6ed4068b652d30237ed0","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_3D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:d0a14e55bf6a74481d23c798c2c0087a5fb391baa3acc8500cd623fdc4edd90c"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"2"},{"d":"1","n":"3"}],"certificate_id":"sha256:a87f16043910d0e6f17296d925e23ab9b9ed9ac941a82be10d85c07db2e24f9d","resolution_state":"RESOLVED_POINT","result_id":"sha256:8f293703b750a5c35cc1df6af3628da871dce95219905ead33e75e2f0d23b5b2"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"4"},{"d":"1","n":"6"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_3D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Three-dimensional exact centroid","vector_hash":"sha256:edea440acc118c68958c56972d0801f3b315b1754e7fa8e21f2f92d2e93eb5dc","vector_id":"SEC-C004"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"1000000000000000000000000000000"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1000000000000000000000000000002"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:c5df0988b97b71016e38b241e1363d86b718dad8595ab80bfcbb09d525605f4e","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:c5df0988b97b71016e38b241e1363d86b718dad8595ab80bfcbb09d525605f4e","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:4ab3ba7462ad2f289677c4b493db469bf40f586709c5d5b2bcf1eced7e61041d"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1000000000000000000000000000001"},{"d":"1","n":"1"}],"certificate_id":"sha256:0d8ad03f3ad102bb01378105a1cf6094704c8033e2643583e289e1ca1e443e1a","resolution_state":"RESOLVED_POINT","result_id":"sha256:6d3c6bb37eab35c22909b566fa4da65cdfbc316d2ee19dfa8ae8f895d88ceb43"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"1000000000000000000000000000000"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1000000000000000000000000000002"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Large-integer exact centroid","vector_hash":"sha256:9f9d0d991295ab82f37be9c7752f5e42acc7fc9f9e1a8891ad5c349da14a0ee2","vector_id":"SEC-C005"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"3","n":"1"}},{"point":[{"d":"1","n":"3"},{"d":"1","n":"3"}],"weight":{"d":"3","n":"2"}}]},"carrier_id":"sha256:4b5b07d2ff729e55ca8478f6b6dad7f5e2d63e68dc838442fc43f3bed820db0f","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:4b5b07d2ff729e55ca8478f6b6dad7f5e2d63e68dc838442fc43f3bed820db0f","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:3c6a5f187bb107a92450ad64ce2dd1618fa8f7cb74d1fe4d19cbf63b67e423e1"},"category":"CORE_EXACTNESS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"certificate_id":"sha256:2f965a178e4013a44f6e044a0f2c64978bbbb5f475d11812c0432312541893d7","resolution_state":"RESOLVED_POINT","result_id":"sha256:3a3a392a82ba508b9f2c4cfd0c18db0a59e1bac8187e290a1527d7888c3fae18"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"3","n":"1"}},{"point":[{"d":"1","n":"3"},{"d":"1","n":"3"}],"weight":{"d":"3","n":"2"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Exact rational weights","vector_hash":"sha256:f5f4548ab3de51d4ebf20362181d525a7de0152dfa8ef5398ba07f5e895b13e9","vector_id":"SEC-C006"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"METAMORPHIC","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"metamorphic_relation":{"base_vector":"SEC-C001","expected_invariant":["carrier_id","resolution_state","centre_value","result_id","certificate_id"],"relation_id":"MR-01"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Input-order permutation of exact centroid","vector_hash":"sha256:98fcb2119a47afc0163555347b98db440c92caa8b4e44c749fd0f5f3f15701e2","vector_id":"SEC-C007"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"2","n":"1"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"2","n":"3"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"2"}}]},"carrier_id":"sha256:eb326853c357d751724b5718b85c6bcba9f3fc0a3987be3b7fe29d9a9abf5e44","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:eb326853c357d751724b5718b85c6bcba9f3fc0a3987be3b7fe29d9a9abf5e44","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:898d6aa8783246fe7c576673440ae2ca74cc0bafeff58151a672061e444f8bba"},"category":"METAMORPHIC","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"6","n":"7"},{"d":"1","n":"2"}],"certificate_id":"sha256:548ca9123cdbb89b50324878d69fba274b55d25dea5212f31f2328279c678516","resolution_state":"RESOLVED_POINT","result_id":"sha256:3147b80c0ad81e0092ecb548a0d06c9e4c01eb8f9bb16e80ee0ee74c2132e9a7"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"4","n":"2"},{"d":"3","n":"6"}],"weight":{"d":"2","n":"2"}},{"point":[{"d":"4","n":"6"},{"d":"1","n":"2"}],"weight":{"d":"2","n":"4"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"metamorphic_relation":{"expected_property":"Equivalent rational forms normalize before identity and exact arithmetic.","relation_id":"MR-05"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Equivalent rational representations normalize canonically","vector_hash":"sha256:9677874dc866264cb2511d17a1fa21533d43d2a30fd063b6259ce79aaf59fdc3","vector_id":"SEC-C008"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"NOT_MATERIAL","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:c7441795db190d56ebf1277be6b431f6387e61070d7899b1e701dd9ad00482f9"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:6d03b555ee36f7459218d4390e772bf84650b8607d43c50b059ab71dcbf9fb5e","resolution_state":"INCOMPLETE","result_id":"sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Missing required frame dependency","vector_hash":"sha256:021aacfa2b9cdc6d39e999dc1821ae7e85192cf14fbff9414f97ee2030c19196","vector_id":"SEC-S001"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"0"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:82413fdf09aa85f7aee1e63ff9fb44fca5874e0df3ea8e131a2bee33fe561473","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:82413fdf09aa85f7aee1e63ff9fb44fca5874e0df3ea8e131a2bee33fe561473","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:9fbc6658c684d7afb5bdac919e0a105ace0be0c78cdded4d64f061ffbc7b7324"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:e9c5d5170b1b2f51cd61f9635104f289b168e50a26bdba1f85fdc3b3cee6f0d0","resolution_state":"UNSUPPORTED","result_id":"sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"0"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_1D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Zero weight outside positive-rational profile","vector_hash":"sha256:c9d91cf491a23707351378c0d956e943c4e9b69ad0d2d1f4e9ae9731ff272a17","vector_id":"SEC-S002"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"-1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"2"}}]},"carrier_id":"sha256:ebaad807991875256d10d71ad3a6ddea70de449fa5869c956cd5c75fa3567e00","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:ebaad807991875256d10d71ad3a6ddea70de449fa5869c956cd5c75fa3567e00","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:c3e01964bb2d195143dc1fe793fc40002632e1327b40e3315e4fc58979bc688c"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:b911ff15e4c63bbc9f6fc0abfef649db820f6af84f398c28b60d28f14df4baa5","resolution_state":"UNSUPPORTED","result_id":"sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"}],"weight":{"d":"1","n":"-1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"2"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_1D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Negative weight outside positive-rational profile","vector_hash":"sha256:2b34fe6efe293095237fc8d7d6a2f3416a2022a34d398f2d473c3f4e36f76391","vector_id":"SEC-S003"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:a207d13b8ae08117334076d0e56d797e1c1c6ecfb12d357cbc9f3b1839442bd9","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:a207d13b8ae08117334076d0e56d797e1c1c6ecfb12d357cbc9f3b1839442bd9","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:9bb719b068493e1c495ece02a24024929e52d5ad7dc7cfef6b54b8f071a3b975"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:4d1feb95d0308c04cb5d549783f4917b5e098f0f62d2fe271e6f8dc8f1bafe3d","resolution_state":"CONFLICT","result_id":"sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"1"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Conflicting point dimensions","vector_hash":"sha256:62fd54aa8c48b58b04d9690a17d74387421774f4d7a0959ca98ea2797e5159e1","vector_id":"SEC-S004"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:3fb9518e66d61736202d293ad585b943d3cef36efb668bf0d7e2bbeee30f6635"},"category":"MEDOID","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"}],"certificate_id":"sha256:8dffadddb4949f5268972e088c9bbf57b0fa58f2811f302bc2ab9feb6d8cded8","field":{"K_min":{"d":"1","n":"10"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"11"},"pressure":{"d":"1","n":"1"}},{"candidate":[{"d":"1","n":"1"}],"cost":{"d":"1","n":"10"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"10"}],"cost":{"d":"1","n":"19"},"pressure":{"d":"1","n":"9"}}]},"field_id":"sha256:a64f0d743ee18992ca4406f288d816bb648d1992763b1001ee7a584d95e4e732","resolution_state":"RESOLVED_POINT","result_id":"sha256:10d10647b0d124e33c43da6e5333137a1bd6d834ed099ba75f90961edd02fd80"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Unique exact L1 medoid","vector_hash":"sha256:019a1d86fe40ade9811a29835921d8b0e7d62a2daa8479ce7779699eb38ef14d","vector_id":"SEC-M001"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"},"category":"MEDOID","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"POINT_SET","centre_values":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"certificate_id":"sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46","field":{"K_min":{"d":"1","n":"2"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}}]},"field_id":"sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c","resolution_state":"MULTI_CENTRE","result_id":"sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Two exact L1 medoids","vector_hash":"sha256:693158ec0ac882cac5adb14fd90122f10e18cb6a0a63ff8b85ad0c31fc532b20","vector_id":"SEC-M002"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"},{"d":"1","n":"0"}],[{"d":"1","n":"2"},{"d":"1","n":"0"}],[{"d":"1","n":"3"},{"d":"1","n":"0"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"},{"d":"1","n":"0"}],[{"d":"1","n":"2"},{"d":"1","n":"0"}],[{"d":"1","n":"3"},{"d":"1","n":"0"}]]},"carrier_id":"sha256:cf7a10d4a00a72f5e7a5bc4e22d06755b49fd8e799ef36c0412bf15bc48f62c4","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:cf7a10d4a00a72f5e7a5bc4e22d06755b49fd8e799ef36c0412bf15bc48f62c4","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:edee6892e1e0859c4aa550db7ad2e889105a588f224759b92ad535fc938abb5c"},"category":"MEDOID","centre_profile":"SEC-PROFILE-MEDOID-L2SQ-1-D01","centre_profile_hash":"sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"2"},{"d":"1","n":"0"}],"certificate_id":"sha256:9e557205b9dcc945470ab3f7299eb0a0fd21d30f9e0ccc6b0f0d41003ef01f31","field":{"K_min":{"d":"1","n":"5"},"entries":[{"candidate":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"cost":{"d":"1","n":"13"},"pressure":{"d":"1","n":"8"}},{"candidate":[{"d":"1","n":"2"},{"d":"1","n":"0"}],"cost":{"d":"1","n":"5"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"3"},{"d":"1","n":"0"}],"cost":{"d":"1","n":"10"},"pressure":{"d":"1","n":"5"}}]},"field_id":"sha256:3fb5c5df72bb306eddc467b9f6641e6054c31e2127e6abf1c3d2c1f73dd1e513","resolution_state":"RESOLVED_POINT","result_id":"sha256:6d2ed948993c84f2c3d514db1366d57929fdc40eba2bd3dca2689203f7735d7f"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"},{"d":"1","n":"0"}],[{"d":"1","n":"2"},{"d":"1","n":"0"}],[{"d":"1","n":"3"},{"d":"1","n":"0"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"},{"d":"1","n":"0"}],[{"d":"1","n":"2"},{"d":"1","n":"0"}],[{"d":"1","n":"3"},{"d":"1","n":"0"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_2D_D01","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Unique squared-L2 medoid","vector_hash":"sha256:da4f976669a36a0403940d3a00be69db8ef90c8bf654a339ad47ea74919c8809","vector_id":"SEC-M003"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:767f8fa6e0f1f0aa6c8287c361c4a99c7ebd16dd93165afd7241265480cf41a0"},"category":"MEDOID","centre_profile":"SEC-PROFILE-MEDOID-L2SQ-1-D01","centre_profile_hash":"sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8","expected":{"centre_type":"POINT_SET","centre_values":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"certificate_id":"sha256:fbc8a68fdc1798ab7c99271c14b435ac1c9e0288974e8ee3f0f5ea414f471088","field":{"K_min":{"d":"1","n":"4"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"4"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"4"},"pressure":{"d":"1","n":"0"}}]},"field_id":"sha256:555ad8a72e76fc8fa784067f1974df09b7d3e0e7332b12ed434a9e01d17c58b8","resolution_state":"MULTI_CENTRE","result_id":"sha256:fc0b00532d6aee2ec9d7b8c04c39a17c4483c0b0661cbcd128c2eebbabcb92c4"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Two squared-L2 medoids","vector_hash":"sha256:f4ef072b12223af3f539243982533c6acc79094f5c5128da3f62b2db3231835a","vector_id":"SEC-M004"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"},"category":"METAMORPHIC","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"POINT_SET","centre_values":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"certificate_id":"sha256:897cf86588746bdc98e74a88d77c49930a2575d0fad529a382a0177bbb13fe46","field":{"K_min":{"d":"1","n":"2"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}}]},"field_id":"sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c","resolution_state":"MULTI_CENTRE","result_id":"sha256:f3d811029964972665621c5a541a4fd1b3f1d3336dc3e1afcc8c9b1ac7aa4be2"},"input":{"carrier":{"candidates":[[{"d":"1","n":"2"}],[{"d":"1","n":"0"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"2"}],[{"d":"1","n":"0"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"metamorphic_relation":{"base_vector":"SEC-M002","expected_invariant":["carrier_id","resolution_state","centre_values","field_id","result_id","certificate_id"],"relation_id":"MR-06"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Candidate and support enumeration permutation","vector_hash":"sha256:92e9ce2d2697493aa7b0d0e9840855437d14e7055c173949a982a502137e4a27","vector_id":"SEC-M005"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"3"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"3"}]]},"carrier_id":"sha256:e6ccb13cf373934d92411f5301cc09d28c6a2565020317ce2826e443353d2038","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:e6ccb13cf373934d92411f5301cc09d28c6a2565020317ce2826e443353d2038","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:af7fd488974a433f85771c810ee2a2cc131fecd5480b4a0a58c1bfce37fb2f67"},"category":"MEDOID","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"}],"certificate_id":"sha256:c8f5acf748cc569e6a3e85b9c34c4a7f97a3a857634c038a6c6570cefb0c47ac","field":{"K_min":{"d":"1","n":"3"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"4"},"pressure":{"d":"1","n":"1"}},{"candidate":[{"d":"1","n":"1"}],"cost":{"d":"1","n":"3"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"3"}],"cost":{"d":"1","n":"5"},"pressure":{"d":"1","n":"2"}}]},"field_id":"sha256:e5832b2a8ef6af19f490a907f861fa20136088e407bf63ba5a5c778a3426ccc5","resolution_state":"RESOLVED_POINT","result_id":"sha256:354ed5a0d7ed9f04656aedb20244c340cc783d663cc20a493caee3a1bc99778e"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"3"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"3"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Exact finite centre field and centre pressure","vector_hash":"sha256:0f8ef8d324b5f8ca778cf95d79e1cfbb9b5171a05fc527561ec620bfe0025542","vector_id":"SEC-M006"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"CHEBYSHEV_UNSUPPORTED","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:b2c35d7eec545bb9372f78b84e1240f64d3dfd63ee1900210a2c9c36fdc6ba0f"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"NONE","certificate_id":"sha256:c3740511d77ffc24e5fbbcd4dd559fe2442962bbe1ad4bf0ca392330d9aaad2e","resolution_state":"UNSUPPORTED","result_id":"sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"CHEBYSHEV_UNSUPPORTED"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Unsupported metric declaration","vector_hash":"sha256:7eef026bdb0fdd791f24a3fb61982920e0f26df07ffe3bc6e3334ead77579e13","vector_id":"SEC-M007"},{"canonical_expectations":{"canonical_carrier":{"candidates":[],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}]]},"carrier_id":"sha256:1e40830ce01c37b466d04de7833e1963a1ce3818e0696bdc00f0c7c9b7dab1a7","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:1e40830ce01c37b466d04de7833e1963a1ce3818e0696bdc00f0c7c9b7dab1a7","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:bb24df3bfdb571bc099ee99d5043832d2f7a71d222896ed26f3b8cefbe3d1615"},"category":"STRUCTURAL_STATES","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"NONE","certificate_id":"sha256:3758fbc23b945926bb7895dc41c6c91b7439f064134fd709d596b374536de7a7","resolution_state":"INCOMPLETE","result_id":"sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"},"input":{"carrier":{"candidates":[],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}]]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Missing finite candidate set","vector_hash":"sha256:bcd168f64726196a09e3b13c45fd55ee06ff5161a81a55d86501ce712ef5f5e9","vector_id":"SEC-M008"},{"canonical_expectations":{"canonical_carrier":{"candidates":["A","B","C"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["A","B","C"]},"carrier_id":"sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6","epoch_id":"NOT_MATERIAL","equivalence_class_id":"sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7","frame_id":"NOT_MATERIAL","measure_id":"NOT_MATERIAL","metric_id":"NOT_MATERIAL","objective_id":"DECLARED_SYMMETRY_UNIQUENESS","precision_policy_id":"EXACT_SYMBOLIC","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"DECLARED_EQUIVALENCE_REQUIRED"},"dependency_fingerprint_id":"sha256:0083c4da929ea348606ca6bd6fd72f95dd3d2d9c5516042bfb45ed3741f4c685"},"category":"SYMMETRY","centre_profile":"SEC-PROFILE-SYMMETRY-1-D01","centre_profile_hash":"sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288","expected":{"centre_type":"EQUIVALENCE_CLASS","centre_values":["A","B","C"],"certificate_id":"sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741","resolution_state":"AMBIGUOUS","result_id":"sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070"},"input":{"carrier":{"candidates":["A","B","C"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["A","B","C"]},"dependencies":{"equivalence_class":"A|B|C"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Declared three-member symmetry without breaker","vector_hash":"sha256:7481c0864eb3bd93c69f5f4d86ff5013d210a4bbaa6744fd7f7c5ec7791cba81","vector_id":"SEC-Y001"},{"canonical_expectations":{"canonical_carrier":{"candidates":["A","B","C"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["A","B","C"]},"carrier_id":"sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:4f386a8ee9f4260684a9d41dfde62dd678e6e602e1137b6636f13b7cecd841d6","epoch_id":"NOT_MATERIAL","equivalence_class_id":"sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7","frame_id":"NOT_MATERIAL","measure_id":"NOT_MATERIAL","metric_id":"NOT_MATERIAL","objective_id":"DECLARED_SYMMETRY_UNIQUENESS","precision_policy_id":"EXACT_SYMBOLIC","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"DECLARED_EQUIVALENCE_REQUIRED"},"dependency_fingerprint_id":"sha256:0083c4da929ea348606ca6bd6fd72f95dd3d2d9c5516042bfb45ed3741f4c685"},"category":"METAMORPHIC","centre_profile":"SEC-PROFILE-SYMMETRY-1-D01","centre_profile_hash":"sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288","expected":{"centre_type":"EQUIVALENCE_CLASS","centre_values":["A","B","C"],"certificate_id":"sha256:ad04e758a37c5e5f3da2453cb3292760062865513acdfc303fcb589c37f5d741","resolution_state":"AMBIGUOUS","result_id":"sha256:2844f7196935ec9f9a5bc7ecc3c0532ac91cb192c0a4362c718428db46797070"},"input":{"carrier":{"candidates":["C","A","B"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["C","B","A"]},"dependencies":{"equivalence_class":"A|B|C"}},"metamorphic_relation":{"base_vector":"SEC-Y001","expected_invariant":["carrier_id","resolution_state","centre_values","result_id","certificate_id"],"relation_id":"MR-07"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Symmetry candidate-order permutation","vector_hash":"sha256:5f479a6d6e8cec463ec1f1e3ce2c2f75086208210a33af44a1c9fd17459437db","vector_id":"SEC-Y002"},{"canonical_expectations":{"canonical_carrier":{"candidates":["A","B","C"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["A","B","C"],"symmetry_breaker":"B"},"carrier_id":"sha256:4ee400fcd75d8ffad2ce60edbe0b6d86006704941670c9a0e3c39fac19c03666","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:4ee400fcd75d8ffad2ce60edbe0b6d86006704941670c9a0e3c39fac19c03666","epoch_id":"NOT_MATERIAL","equivalence_class_id":"sha256:e09065ccdfd289a9fc1eaaf6231a357d1efaac573efa2dfc48698e16cefbeda7","frame_id":"NOT_MATERIAL","measure_id":"NOT_MATERIAL","metric_id":"NOT_MATERIAL","objective_id":"DECLARED_SYMMETRY_UNIQUENESS","precision_policy_id":"EXACT_SYMBOLIC","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_breaker_id":"sha256:7845b3a1c3fc1ea344c3e92ad7b6db647e3182208c2c8295210f6ac114fbd13d","symmetry_policy_id":"DECLARED_BREAKER_REQUIRED"},"dependency_fingerprint_id":"sha256:766bf4245b8c54bd9e59b4e6c5e1b45f63241dbc270d099492f640af71a4f714"},"category":"SYMMETRY","centre_profile":"SEC-PROFILE-SYMMETRY-BREAKER-1-D01","centre_profile_hash":"sha256:86b938904391f763630e75b43caf92001097a3026bb656fcc510ee88cc0917b5","expected":{"centre_type":"POINT","centre_value":"B","certificate_id":"sha256:bfb211991d7747e523b1e7ddfb902f0bc0b29e182b489d13c6c3e46307002df3","resolution_state":"RESOLVED_POINT","result_id":"sha256:4ea132ca9412d67e13bf6a6e35bd2f8dcac9c70b8e2a9a2b429af49482ec5f90"},"input":{"carrier":{"candidates":["A","B","C"],"carrier_type":"DECLARED_SYMMETRY_CLASS","equivalence_class":["A","B","C"],"symmetry_breaker":"B"},"dependencies":{"equivalence_class":"A|B|C","symmetry_breaker":"B"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Declared symmetry with admitted breaker","vector_hash":"sha256:4120cc60f3c1b25c667496154a6f430482df072200b8352c2f27f02d60855ff8","vector_id":"SEC-Y003"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:6beb45884f5ff1aed6ecc9095bf6cbe898fd6e1bd1893dc2e1050f2946fe6c16","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:3fb9518e66d61736202d293ad585b943d3cef36efb668bf0d7e2bbeee30f6635"},"category":"DEPENDENCIES","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"NONE","certificate_id":"sha256:0927ccd5b1cfa23d419db599f3172d308a06553f1f1a59a60d0390e87ba4c88e","resolution_state":"INCOMPLETE","result_id":"sha256:9fb527a94ee5967ab70695bbae8d0bae568fc1035b4021c3463393906299b9ba"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"1"}],[{"d":"1","n":"10"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Missing medoid metric dependency","vector_hash":"sha256:c7dfb80bbb76266bd3ab80f840804e2b6f9003781cb5849ef2be6e620c4e2b5d","vector_id":"SEC-D001"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","declared_conflict":"SINGLE_FRAME_REQUIRED","epoch_id":"NOT_MATERIAL","frame_id":["FRAME_A","FRAME_B"],"measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:e0c5dcc72bcfb287786dd558a4ec920830d1b382fa8efd746b306dce5c91440b"},"category":"DEPENDENCIES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:e4c030e60d366a28c361ab00c418540568aeca6d139fc81daa0a2150150651cb","resolution_state":"CONFLICT","result_id":"sha256:e8c0051d5ffddb3cbbf04ef967bcdbd98a0ba5d6b64ebd475a977ad94e8c9992"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"conflict":"SINGLE_FRAME_REQUIRED","frame":["FRAME_A","FRAME_B"]}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Conflicting reference-frame declarations","vector_hash":"sha256:123525667f82fa3b44c1200d0823dd6468090a9a6c466eeb092200af569c719b","vector_id":"SEC-D002"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"CONTINUOUS_MANIFOLD_UNSUPPORTED","description":"bounded test placeholder"},"carrier_id":"sha256:59e316bef8b71d24f747cc9ede1e8634d6517fa7c601bb9667a4d3401c64050c","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:59e316bef8b71d24f747cc9ede1e8634d6517fa7c601bb9667a4d3401c64050c","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:825fbeee010f290148a45d17269c24bd98c061e5c3f0c8eb366ede6a6b8177db"},"category":"DEPENDENCIES","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"NONE","certificate_id":"sha256:87d7dad13f25516b85b358bcca5f41e5cb04e78b0cef45b3d732a31222cf0519","resolution_state":"UNSUPPORTED","result_id":"sha256:bef7d96de441e1b9caadb35de46f766cb4c40327d6dc68b156c7004bc2da43c0"},"input":{"carrier":{"carrier_type":"CONTINUOUS_MANIFOLD_UNSUPPORTED","description":"bounded test placeholder"},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Unsupported carrier type","vector_hash":"sha256:e9518e7cb23f0c3e7c922828ad85586a3b1ea312012abc08914b4246c69c2c37","vector_id":"SEC-D003"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","evidence_class":"DEMONSTRATION_ONLY","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:bbf83464a855d361bde2ef4faa97f7e66e7e8359801dd3eebd4e153c8fcbb293"},"category":"DEPENDENCIES","centre_profile":"SEC-PROFILE-ABSTAIN-EVIDENCE-1-D01","centre_profile_hash":"sha256:49a65e25737f6247d661b6a52a419d3beafce6fa1e1cae36c3306e789fdfb676","expected":{"centre_type":"NONE","certificate_id":"sha256:193c55d18cef89b1ac890436402759c141d0df89d3acf5e08edef3a2936cc9e7","resolution_state":"ABSTAIN","result_id":"sha256:2fb9f8708cf13fe265e62b5939f031fab436de882198765253a4544ddbede71e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"evidence_class":"DEMONSTRATION_ONLY","frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Explicit evidence-class abstention","vector_hash":"sha256:6fe4d3264e7e99644eb446551575a13b7ff3029a42204488e88f72a5dfd6d6e4","vector_id":"SEC-D004"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"CLAIMS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","claim":{"candidate_type":"POINT","candidate_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"schema":"SEC-CLAIM-1-D01"},"expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:2d2d7f39135b14a1715ceeba78d2c9c9fcdd7e77fd34ac0903741ff6e994bcfb","claim_evaluation":"CLAIM_CONFIRMED","resolution_state":"RESOLVED_POINT","result_id":"sha256:60425cf39aced74f21ca0c8a375d2c5bf364312cb0cc41450a7059f5f781171c"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Confirmed unique centre claim","vector_hash":"sha256:c972c2f869a011fa0e0ca3b4f304e3a5bef876809cb04f9d1fdfa54d1795de38","vector_id":"SEC-L001"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:2b875f377746eeb32e91bb46627dd0cbe9bc31bdf20343f1befce72b1e9b9658","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:5c081ed4c592b75e88db03ad2962db6cb32120b019d83a0ee631ff6e3d34e7bc"},"category":"CLAIMS","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","claim":{"candidate_type":"POINT","candidate_value":[{"d":"1","n":"2"}],"schema":"SEC-CLAIM-1-D01"},"expected":{"centre_type":"POINT_SET","centre_values":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"certificate_id":"sha256:d33d15e109bfe432dd652f80617fdd6e23ebac030d383146fa6a562a05c9e2e4","claim_evaluation":"CLAIM_MEMBER","field":{"K_min":{"d":"1","n":"2"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"2"},"pressure":{"d":"1","n":"0"}}]},"field_id":"sha256:c3b00f269053ddfc4f5899f662dd49daa1dacc07f4447ac42f917a223bd0616c","resolution_state":"MULTI_CENTRE","result_id":"sha256:d50d33fb8838452d2d3fec4dd74d3b618786d424de6b5732d55d87d58c2af4aa"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Claim is a member of a multi-centre result","vector_hash":"sha256:9c7140f166b79a6e9d1e5ce7d6c69f98ad6f12077d55ff9e2dc7069728d28e84","vector_id":"SEC-L002"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"CLAIMS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","claim":{"candidate_type":"POINT","candidate_value":[{"d":"1","n":"9"},{"d":"1","n":"9"}],"schema":"SEC-CLAIM-1-D01"},"expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:802dab4f0e6e898127c6ff6d28b539307996680395025b1ca3f9cdaf5a35255e","claim_evaluation":"CLAIM_NOT_CENTRE","resolution_state":"RESOLVED_POINT","result_id":"sha256:0e1951ac07cc6de3aadf2d492b93bc0b584a5c10f97413fe492b0c82c83b39e5"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Incorrect unique centre claim","vector_hash":"sha256:a43eb58cd99024296b19dbfee3c433489f9ca91e8e45dc70ad0e5e6f8990d5a0","vector_id":"SEC-L003"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"NOT_MATERIAL","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:c7441795db190d56ebf1277be6b431f6387e61070d7899b1e701dd9ad00482f9"},"category":"CLAIMS","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","claim":{"candidate_type":"POINT","candidate_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"schema":"SEC-CLAIM-1-D01"},"expected":{"centre_type":"NONE","certificate_id":"sha256:a1479cecbd3e5c9de6bdba508233e6d5e20d3aa0251de2b5bd4dad814615abe0","claim_evaluation":"CLAIM_UNRESOLVED","resolution_state":"INCOMPLETE","result_id":"sha256:84587ba509022381c2934c4dff6068cb69e449190a324b745b274c9e57e7ea37"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Claim against incomplete centre problem","vector_hash":"sha256:907a2c41ae893a1bdd1be34bb03cc158445af44e81be9f378644689c5f6f7de5","vector_id":"SEC-L004"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"REPRESENTATION","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"metamorphic_relation":{"base_vector":"SEC-C001","expected_invariant":["carrier_id","resolution_state","centre_value","result_id","certificate_id"],"relation_id":"MR-04"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","source_variant":{"presentation":{"format":"decimal","label":"Display variant only"}},"system_version":"0.5.0","title":"Presentation-only metadata variation","vector_hash":"sha256:dd1a44038a38d1293cb5757d6dab75ea65e186dfec86cba2d06589b8fdb7976b","vector_id":"SEC-R001"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]]},"carrier_id":"sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"MANHATTAN_L1","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:29a3d453097a7ef2b9221c5dc00f69f653287246e83d5f31c8564067ff2226e1"},"category":"PROFILE_DIVERGENCE","centre_profile":"SEC-PROFILE-MEDOID-L1-1-D01","centre_profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"2"}],"certificate_id":"sha256:472c91ac5bea066dcfc99cfd26b96d5afc132353ee56e385c9189ef899dc41e6","field":{"K_min":{"d":"1","n":"10"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"12"},"pressure":{"d":"1","n":"2"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"10"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"10"}],"cost":{"d":"1","n":"18"},"pressure":{"d":"1","n":"8"}}]},"field_id":"sha256:cd5fe8f7966b805844d7fe854bad1e47a4494e68a7bfd9a61bf41192ff726e70","resolution_state":"RESOLVED_POINT","result_id":"sha256:5371553212d11055f0d66860e74b25667ee1b327ac4e2db54dd8ad7fb2b38e50"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"MANHATTAN_L1"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Same support resolved under L1 medoid profile","vector_hash":"sha256:0dff5c8293072ddbe913090b03c3271837c93a084c3a570573a4c64462062a44","vector_id":"SEC-R002"},{"canonical_expectations":{"canonical_carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]]},"carrier_id":"sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:88d4a81ee545b18a60386c8fb1bb500719801da547258bc5a389eb8f6aba932b","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_1D_D01","measure_id":"UNIFORM_EXPLICIT","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED","objective_id":"FINITE_EXACT_MEDOID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NO_INFERENCE"},"dependency_fingerprint_id":"sha256:434934dea53dee2b1b4266765f5221917b920ce3495e7c1e11d5dbd5c6b2ddc0"},"category":"PROFILE_DIVERGENCE","centre_profile":"SEC-PROFILE-MEDOID-L2SQ-1-D01","centre_profile_hash":"sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"2"}],"certificate_id":"sha256:1d571a38d8aceeddfd40ce4249421bf373cb96df4785c1f4ffaa15682cbf5bf6","field":{"K_min":{"d":"1","n":"68"},"entries":[{"candidate":[{"d":"1","n":"0"}],"cost":{"d":"1","n":"104"},"pressure":{"d":"1","n":"36"}},{"candidate":[{"d":"1","n":"2"}],"cost":{"d":"1","n":"68"},"pressure":{"d":"1","n":"0"}},{"candidate":[{"d":"1","n":"10"}],"cost":{"d":"1","n":"164"},"pressure":{"d":"1","n":"96"}}]},"field_id":"sha256:22f468da7c0e7874ab74a75ba682aa3ebf08384dd3005dcbaa26132f77778ccf","resolution_state":"RESOLVED_POINT","result_id":"sha256:2c13a0e530bebbb752c0167ff00a07cac0a6da1e7010fcb86c96d848df7fa2c7"},"input":{"carrier":{"candidates":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]],"carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","support":[[{"d":"1","n":"0"}],[{"d":"1","n":"2"}],[{"d":"1","n":"10"}]]},"dependencies":{"candidate_set":"DECLARED","frame":"FRAME_SEC_CARTESIAN_1D_D01","metric_id":"SQUARED_EUCLIDEAN_L2_SQUARED"}},"metamorphic_relation":{"base_vector":"SEC-R002","expected_property":"Metric change must change centre profile identity and may change the result.","relation_id":"MR-10"},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Same support resolved under squared-L2 medoid profile","vector_hash":"sha256:e390b6def6da62d7bf18ecfa65043e8da3001104f3327aad2bf72f70afc52236","vector_id":"SEC-R003"},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"TAMPER","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"4"},{"d":"1","n":"4"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Carrier mutation must invalidate the original certificate","vector_hash":"sha256:47594d1f5f4e09a2baca2f8d2e9af60d1c0c0e5ca102a1ba2eff09ce67764176","vector_id":"SEC-T001","verification_expectation":{"expected_first_mismatch":"CARRIER_ID_MISMATCH","mutation_class":"carrier","reference_vector":"SEC-C001","verification_state":"FAIL"}},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"TAMPER","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:ae021bc8127b4a4094fcf10e6471270b58ddcbaf9e0b6896cdfd19b2bfd33486","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_MUTATED"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Profile dependency mutation must invalidate the original certificate","vector_hash":"sha256:f2f60e8e7d3194b6e9b31f8a040a32b35b0da9778911864854ddd258c432b961","vector_id":"SEC-T002","verification_expectation":{"expected_first_mismatch":"DEPENDENCY_ID_MISMATCH","mutation_class":"profile","reference_vector":"SEC-C001","verification_state":"FAIL"}},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"TAMPER","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"999"},{"d":"1","n":"999"}],"certificate_id":"sha256:0df95b1b8443daaf8aac19541456d57129ffb7cc923d9ca596fd4f5509ed99a1","resolution_state":"RESOLVED_POINT","result_id":"sha256:43aa2211bb0b34e6182cf08864f924975ade4682db38203cadcf1a1929b1d023"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Result mutation must invalidate the original certificate","vector_hash":"sha256:859b19685182a7b8879d256546263b35a0e1fa83828a21a2211dd0b57bddc759","vector_id":"SEC-T003","verification_expectation":{"expected_first_mismatch":"RESULT_ID_MISMATCH","mutation_class":"result","reference_vector":"SEC-C001","verification_state":"FAIL"}},{"canonical_expectations":{"canonical_carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","dependency_fingerprint":{"boundary_id":"IMPLICIT_IN_CANONICAL_CARRIER","carrier_id":"sha256:976a70809db5b9909b19da33329f5ffc8fbc58b836f408209b7c7a7e33c95320","epoch_id":"NOT_MATERIAL","frame_id":"FRAME_SEC_CARTESIAN_2D_D01","measure_id":"EXPLICIT_POSITIVE_RATIONAL","metric_id":"NOT_MATERIAL","objective_id":"EXACT_WEIGHTED_CENTROID","precision_policy_id":"EXACT_RATIONAL","rules_profile":"SEC-RULES-1-D01","schema":"SEC-DEPENDENCY-1-D01","symmetry_policy_id":"NOT_MATERIAL"},"dependency_fingerprint_id":"sha256:30b0cb77951bd600d8d7468d5d5b0c445c5a6fea852085b08dde209bc0602ca0"},"category":"TAMPER","centre_profile":"SEC-PROFILE-WCENTROID-1-D01","centre_profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","expected":{"centre_type":"POINT","centre_value":[{"d":"1","n":"1"},{"d":"1","n":"1"}],"certificate_id":"sha256:0000000000000000000000000000000000000000000000000000000000000000","resolution_state":"RESOLVED_POINT","result_id":"sha256:9404574d33d78a237b618e83369338962cd29f3087590a4138809ef48fae0c3e"},"input":{"carrier":{"carrier_type":"FINITE_WEIGHTED_POINT_SET","points":[{"point":[{"d":"1","n":"0"},{"d":"1","n":"0"}],"weight":{"d":"1","n":"1"}},{"point":[{"d":"1","n":"2"},{"d":"1","n":"2"}],"weight":{"d":"1","n":"1"}}]},"dependencies":{"frame":"FRAME_SEC_CARTESIAN_2D_D01"}},"rules_profile":"SEC-RULES-1-D01","schema":"SEC-CONFORMANCE-VECTOR-1-D01","system_version":"0.5.0","title":"Certificate mutation must fail verification","vector_hash":"sha256:5c60d9d721feb6f162d9fd32056dbeb575ec34d411f1c71276843cec5ed19cf8","vector_id":"SEC-T004","verification_expectation":{"expected_first_mismatch":"CERTIFICATE_ID_MISMATCH","mutation_class":"certificate","reference_vector":"SEC-C001","verification_state":"FAIL"}}]};
+const SEC_FROZEN_PROFILE_REGISTRY = {"architecture_profile":"SEC-ARCH-1-D01","canonicalization_profile":"SEC-CANON-1-D01","exact_arithmetic_profile":"SEC-EXACT-1-D01","profile_registry_id":"sha256:9ce322a33d2b918088952f1f32293eae08acaff86dcc9cbf113dae5978f80f2e","profiles":[{"abstention_rules":[],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"DERIVED_EXACT_POINT","carrier_type":"FINITE_WEIGHTED_POINT_SET","conflict_rules":["SINGLE_FRAME_REQUIRED","UNIFORM_DIMENSION_REQUIRED"],"duplicate_policy":"MULTISET_PRESERVE","epoch_policy":"NOT_MATERIAL","frame_policy":"EXPLICIT_REQUIRED","metric":"NOT_MATERIAL","objective":"EXACT_WEIGHTED_CENTROID","precision_policy":"EXACT_RATIONAL","profile_hash":"sha256:a54b9768a16f1b28196f96e4ebbab0ca0231db8167d549a0d880523292c852a4","profile_id":"SEC-PROFILE-WCENTROID-1-D01","profile_version":"0.5.0","required_dependencies":["frame"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"NOT_MATERIAL","tie_policy":"NOT_MATERIAL","weight_policy":"EXPLICIT_POSITIVE_RATIONAL"},{"abstention_rules":[],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"EXPLICIT_FINITE_SET","carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","conflict_rules":["SINGLE_FRAME_REQUIRED","UNIFORM_DIMENSION_REQUIRED"],"duplicate_policy":"SET_DEDUPLICATE","epoch_policy":"NOT_MATERIAL","frame_policy":"EXPLICIT_REQUIRED","metric":"MANHATTAN_L1","objective":"FINITE_EXACT_MEDOID","precision_policy":"EXACT_RATIONAL","profile_hash":"sha256:b1fd1ae1c229375574865a6f4b1f10cd98b4d576c379cd3b089804c843da0508","profile_id":"SEC-PROFILE-MEDOID-L1-1-D01","profile_version":"0.5.0","required_dependencies":["frame","candidate_set","metric"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"NO_INFERENCE","tie_policy":"RETURN_ALL_MINIMIZERS","weight_policy":"UNIFORM_EXPLICIT"},{"abstention_rules":[],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"EXPLICIT_FINITE_SET","carrier_type":"FINITE_CANDIDATE_METRIC_SPACE","conflict_rules":["SINGLE_FRAME_REQUIRED","UNIFORM_DIMENSION_REQUIRED"],"duplicate_policy":"SET_DEDUPLICATE","epoch_policy":"NOT_MATERIAL","frame_policy":"EXPLICIT_REQUIRED","metric":"SQUARED_EUCLIDEAN_L2_SQUARED","objective":"FINITE_EXACT_MEDOID","precision_policy":"EXACT_RATIONAL","profile_hash":"sha256:d2c22cb1260ff8843b8dfff378ce3c9098b8e0aaf236f6f2b92253a1c3e7e6a8","profile_id":"SEC-PROFILE-MEDOID-L2SQ-1-D01","profile_version":"0.5.0","required_dependencies":["frame","candidate_set","metric"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"NO_INFERENCE","tie_policy":"RETURN_ALL_MINIMIZERS","weight_policy":"UNIFORM_EXPLICIT"},{"abstention_rules":[],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"DECLARED_EQUIVALENCE_CLASS","carrier_type":"DECLARED_SYMMETRY_CLASS","conflict_rules":["AT_MOST_ONE_SYMMETRY_BREAKER"],"duplicate_policy":"SET_DEDUPLICATE","epoch_policy":"NOT_MATERIAL","frame_policy":"SYMBOLIC_ALLOWED","metric":"NOT_MATERIAL","objective":"DECLARED_SYMMETRY_UNIQUENESS","precision_policy":"EXACT_SYMBOLIC","profile_hash":"sha256:d779686c5ea299b545f7223687cc20648413edf36d22d79a003fd54b7d8c9288","profile_id":"SEC-PROFILE-SYMMETRY-1-D01","profile_version":"0.5.0","required_dependencies":["equivalence_class"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"DECLARED_EQUIVALENCE_REQUIRED","tie_policy":"REQUIRE_UNIQUE","weight_policy":"NOT_MATERIAL"},{"abstention_rules":[],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"DECLARED_EQUIVALENCE_CLASS","carrier_type":"DECLARED_SYMMETRY_CLASS","conflict_rules":["AT_MOST_ONE_SYMMETRY_BREAKER"],"duplicate_policy":"SET_DEDUPLICATE","epoch_policy":"NOT_MATERIAL","frame_policy":"SYMBOLIC_ALLOWED","metric":"NOT_MATERIAL","objective":"DECLARED_SYMMETRY_UNIQUENESS","precision_policy":"EXACT_SYMBOLIC","profile_hash":"sha256:86b938904391f763630e75b43caf92001097a3026bb656fcc510ee88cc0917b5","profile_id":"SEC-PROFILE-SYMMETRY-BREAKER-1-D01","profile_version":"0.5.0","required_dependencies":["equivalence_class","symmetry_breaker"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"DECLARED_BREAKER_REQUIRED","tie_policy":"REQUIRE_UNIQUE","weight_policy":"NOT_MATERIAL"},{"abstention_rules":["EVIDENCE_CLASS_BELOW_VERIFIABLE"],"boundary_policy":"IMPLICIT_IN_CANONICAL_CARRIER","candidate_policy":"DERIVED_EXACT_POINT","carrier_type":"FINITE_WEIGHTED_POINT_SET","conflict_rules":["SINGLE_FRAME_REQUIRED","UNIFORM_DIMENSION_REQUIRED"],"duplicate_policy":"MULTISET_PRESERVE","epoch_policy":"NOT_MATERIAL","frame_policy":"EXPLICIT_REQUIRED","metric":"NOT_MATERIAL","objective":"EXACT_WEIGHTED_CENTROID","precision_policy":"EXACT_RATIONAL","profile_hash":"sha256:49a65e25737f6247d661b6a52a419d3beafce6fa1e1cae36c3306e789fdfb676","profile_id":"SEC-PROFILE-ABSTAIN-EVIDENCE-1-D01","profile_version":"0.5.0","required_dependencies":["frame","evidence_class"],"result_schema":"SEC-RESULT-1-D01","rules_profile":"SEC-RULES-1-D01","schema":"SEC-CENTRE-PROFILE-1-D01","symmetry_policy":"NOT_MATERIAL","tie_policy":"NOT_MATERIAL","weight_policy":"EXPLICIT_POSITIVE_RATIONAL"}],"rules_profile":"SEC-RULES-1-D01","schema":"SEC-PROFILE-REGISTRY-1-D01","system_version":"0.5.0"};
+
+(function(global){
+  const SYSTEM_VERSION = "0.5.0";
+  const ARCH = "SEC-ARCH-1-D01";
+  const RULES = "SEC-RULES-1-D01";
+  const CANON = "SEC-CANON-1-D01";
+  const EXACT = "SEC-EXACT-1-D01";
+  const CERT = "SEC-CERT-1-D01";
+
+  function clone(x){ return JSON.parse(JSON.stringify(x)); }
+
+  function canonicalStringify(value){
+    if(value === null) return "null";
+    if(typeof value === "string" || typeof value === "number" || typeof value === "boolean"){
+      return JSON.stringify(value);
+    }
+    if(Array.isArray(value)){
+      return "[" + value.map(canonicalStringify).join(",") + "]";
+    }
+    if(typeof value === "object"){
+      const keys = Object.keys(value).sort();
+      return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalStringify(value[k])).join(",") + "}";
+    }
+    throw new TypeError("Unsupported canonical value type");
+  }
+
+  function utf8Bytes(text){ return new TextEncoder().encode(text); }
+
+  function sha256Hex(text){
+    const bytes = utf8Bytes(text);
+    const K = new Uint32Array([
+      0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+      0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+      0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+      0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+      0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+      0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+      0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+      0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+    ]);
+    const H = new Uint32Array([0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19]);
+    const bitLen = BigInt(bytes.length) * 8n;
+    const paddedLen = Math.ceil((bytes.length + 9) / 64) * 64;
+    const data = new Uint8Array(paddedLen);
+    data.set(bytes);
+    data[bytes.length] = 0x80;
+    for(let i=0;i<8;i++){
+      data[paddedLen - 1 - i] = Number((bitLen >> BigInt(8*i)) & 0xffn);
+    }
+    const W = new Uint32Array(64);
+    const rotr = (x,n) => (x >>> n) | (x << (32-n));
+    for(let offset=0; offset<data.length; offset+=64){
+      for(let i=0;i<16;i++){
+        const j=offset+i*4;
+        W[i]=((data[j]<<24)|(data[j+1]<<16)|(data[j+2]<<8)|data[j+3])>>>0;
+      }
+      for(let i=16;i<64;i++){
+        const x=W[i-15], y=W[i-2];
+        const s0=(rotr(x,7)^rotr(x,18)^(x>>>3))>>>0;
+        const s1=(rotr(y,17)^rotr(y,19)^(y>>>10))>>>0;
+        W[i]=(W[i-16]+s0+W[i-7]+s1)>>>0;
+      }
+      let [a,b,c,d,e,f,g,h]=H;
+      for(let i=0;i<64;i++){
+        const S1=(rotr(e,6)^rotr(e,11)^rotr(e,25))>>>0;
+        const ch=((e&f)^((~e)&g))>>>0;
+        const t1=(h+S1+ch+K[i]+W[i])>>>0;
+        const S0=(rotr(a,2)^rotr(a,13)^rotr(a,22))>>>0;
+        const maj=((a&b)^(a&c)^(b&c))>>>0;
+        const t2=(S0+maj)>>>0;
+        h=g; g=f; f=e; e=(d+t1)>>>0; d=c; c=b; b=a; a=(t1+t2)>>>0;
+      }
+      H[0]=(H[0]+a)>>>0; H[1]=(H[1]+b)>>>0; H[2]=(H[2]+c)>>>0; H[3]=(H[3]+d)>>>0;
+      H[4]=(H[4]+e)>>>0; H[5]=(H[5]+f)>>>0; H[6]=(H[6]+g)>>>0; H[7]=(H[7]+h)>>>0;
+    }
+    return Array.from(H).map(x=>x.toString(16).padStart(8,"0")).join("");
+  }
+
+  function hashObject(obj){ return "sha256:" + sha256Hex(canonicalStringify(obj)); }
+
+  function absBig(x){ return x < 0n ? -x : x; }
+  function gcd(a,b){
+    a=absBig(a); b=absBig(b);
+    while(b!==0n){ const t=a%b; a=b; b=t; }
+    return a;
+  }
+  function rat(value){
+    if(value && typeof value==="object" && !Array.isArray(value) && "n" in value && "d" in value){
+      let n=BigInt(value.n), d=BigInt(value.d);
+      if(d===0n) throw new Error("Rational denominator cannot be zero.");
+      if(d<0n){ n=-n; d=-d; }
+      if(n===0n) return {n:0n,d:1n};
+      const g=gcd(n,d);
+      return {n:n/g,d:d/g};
+    }
+    if(typeof value==="bigint") return {n:value,d:1n};
+    if(typeof value==="number" && Number.isInteger(value)) return {n:BigInt(value),d:1n};
+    if(typeof value==="string") return {n:BigInt(value),d:1n};
+    throw new Error("Unsupported rational value.");
+  }
+  function ratJSON(r){ const x=rat(r); return {n:x.n.toString(),d:x.d.toString()}; }
+  function add(a,b){ a=rat(a);b=rat(b);return rat({n:a.n*b.d+b.n*a.d,d:a.d*b.d}); }
+  function sub(a,b){ a=rat(a);b=rat(b);return rat({n:a.n*b.d-b.n*a.d,d:a.d*b.d}); }
+  function mul(a,b){ a=rat(a);b=rat(b);return rat({n:a.n*b.n,d:a.d*b.d}); }
+  function div(a,b){ a=rat(a);b=rat(b);if(b.n===0n)throw new Error("Division by zero.");return rat({n:a.n*b.d,d:a.d*b.n}); }
+  function absRat(a){ a=rat(a); return {n:absBig(a.n),d:a.d}; }
+  function cmpRat(a,b){ const x=sub(a,b); return x.n<0n?-1:x.n>0n?1:0; }
+
+  function pointCanonical(p){ return p.map(ratJSON); }
+  function pointCmp(a,b){
+    const n=Math.min(a.length,b.length);
+    for(let i=0;i<n;i++){
+      const an=BigInt(ratJSON(a[i]).n), ad=BigInt(ratJSON(a[i]).d);
+      const bn=BigInt(ratJSON(b[i]).n), bd=BigInt(ratJSON(b[i]).d);
+      if(an<bn) return -1; if(an>bn) return 1;
+      if(ad<bd) return -1; if(ad>bd) return 1;
+    }
+    return a.length-b.length;
+  }
+
+  function canonicalCarrier(carrier){
+    const ct=carrier.carrier_type;
+    if(ct==="FINITE_WEIGHTED_POINT_SET"){
+      const points=(carrier.points||[]).map(e=>({point:pointCanonical(e.point),weight:ratJSON(e.weight)}));
+      points.sort((a,b)=>{
+        const p=pointCmp(a.point,b.point); if(p!==0)return p;
+        const an=BigInt(a.weight.n), bn=BigInt(b.weight.n);
+        if(an<bn)return -1;if(an>bn)return 1;
+        const ad=BigInt(a.weight.d), bd=BigInt(b.weight.d);
+        return ad<bd?-1:ad>bd?1:0;
+      });
+      return {carrier_type:ct,points};
+    }
+    if(ct==="FINITE_CANDIDATE_METRIC_SPACE"){
+      const dedupeSort = arr => {
+        const m=new Map();
+        for(const p of (arr||[])){
+          const cp=pointCanonical(p);
+          m.set(canonicalStringify(cp),cp);
+        }
+        return Array.from(m.values()).sort(pointCmp);
+      };
+      return {carrier_type:ct,support:dedupeSort(carrier.support),candidates:dedupeSort(carrier.candidates)};
+    }
+    if(ct==="DECLARED_SYMMETRY_CLASS"){
+      const uniqSort=a=>Array.from(new Set(a||[])).sort();
+      const out={carrier_type:ct,candidates:uniqSort(carrier.candidates),equivalence_class:uniqSort(carrier.equivalence_class)};
+      if(Object.prototype.hasOwnProperty.call(carrier,"symmetry_breaker")) out.symmetry_breaker=carrier.symmetry_breaker;
+      return out;
+    }
+    return clone(carrier);
+  }
+
+  function profileBase(p){
+    const out=clone(p);
+    delete out.profile_hash;
+    return out;
+  }
+
+  const PROFILE_MAP = new Map(SEC_FROZEN_PROFILE_REGISTRY.profiles.map(p=>[p.profile_id,p]));
+
+  function dependencyFingerprint(carrierId, profile, deps){
+    const cdf={
+      schema:"SEC-DEPENDENCY-1-D01",
+      carrier_id:carrierId,
+      boundary_id:Object.prototype.hasOwnProperty.call(deps,"boundary_id")?deps.boundary_id:"IMPLICIT_IN_CANONICAL_CARRIER",
+      measure_id:Object.prototype.hasOwnProperty.call(deps,"measure_id")?deps.measure_id:profile.weight_policy,
+      metric_id:Object.prototype.hasOwnProperty.call(deps,"metric_id")?deps.metric_id:profile.metric,
+      objective_id:Object.prototype.hasOwnProperty.call(deps,"objective_id")?deps.objective_id:profile.objective,
+      frame_id:Object.prototype.hasOwnProperty.call(deps,"frame")?deps.frame:"NOT_MATERIAL",
+      epoch_id:Object.prototype.hasOwnProperty.call(deps,"epoch")?deps.epoch:"NOT_MATERIAL",
+      precision_policy_id:profile.precision_policy,
+      symmetry_policy_id:profile.symmetry_policy,
+      rules_profile:profile.rules_profile
+    };
+    if(Object.prototype.hasOwnProperty.call(deps,"equivalence_class")) cdf.equivalence_class_id=hashObject({equivalence_class:deps.equivalence_class});
+    if(Object.prototype.hasOwnProperty.call(deps,"symmetry_breaker")) cdf.symmetry_breaker_id=hashObject({symmetry_breaker:deps.symmetry_breaker});
+    if(Object.prototype.hasOwnProperty.call(deps,"evidence_class")) cdf.evidence_class=deps.evidence_class;
+    if(Object.prototype.hasOwnProperty.call(deps,"conflict")) cdf.declared_conflict=deps.conflict;
+    return cdf;
+  }
+
+  function missingRequired(profile,carrier,deps){
+    for(const req of profile.required_dependencies||[]){
+      if(req==="frame" && !Object.prototype.hasOwnProperty.call(deps,"frame")) return true;
+      if(req==="metric" && !Object.prototype.hasOwnProperty.call(deps,"metric_id")) return true;
+      if(req==="candidate_set" && (!Object.prototype.hasOwnProperty.call(deps,"candidate_set") || !(carrier.candidates||[]).length)) return true;
+      if(req==="equivalence_class" && !Object.prototype.hasOwnProperty.call(deps,"equivalence_class")) return true;
+      if(req==="symmetry_breaker" && !Object.prototype.hasOwnProperty.call(deps,"symmetry_breaker")) return true;
+      if(req==="evidence_class" && !Object.prototype.hasOwnProperty.call(deps,"evidence_class")) return true;
+    }
+    return false;
+  }
+
+  function dimensionConflict(carrier){
+    const sets=[];
+    if(Array.isArray(carrier.points)) sets.push(carrier.points.map(e=>e.point));
+    if(Array.isArray(carrier.support)) sets.push(carrier.support);
+    if(Array.isArray(carrier.candidates)) sets.push(carrier.candidates);
+    for(const pts of sets){
+      if(pts.length){
+        const d=pts[0].length;
+        if(pts.some(p=>p.length!==d)) return true;
+      }
+    }
+    return false;
+  }
+
+  function result(state,centreType="NONE",extra={}){
+    return Object.assign({resolution_state:state,centre_type:centreType},extra);
+  }
+
+  function centroid(entries){
+    const dims=entries[0].point.length;
+    let total={n:0n,d:1n};
+    for(const e of entries) total=add(total,rat(e.weight));
+    const coords=[];
+    for(let j=0;j<dims;j++){
+      let s={n:0n,d:1n};
+      for(const e of entries) s=add(s,mul(rat(e.weight),rat(e.point[j])));
+      coords.push(ratJSON(div(s,total)));
+    }
+    return coords;
+  }
+
+  function distance(a,b,metric){
+    let total={n:0n,d:1n};
+    for(let i=0;i<a.length;i++){
+      const delta=sub(rat(a[i]),rat(b[i]));
+      if(metric==="MANHATTAN_L1") total=add(total,absRat(delta));
+      else if(metric==="SQUARED_EUCLIDEAN_L2_SQUARED") total=add(total,mul(delta,delta));
+      else throw new Error("Unsupported metric");
+    }
+    return total;
+  }
+
+  function medoid(carrier,metric){
+    const costs=[];
+    for(const c of carrier.candidates){
+      let k={n:0n,d:1n};
+      for(const p of carrier.support) k=add(k,distance(c,p,metric));
+      costs.push({candidate:c,cost:k});
+    }
+    let kmin=costs[0].cost;
+    for(const x of costs) if(cmpRat(x.cost,kmin)<0) kmin=x.cost;
+    const mins=costs.filter(x=>cmpRat(x.cost,kmin)===0).map(x=>pointCanonical(x.candidate)).sort(pointCmp);
+    const entries=costs.slice().sort((x,y)=>pointCmp(x.candidate,y.candidate)).map(x=>({
+      candidate:pointCanonical(x.candidate),
+      cost:ratJSON(x.cost),
+      pressure:ratJSON(sub(x.cost,kmin))
+    }));
+    const field={entries,K_min:ratJSON(kmin)};
+    return {mins,field,field_id:hashObject(field)};
+  }
+
+  function valuesEqual(a,b){ return canonicalStringify(a)===canonicalStringify(b); }
+
+  function applyClaim(coreResult,claim){
+    if(!claim) return coreResult;
+    let ce;
+    if(["INCOMPLETE","CONFLICT","UNSUPPORTED","ABSTAIN","AMBIGUOUS"].includes(coreResult.resolution_state)){
+      ce="CLAIM_UNRESOLVED";
+    }else if(coreResult.resolution_state==="RESOLVED_POINT"){
+      ce=valuesEqual(claim.candidate_value,coreResult.centre_value)?"CLAIM_CONFIRMED":"CLAIM_NOT_CENTRE";
+    }else if(coreResult.resolution_state==="MULTI_CENTRE"){
+      ce=(coreResult.centre_values||[]).some(v=>valuesEqual(v,claim.candidate_value))?"CLAIM_MEMBER":"CLAIM_NOT_CENTRE";
+    }else{
+      ce="CLAIM_UNSUPPORTED";
+    }
+    return Object.assign({},coreResult,{claim_evaluation:ce});
+  }
+
+  function resolveVectorObject(vector){
+    const profile=PROFILE_MAP.get(vector.centre_profile);
+    if(!profile) throw new Error("Unknown profile: "+vector.centre_profile);
+    const rawCarrier=vector.input.carrier;
+    const deps=vector.input.dependencies||{};
+    const carrier=canonicalCarrier(rawCarrier);
+    const carrierId=hashObject(carrier);
+    const cdf=dependencyFingerprint(carrierId,profile,deps);
+    const dependencyId=hashObject(cdf);
+
+    let core;
+    if(missingRequired(profile,rawCarrier,deps)){
+      core=result("INCOMPLETE");
+    }else if(Array.isArray(deps.frame) || Object.prototype.hasOwnProperty.call(deps,"conflict") || dimensionConflict(rawCarrier)){
+      core=result("CONFLICT");
+    }else if(rawCarrier.carrier_type!==profile.carrier_type){
+      core=result("UNSUPPORTED");
+    }else if(profile.objective==="EXACT_WEIGHTED_CENTROID"){
+      const points=rawCarrier.points||[];
+      const invalidWeight=points.some(e=>rat(e.weight).n<=0n);
+      if(invalidWeight){
+        core=result("UNSUPPORTED");
+      }else if(profile.profile_id==="SEC-PROFILE-ABSTAIN-EVIDENCE-1-D01" && deps.evidence_class!=="VERIFIABLE"){
+        core=result("ABSTAIN");
+      }else{
+        core=result("RESOLVED_POINT","POINT",{centre_value:centroid(carrier.points)});
+      }
+    }else if(profile.objective==="FINITE_EXACT_MEDOID"){
+      if(!Object.prototype.hasOwnProperty.call(deps,"metric_id")){
+        core=result("INCOMPLETE");
+      }else if(deps.metric_id!==profile.metric){
+        core=result("UNSUPPORTED");
+      }else if(!carrier.candidates.length){
+        core=result("INCOMPLETE");
+      }else{
+        const m=medoid(carrier,profile.metric);
+        if(m.mins.length===1){
+          core=result("RESOLVED_POINT","POINT",{centre_value:m.mins[0],field:m.field,field_id:m.field_id});
+        }else{
+          core=result("MULTI_CENTRE","POINT_SET",{centre_values:m.mins,field:m.field,field_id:m.field_id});
+        }
+      }
+    }else if(profile.objective==="DECLARED_SYMMETRY_UNIQUENESS"){
+      const eq=carrier.equivalence_class||[];
+      if(profile.symmetry_policy==="DECLARED_BREAKER_REQUIRED"){
+        const breaker=deps.symmetry_breaker;
+        if(!eq.includes(breaker)){
+          core=result("CONFLICT");
+        }else{
+          core=result("RESOLVED_POINT","POINT",{centre_value:breaker});
+        }
+      }else if(eq.length>1){
+        core=result("AMBIGUOUS","EQUIVALENCE_CLASS",{centre_values:eq.slice().sort()});
+      }else if(eq.length===1){
+        core=result("RESOLVED_POINT","POINT",{centre_value:eq[0]});
+      }else{
+        core=result("INCOMPLETE");
+      }
+    }else{
+      core=result("UNSUPPORTED");
+    }
+
+    core=applyClaim(core,vector.claim);
+
+    const resultId=hashObject(core);
+    const profileHash=hashObject(profileBase(profile));
+    const certInput={
+      certificate_schema:CERT,
+      system_version:SYSTEM_VERSION,
+      architecture_profile:ARCH,
+      rules_profile:RULES,
+      canonicalization_profile:CANON,
+      exact_arithmetic_profile:EXACT,
+      carrier_id:carrierId,
+      centre_profile:profile.profile_id,
+      centre_profile_hash:profileHash,
+      dependency_fingerprint_id:dependencyId,
+      result_id:resultId,
+      canonical_result:core
+    };
+    const certificateId=hashObject(certInput);
+
+    return {
+      vector_id:vector.vector_id,
+      canonical_carrier:carrier,
+      carrier_id:carrierId,
+      dependency_fingerprint:cdf,
+      dependency_fingerprint_id:dependencyId,
+      result:core,
+      result_id:resultId,
+      certificate_id:certificateId,
+      profile_hash:profileHash
+    };
+  }
+
+  function compareNormal(vector,actual){
+    const checks=[
+      ["CARRIER_ID",actual.carrier_id,vector.canonical_expectations.carrier_id],
+      ["DEPENDENCY_ID",actual.dependency_fingerprint_id,vector.canonical_expectations.dependency_fingerprint_id],
+      ["RESULT",actual.result,stripExpectedIds(vector.expected)],
+      ["RESULT_ID",actual.result_id,vector.expected.result_id],
+      ["CERTIFICATE_ID",actual.certificate_id,vector.expected.certificate_id]
+    ];
+    for(const [name,a,b] of checks){
+      if(!valuesEqual(a,b)) return {pass:false,mismatch:name,actual:a,expected:b};
+    }
+    return {pass:true};
+  }
+
+  function stripExpectedIds(expected){
+    const out=clone(expected);
+    delete out.result_id;
+    delete out.certificate_id;
+    return out;
+  }
+
+  function detectTamperMismatch(vector,actual){
+    const refId=vector.verification_expectation.reference_vector;
+    const ref=SEC_FROZEN_CORPUS.vectors.find(v=>v.vector_id===refId);
+    if(!ref) return "REFERENCE_VECTOR_MISSING";
+    if(actual.carrier_id!==ref.canonical_expectations.carrier_id) return "CARRIER_ID_MISMATCH";
+    if(actual.profile_hash!==ref.centre_profile_hash) return "PROFILE_ID_MISMATCH";
+    if(actual.dependency_fingerprint_id!==ref.canonical_expectations.dependency_fingerprint_id) return "DEPENDENCY_ID_MISMATCH";
+    if(actual.result_id!==vector.expected.result_id) return "RESULT_ID_MISMATCH";
+    if(actual.certificate_id!==vector.expected.certificate_id) return "CERTIFICATE_ID_MISMATCH";
+    return "NO_MISMATCH";
+  }
+
+  function verifyRegistry(){
+    const checks=[];
+    for(const p of SEC_FROZEN_PROFILE_REGISTRY.profiles){
+      const actual=hashObject(profileBase(p));
+      checks.push({profile_id:p.profile_id,pass:actual===p.profile_hash,actual,expected:p.profile_hash});
+    }
+    const core=clone(SEC_FROZEN_PROFILE_REGISTRY);
+    delete core.profile_registry_id;
+    const registryId=hashObject(core);
+    return {
+      pass:checks.every(x=>x.pass) && registryId===SEC_FROZEN_PROFILE_REGISTRY.profile_registry_id,
+      profiles:checks,
+      actual_registry_id:registryId,
+      expected_registry_id:SEC_FROZEN_PROFILE_REGISTRY.profile_registry_id
+    };
+  }
+
+  function verifyFrozenCorpusIdentity(){
+    const vectorHashes=[];
+    const vectorChecks=[];
+    for(const v of SEC_FROZEN_CORPUS.vectors){
+      const core=clone(v); delete core.vector_hash;
+      const actual=hashObject(core);
+      vectorChecks.push({vector_id:v.vector_id,pass:actual===v.vector_hash,actual,expected:v.vector_hash});
+      vectorHashes.push({vector_id:v.vector_id,vector_hash:v.vector_hash});
+    }
+    const vectorSetId="secv_"+sha256Hex(canonicalStringify(vectorHashes));
+    const core=clone(SEC_FROZEN_CORPUS); delete core.corpus_id;
+    const corpusId=hashObject(core);
+    return {
+      pass:vectorChecks.every(x=>x.pass) &&
+           vectorSetId===SEC_FROZEN_CORPUS.vector_set_id &&
+           corpusId===SEC_FROZEN_CORPUS.corpus_id,
+      vector_checks:vectorChecks,
+      actual_vector_set_id:vectorSetId,
+      expected_vector_set_id:SEC_FROZEN_CORPUS.vector_set_id,
+      actual_corpus_id:corpusId,
+      expected_corpus_id:SEC_FROZEN_CORPUS.corpus_id
+    };
+  }
+
+  let lastAudit=null;
+
+  async function runAll(options={}){
+    const verbose=!!options.verbose;
+    const rows=[];
+    const counts={};
+    const registry=verifyRegistry();
+    const frozen=verifyFrozenCorpusIdentity();
+
+    if(!registry.pass) rows.push({vector_id:"PROFILE-REGISTRY",category:"IDENTITY",pass:false,mismatch:"PROFILE_REGISTRY_ID"});
+    if(!frozen.pass) rows.push({vector_id:"FROZEN-CORPUS",category:"IDENTITY",pass:false,mismatch:"CORPUS_ID"});
+
+    for(const vector of SEC_FROZEN_CORPUS.vectors){
+      let pass=false, mismatch=null, actual=null;
+      try{
+        actual=resolveVectorObject(vector);
+        if(vector.category==="TAMPER"){
+          mismatch=detectTamperMismatch(vector,actual);
+          pass=mismatch===vector.verification_expectation.expected_first_mismatch;
+        }else{
+          const c=compareNormal(vector,actual);
+          pass=c.pass;
+          mismatch=c.mismatch||null;
+        }
+      }catch(err){
+        mismatch="EXCEPTION: "+err.message;
+        pass=false;
+      }
+      rows.push({vector_id:vector.vector_id,category:vector.category,pass,mismatch,actual});
+      if(!counts[vector.category]) counts[vector.category]={pass:0,total:0};
+      counts[vector.category].total++;
+      if(pass) counts[vector.category].pass++;
+      if(verbose) console.log((pass?"PASS ":"FAIL ")+vector.vector_id+(mismatch&&!pass?" "+mismatch:""));
+    }
+
+    const vectorRows=rows.filter(r=>r.vector_id.startsWith("SEC-"));
+    const total=vectorRows.length;
+    const passed=vectorRows.filter(r=>r.pass).length;
+    const identityPass=registry.pass && frozen.pass;
+    const status=(passed===total && identityPass)?"PASS":"FAIL";
+
+    lastAudit={
+      schema:"SEC-BROWSER-AUDIT-RESULT-1-D01",
+      system_version:SYSTEM_VERSION,
+      status,
+      passed,
+      total,
+      identity_pass:identityPass,
+      groups:counts,
+      vector_set_id:SEC_FROZEN_CORPUS.vector_set_id,
+      corpus_id:SEC_FROZEN_CORPUS.corpus_id,
+      profile_registry_id:SEC_FROZEN_PROFILE_REGISTRY.profile_registry_id,
+      rows,
+      registry_verification:registry,
+      corpus_verification:frozen
+    };
+    return lastAudit;
+  }
+
+  function last(){ return lastAudit?clone(lastAudit):null; }
+
+  function resolveVector(id){
+    const vector=SEC_FROZEN_CORPUS.vectors.find(v=>v.vector_id===id);
+    if(!vector) throw new Error("Unknown vector: "+id);
+    return resolveVectorObject(vector);
+  }
+
+  global.SEC_CORE={
+    version:SYSTEM_VERSION,
+    resolveVector,
+    canonicalStringify,
+    hashObject,
+    canonicalCarrier
+  };
+  global.SEC_AUDIT={runAll,last,verifyRegistry,verifyFrozenCorpusIdentity};
+
+  if(typeof document!=="undefined"){
+    const $=id=>document.getElementById(id);
+    const select=$("vectorSelect");
+    $("vectorCount").textContent=String(SEC_FROZEN_CORPUS.vector_count);
+    $("vectorSetId").textContent=SEC_FROZEN_CORPUS.vector_set_id;
+    $("corpusId").textContent=SEC_FROZEN_CORPUS.corpus_id;
+    $("profileRegistryId").textContent=SEC_FROZEN_PROFILE_REGISTRY.profile_registry_id;
+
+    for(const v of SEC_FROZEN_CORPUS.vectors){
+      const o=document.createElement("option");
+      o.value=v.vector_id;
+      o.textContent=v.vector_id+" — "+v.title;
+      select.appendChild(o);
+    }
+
+    function auditText(a){
+      const lines=[
+        "STRUCTURAL EARTH CENTRE BROWSER REFERENCE v0.5.0",
+        "STATUS "+a.status
+      ];
+      for(const k of Object.keys(a.groups).sort()){
+        const g=a.groups[k];
+        lines.push(k+" "+g.pass+"/"+g.total+" PASS");
+      }
+      lines.push("TOTAL "+a.passed+"/"+a.total+" PASS");
+      lines.push("VECTOR SET "+a.vector_set_id);
+      lines.push("CORPUS "+a.corpus_id);
+      lines.push("PROFILE REGISTRY "+a.profile_registry_id);
+      return lines.join("\n");
+    }
+
+    async function renderAudit(){
+      $("auditStatus").textContent="RUNNING";
+      $("auditStatus").className="value warn";
+      $("statusLine").textContent="Running the frozen conformance corpus...";
+      const a=await runAll();
+      $("auditStatus").textContent=a.status;
+      $("auditStatus").className="value "+(a.status==="PASS"?"pass":"fail");
+      $("auditTotal").textContent=a.passed+"/"+a.total;
+      $("statusLine").textContent=a.status==="PASS"?"All frozen browser conformance vectors passed.":"One or more checks failed.";
+      $("statusLine").className=a.status==="PASS"?"pass":"fail";
+      $("auditOutput").textContent=auditText(a);
+    }
+
+    $("runAudit").addEventListener("click",renderAudit);
+    $("runVector").addEventListener("click",()=>{
+      try{
+        const r=resolveVector(select.value);
+        $("vectorOutput").textContent=JSON.stringify({
+          vector_id:r.vector_id,
+          resolution_state:r.result.resolution_state,
+          result:r.result,
+          carrier_id:r.carrier_id,
+          dependency_fingerprint_id:r.dependency_fingerprint_id,
+          result_id:r.result_id,
+          certificate_id:r.certificate_id
+        },null,2);
+      }catch(err){
+        $("vectorOutput").textContent="ERROR\n"+err.message;
+      }
+    });
+  }
+})(globalThis);
+</script>
+</body>
+</html>

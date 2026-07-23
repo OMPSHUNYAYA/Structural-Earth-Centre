@@ -1,0 +1,29 @@
+{
+  "schema": "SEC-EARTH-SOURCE-REGISTRY-1-D01",
+  "source_registry_id": "sha256:6538112c642f1b3cc4ddeba4fbdcbb1f8c55e39e680202b64ffdb0348eb08238",
+  "sources": [
+    {
+      "authority": "International Earth Rotation and Reference Systems Service",
+      "scope_used": [
+        "ITRS is geocentric",
+        "ITRS origin is defined as the center of mass of the whole Earth including oceans and atmosphere",
+        "Reference-system realization and geophysical modeling are distinct from merely declaring a coordinate origin"
+      ],
+      "source_class": "PRIMARY_STANDARD",
+      "source_id": "IERS-TN36-2010",
+      "title": "IERS Conventions (2010), IERS Technical Note No. 36"
+    },
+    {
+      "authority": "National Geospatial-Intelligence Agency",
+      "scope_used": [
+        "WGS 84 coordinate-system definition",
+        "Earth-centered Earth-fixed coordinate-system origin",
+        "WGS 84 reference ellipsoid defining parameters"
+      ],
+      "source_class": "PRIMARY_STANDARD",
+      "source_id": "NGA-WGS84-STD-0036-1.0.0",
+      "title": "NGA.STND.0036_1.0.0_WGS84"
+    }
+  ],
+  "system_version": "0.5.0"
+}

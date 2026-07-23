@@ -1,0 +1,875 @@
+{
+  "innovation_profile": "SEC-STRUCTURAL-CENTRE-INNOVATION-1-D01",
+  "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTORS-1-D01",
+  "system_version": "0.5.0",
+  "vector_corpus_id": "sha256:7d32586925603334c9c8366aca2cd7ae69d7543e41b28ee40239e4e2d4597f49",
+  "vector_count": 15,
+  "vector_set_id": "secinv_7718daa3768043daf43790ca5c4e0f83f01f207d444b8418e6067700d8af1973",
+  "vectors": [
+    {
+      "category": "STABILITY",
+      "expected": {
+        "centre_type": "POINT",
+        "centre_value": [
+          {
+            "d": "1",
+            "n": "1"
+          },
+          {
+            "d": "1",
+            "n": "2"
+          }
+        ],
+        "perturbation_family_id": "sha256:ccd3a8cbaa7dceae0017c75f94baf941565ed9490bad0c1a043dc3929502e678",
+        "resolution_state": "RESOLVED_POINT",
+        "sample_count": 3,
+        "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+        "stability_envelope_id": "sha256:ee213d37dc54b274fb9e6677d8451d2195711317dac1d715bcf20f699a0e9ecb",
+        "system_version": "0.5.0",
+        "unique_point_count": 1,
+        "witness": {
+          "all_admitted_samples_coincide": true,
+          "region_required": false
+        }
+      },
+      "input": {
+        "perturbation_family": {
+          "family": "DECLARED_NUMERICAL_VARIANTS",
+          "scope": "EXACT_DEMO"
+        },
+        "samples": [
+          {
+            "point": [
+              1,
+              2
+            ],
+            "sample_id": "A"
+          },
+          {
+            "point": [
+              1,
+              2
+            ],
+            "sample_id": "B"
+          },
+          {
+            "point": [
+              1,
+              2
+            ],
+            "sample_id": "C"
+          }
+        ]
+      },
+      "operation": "STABILITY_ENVELOPE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Coincident perturbation family resolves to one point",
+      "vector_hash": "sha256:bf4b33c7cfc94f03b3ad4ee5667e8b52dbdac48df73538469524554ebb18df10",
+      "vector_id": "SEC-INV-S001"
+    },
+    {
+      "category": "STABILITY",
+      "expected": {
+        "centre_region": {
+          "dimension": 1,
+          "lower_bound": [
+            {
+              "d": "2",
+              "n": "1"
+            }
+          ],
+          "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE",
+          "upper_bound": [
+            {
+              "d": "2",
+              "n": "3"
+            }
+          ]
+        },
+        "centre_type": "REGION",
+        "perturbation_family_id": "sha256:96ba4193b35807770e884ddb30c5664b32a1f13b53feb2eecb9e0399dcbb95d3",
+        "region_id": "sha256:7093b8c525c06d8d3453c71f4f58e189f0b3f97696108d2fc27c5305b505a290",
+        "resolution_state": "RESOLVED_REGION",
+        "sample_count": 2,
+        "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+        "stability_envelope_id": "sha256:eb6fb76c58cd6bb8cf2bed0525e06cad5343e9e211915f02609bd73309833f88",
+        "system_version": "0.5.0",
+        "unique_point_count": 2,
+        "witness": {
+          "all_admitted_samples_inside": true,
+          "inference_outside_declared_family": false,
+          "minimal_axis_aligned_bounds_over_declared_samples": true
+        }
+      },
+      "input": {
+        "perturbation_family": {
+          "family": "DECLARED_MODEL_VARIANTS",
+          "scope": "EXACT_DEMO"
+        },
+        "samples": [
+          {
+            "point": [
+              "1/2"
+            ],
+            "sample_id": "A"
+          },
+          {
+            "point": [
+              "3/2"
+            ],
+            "sample_id": "B"
+          }
+        ]
+      },
+      "operation": "STABILITY_ENVELOPE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "One-dimensional spread resolves to a bounded region",
+      "vector_hash": "sha256:1e6713a59f8ffc306d5e1f7a79431d4534465a38751786dfb77b0e8dd42d6542",
+      "vector_id": "SEC-INV-S002"
+    },
+    {
+      "category": "STABILITY",
+      "expected": {
+        "centre_region": {
+          "dimension": 2,
+          "lower_bound": [
+            {
+              "d": "1",
+              "n": "0"
+            },
+            {
+              "d": "1",
+              "n": "0"
+            }
+          ],
+          "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE",
+          "upper_bound": [
+            {
+              "d": "1",
+              "n": "2"
+            },
+            {
+              "d": "1",
+              "n": "2"
+            }
+          ]
+        },
+        "centre_type": "REGION",
+        "perturbation_family_id": "sha256:ed3e019d372d73e55ee7ad225e4eb08f1c48f97cd6a5fb9c54abcb9fe55b868f",
+        "region_id": "sha256:d38afafbfc42515e0760d7ade2b602d9a8b53d7bcce40e5b3af9cfeaa8c7cd9a",
+        "resolution_state": "RESOLVED_REGION",
+        "sample_count": 3,
+        "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+        "stability_envelope_id": "sha256:0396b32381f4bf29386a720e1289ca3bea323936a9327e433b165e54d3669100",
+        "system_version": "0.5.0",
+        "unique_point_count": 3,
+        "witness": {
+          "all_admitted_samples_inside": true,
+          "inference_outside_declared_family": false,
+          "minimal_axis_aligned_bounds_over_declared_samples": true
+        }
+      },
+      "input": {
+        "perturbation_family": {
+          "axes": [
+            "x",
+            "y"
+          ],
+          "family": "DECLARED_PERTURBATION_FAMILY",
+          "scope": "EXACT_DEMO"
+        },
+        "samples": [
+          {
+            "point": [
+              0,
+              2
+            ],
+            "sample_id": "NW"
+          },
+          {
+            "point": [
+              2,
+              0
+            ],
+            "sample_id": "SE"
+          },
+          {
+            "point": [
+              1,
+              1
+            ],
+            "sample_id": "MID"
+          }
+        ]
+      },
+      "operation": "STABILITY_ENVELOPE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Two-dimensional admitted family resolves to exact region",
+      "vector_hash": "sha256:73deea257b095d33b9f8d99fc1193c5819123de380205a3a70a30b99378bf5cf",
+      "vector_id": "SEC-INV-S003"
+    },
+    {
+      "category": "STABILITY",
+      "expected": {
+        "perturbation_family_id": "sha256:08cb59758cf677f50d086659f77e5e99fc597d990cb17ce8d5e8d56162d9d639",
+        "reason": "NO_ADMITTED_PERTURBATION_RESULTS",
+        "resolution_state": "INCOMPLETE",
+        "sample_count": 0,
+        "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+        "stability_envelope_id": "sha256:e98e17a9a549eec2555000df92697d64ac66d3ff82a8c27424f6e097db925f55",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "perturbation_family": {
+          "family": "DECLARED_EMPTY_FAMILY"
+        },
+        "samples": []
+      },
+      "operation": "STABILITY_ENVELOPE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "No admitted perturbation result remains incomplete",
+      "vector_hash": "sha256:f994e03496050ba0e57b603e03ba619f969c84c6ef9f90545b1405be096b3ad0",
+      "vector_id": "SEC-INV-S004"
+    },
+    {
+      "category": "STABILITY",
+      "expected": {
+        "perturbation_family_id": "sha256:a2dce93cd874eaa62e2144252a934a06ffe46fb2c3b64e577c571e92290eb17c",
+        "reason": "PERTURBATION_RESULT_DIMENSION_MISMATCH",
+        "resolution_state": "CONFLICT",
+        "sample_count": 2,
+        "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+        "stability_envelope_id": "sha256:a44e7ffe22128752fd5109460838ced4c2823d7d3d9225d57cc8f8c91e8de0b6",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "perturbation_family": {
+          "family": "DECLARED_CONFLICTING_FAMILY"
+        },
+        "samples": [
+          {
+            "point": [
+              0
+            ],
+            "sample_id": "A"
+          },
+          {
+            "point": [
+              0,
+              1
+            ],
+            "sample_id": "B"
+          }
+        ]
+      },
+      "operation": "STABILITY_ENVELOPE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Dimension mismatch is an explicit conflict",
+      "vector_hash": "sha256:21b928dbd4f98cb77e0af4607c1e191d9a39ed2d82300e3d5e2d60823d317a66",
+      "vector_id": "SEC-INV-S005"
+    },
+    {
+      "category": "DIFFERENTIAL",
+      "expected": {
+        "changed_dependencies": [],
+        "changed_dependency_count": 0,
+        "differential_id": "sha256:1832c195e60d65789ff53ab17b811d3cded4f0fb0ad2c06d334eeac27af2fe46",
+        "differential_state": "NO_STRUCTURAL_DIFFERENCE",
+        "interpretation": "MULTIPLE_OR_NO_DECLARED_DIFFERENCES",
+        "left_claim_id": "sha256:9d7091a5de9a8e08485161dea33dc38f42219479386af926e35d1edc0704cfb0",
+        "left_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "result_equivalent": true,
+        "right_claim_id": "sha256:9d7091a5de9a8e08485161dea33dc38f42219479386af926e35d1edc0704cfb0",
+        "right_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "left": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        },
+        "right": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        }
+      },
+      "operation": "STRUCTURAL_DIFFERENTIAL",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Identical declaration and result has no structural difference",
+      "vector_hash": "sha256:3a3bbcbfcad23ffef9b7fafcec6c693aa7437bdb38c40b188a81a6d1a7be8bc7",
+      "vector_id": "SEC-INV-D001"
+    },
+    {
+      "category": "DIFFERENTIAL",
+      "expected": {
+        "changed_dependencies": [
+          "centre_profile_id"
+        ],
+        "changed_dependency_count": 1,
+        "differential_id": "sha256:c73d7106c1aae0825c75b5da72d21266a96c025746786306ba4fca5317b69657",
+        "differential_state": "CLAIM_DISTINCT_RESULT_EQUIVALENT",
+        "interpretation": "CONTROLLED_SINGLE_DECLARED_DIFFERENCE",
+        "left_claim_id": "sha256:9d7091a5de9a8e08485161dea33dc38f42219479386af926e35d1edc0704cfb0",
+        "left_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "result_equivalent": true,
+        "right_claim_id": "sha256:4131e7cb2e97e84db37d5f0aeb338cf12bbe5fec6e1a75026ddcafe508b4bad5",
+        "right_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "left": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        },
+        "right": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-B",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        }
+      },
+      "operation": "STRUCTURAL_DIFFERENTIAL",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Different claim structure can coincide at one result",
+      "vector_hash": "sha256:23da19a08d843e7906bfe59d9c5aa2232444eec38212fb2f73fed5955ec1598c",
+      "vector_id": "SEC-INV-D002"
+    },
+    {
+      "category": "DIFFERENTIAL",
+      "expected": {
+        "changed_dependencies": [
+          "measure"
+        ],
+        "changed_dependency_count": 1,
+        "differential_id": "sha256:915cb0e27e4c5ee9d0b73c7b211653c5d9e6f62dae0151bf773baa84e1a44ed1",
+        "differential_state": "SINGLE_DEPENDENCY_DIVERGENCE",
+        "interpretation": "CONTROLLED_SINGLE_DECLARED_DIFFERENCE",
+        "left_claim_id": "sha256:9d7091a5de9a8e08485161dea33dc38f42219479386af926e35d1edc0704cfb0",
+        "left_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "result_equivalent": false,
+        "right_claim_id": "sha256:0886bdf191aa898cbb3b39774adaa9ae550947d8fb7e6bb3f314592c81b7e88a",
+        "right_result_id": "sha256:fdf921fc549aa1b0e22a020d552de3a76061024bf74c3059dd01476516bc9665",
+        "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "left": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        },
+        "right": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "BOUNDARY",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        }
+      },
+      "operation": "STRUCTURAL_DIFFERENTIAL",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "A controlled single dependency change explains result divergence",
+      "vector_hash": "sha256:8ce3b345d24c5bdba3f4f9da78f1d9ed26f31492a0f4ffacdd8254fe5029b827",
+      "vector_id": "SEC-INV-D003"
+    },
+    {
+      "category": "DIFFERENTIAL",
+      "expected": {
+        "changed_dependencies": [
+          "centre_profile_id",
+          "measure",
+          "metric"
+        ],
+        "changed_dependency_count": 3,
+        "differential_id": "sha256:4a24d1514e7b4fc7457d3327ad05eae6c5a83bc033abc64e1eb510bc40531a28",
+        "differential_state": "MULTI_DEPENDENCY_DIVERGENCE",
+        "interpretation": "MULTIPLE_OR_NO_DECLARED_DIFFERENCES",
+        "left_claim_id": "sha256:9d7091a5de9a8e08485161dea33dc38f42219479386af926e35d1edc0704cfb0",
+        "left_result_id": "sha256:a16043ece4294c149bbd55a32d048fc7d43ca15d45ad898a853a317768dce75c",
+        "result_equivalent": false,
+        "right_claim_id": "sha256:edd9943749ad6b9e08985e199f77d09ee4796507822fdf21b1d9667144a8a33f",
+        "right_result_id": "sha256:fdf921fc549aa1b0e22a020d552de3a76061024bf74c3059dd01476516bc9665",
+        "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "left": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA",
+            "metric": "M1"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        },
+        "right": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-B",
+          "dependencies": {
+            "measure": "BOUNDARY",
+            "metric": "M2"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        }
+      },
+      "operation": "STRUCTURAL_DIFFERENTIAL",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Multiple declared dependency changes remain explicit",
+      "vector_hash": "sha256:48913576e3bab54c06c92754d2d40358fc71f9c6d138d46f6d0a9f57c0ede807",
+      "vector_id": "SEC-INV-D004"
+    },
+    {
+      "category": "DIFFERENTIAL",
+      "expected": {
+        "changed_dependencies": [
+          "measure"
+        ],
+        "changed_dependency_count": 1,
+        "differential_id": "sha256:d224da0f37dc34d9055ad2d55e16ecbf76a89c1fcb143e6081ebd67fbdec9d4e",
+        "differential_state": "UNRESOLVED_COMPARISON",
+        "interpretation": "CONTROLLED_SINGLE_DECLARED_DIFFERENCE",
+        "left_claim_id": "sha256:156bc50e793e1cd5ca0087f903b262540d147df4918a87b05824673acd16a268",
+        "left_result_id": "sha256:bef60b8873cddd0f5bde8f7ccdc7f07f325cd5b467187764a46efac3e48e2402",
+        "result_equivalent": false,
+        "right_claim_id": "sha256:d3bdfa5337b397beb11f9fdcefd229e29b8c2153c8f1b27cac9e7cd0d065e3eb",
+        "right_result_id": "sha256:fdf921fc549aa1b0e22a020d552de3a76061024bf74c3059dd01476516bc9665",
+        "schema": "SEC-STRUCTURAL-CENTRE-DIFFERENTIAL-1-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "left": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "AREA"
+          },
+          "result": {
+            "resolution_state": "INCOMPLETE"
+          }
+        },
+        "right": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependencies": {
+            "measure": "BOUNDARY"
+          },
+          "result": {
+            "centre_type": "POINT",
+            "centre_value": [
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ],
+            "resolution_state": "RESOLVED_POINT"
+          }
+        }
+      },
+      "operation": "STRUCTURAL_DIFFERENTIAL",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Unresolved claims are not forced into a resolved differential",
+      "vector_hash": "sha256:8a61423c14a203b6743359fc87ecb1ff8b3b09dc803c0a9d24dbbc639f37315e",
+      "vector_id": "SEC-INV-D005"
+    },
+    {
+      "category": "SYMMETRY",
+      "expected": {
+        "candidates": [
+          "A",
+          "B"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ],
+        "reason": "NO_ADMITTED_SYMMETRY_BREAKER",
+        "schema": "SEC-SYMMETRY-CERTIFICATE-1-D01",
+        "symmetry_breaker": null,
+        "symmetry_certificate_id": "sha256:948aac25689d969bbe1841ac2ea831283ada999167e15d59e98d037d400f633f",
+        "symmetry_state": "UNIQUE_CENTRE_REFUSED",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "candidates": [
+          "A",
+          "B"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ]
+      },
+      "operation": "SYMMETRY_CERTIFICATE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Equivalent candidates without a breaker refuse unique centre",
+      "vector_hash": "sha256:f22688b726eba747e685961ed0151a5e79da80eff976acb87ba785a802c84ada",
+      "vector_id": "SEC-INV-Y001"
+    },
+    {
+      "category": "SYMMETRY",
+      "expected": {
+        "candidates": [
+          "A",
+          "B"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ],
+        "reason": "DECLARED_SYMMETRY_BREAKER_SELECTS_MEMBER",
+        "schema": "SEC-SYMMETRY-CERTIFICATE-1-D01",
+        "symmetry_breaker": "B",
+        "symmetry_certificate_id": "sha256:e41bf8b7dedc2fc04dfcc7b7c4ec21e83f47303ee78ac6c28acf2ce6e21b6322",
+        "symmetry_state": "UNIQUE_CENTRE_ADMITTED",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "candidates": [
+          "A",
+          "B"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ],
+        "symmetry_breaker": "B"
+      },
+      "operation": "SYMMETRY_CERTIFICATE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Declared breaker admits one member of equivalence class",
+      "vector_hash": "sha256:fe8bae50ae2b3c135d1e99b038c796c5b477cd617cc8ef4b37b9fa5dfc705870",
+      "vector_id": "SEC-INV-Y002"
+    },
+    {
+      "category": "SYMMETRY",
+      "expected": {
+        "candidates": [
+          "A",
+          "B",
+          "C"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ],
+        "reason": "SYMMETRY_BREAKER_OUTSIDE_EQUIVALENCE_CLASS",
+        "schema": "SEC-SYMMETRY-CERTIFICATE-1-D01",
+        "symmetry_breaker": "C",
+        "symmetry_certificate_id": "sha256:4fe063e572be8eb8d922d78af15eb659a820cf30cae33c598b26eec435941ff5",
+        "symmetry_state": "CONFLICT",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "candidates": [
+          "A",
+          "B",
+          "C"
+        ],
+        "equivalence_class": [
+          "A",
+          "B"
+        ],
+        "symmetry_breaker": "C"
+      },
+      "operation": "SYMMETRY_CERTIFICATE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Breaker outside equivalence class is a conflict",
+      "vector_hash": "sha256:7fdba03c2428100d55ec3ef4bce0dadf0c96d30f8d24081d73e28385f326fda2",
+      "vector_id": "SEC-INV-Y003"
+    },
+    {
+      "category": "CERTIFICATE",
+      "expected": {
+        "authority_scope": "BOUNDED_DEMONSTRATION",
+        "certificate_id": "sha256:7c6d535182179cee7bb4a22d69ab93210f91f02488020c69d7a8394db57b728c",
+        "claim_id": "sha256:496ff838b273ca20c1c1725135d6d2cc2b0539782c440ffabcb6556f802dbcf2",
+        "claim_material": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "claim_kind": "CENTRE_CLAIM",
+          "dependency_fingerprint_id": "sha256:deps-a",
+          "schema": "SEC-CENTRE-CLAIM-IDENTITY-1-D01",
+          "system_version": "0.5.0"
+        },
+        "resolution_state": "RESOLVED_POINT",
+        "resolution_witness": {
+          "dependencies_checked": true,
+          "method": "EXACT_DEMONSTRATION",
+          "resolved_state": true,
+          "state_is_explicit": true
+        },
+        "result_id": "sha256:fdf921fc549aa1b0e22a020d552de3a76061024bf74c3059dd01476516bc9665",
+        "result_id_source": "STRUCTURAL_MATERIAL_HASH",
+        "result_material_hash": "sha256:fdf921fc549aa1b0e22a020d552de3a76061024bf74c3059dd01476516bc9665",
+        "schema": "SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "claim": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependency_fingerprint_id": "sha256:deps-a"
+        },
+        "resolution_witness": {
+          "dependencies_checked": true,
+          "method": "EXACT_DEMONSTRATION"
+        },
+        "result": {
+          "centre_type": "POINT",
+          "centre_value": [
+            {
+              "d": "1",
+              "n": "1"
+            }
+          ],
+          "resolution_state": "RESOLVED_POINT"
+        }
+      },
+      "operation": "RESOLUTION_CERTIFICATE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Point resolution certificate binds claim and result",
+      "vector_hash": "sha256:7da212afc6184910cfaeb15de2fcbaee2c0e2c07a1dd59c829cad9f5b41d97b9",
+      "vector_id": "SEC-INV-C001"
+    },
+    {
+      "category": "CERTIFICATE",
+      "expected": {
+        "authority_scope": "BOUNDED_DEMONSTRATION",
+        "certificate_id": "sha256:1e2bd7f02c5326ea44d9e2d8e422ace397a1af72fa69e32f96259f297b92e6df",
+        "claim_id": "sha256:496ff838b273ca20c1c1725135d6d2cc2b0539782c440ffabcb6556f802dbcf2",
+        "claim_material": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "claim_kind": "CENTRE_CLAIM",
+          "dependency_fingerprint_id": "sha256:deps-a",
+          "schema": "SEC-CENTRE-CLAIM-IDENTITY-1-D01",
+          "system_version": "0.5.0"
+        },
+        "resolution_state": "RESOLVED_REGION",
+        "resolution_witness": {
+          "dependencies_checked": true,
+          "method": "DECLARED_STABILITY_ENVELOPE",
+          "resolved_state": true,
+          "state_is_explicit": true
+        },
+        "result_id": "sha256:ff826cb62f39d1fad2b19da13c240772ae3407c0a3143d8e9b93572ba5692d32",
+        "result_id_source": "STRUCTURAL_MATERIAL_HASH",
+        "result_material_hash": "sha256:ff826cb62f39d1fad2b19da13c240772ae3407c0a3143d8e9b93572ba5692d32",
+        "schema": "SEC-CENTRE-RESOLUTION-CERTIFICATE-3-D01",
+        "stability_envelope_id": "sha256:37c54395dd7281b024d923acfd7419a2efe62d98da53da0bac1106a2f3d09cd5",
+        "system_version": "0.5.0"
+      },
+      "input": {
+        "claim": {
+          "authority_scope": "BOUNDED_DEMONSTRATION",
+          "carrier_id": "sha256:carrier-demo",
+          "centre_profile_id": "PROFILE-A",
+          "dependency_fingerprint_id": "sha256:deps-a"
+        },
+        "resolution_witness": {
+          "dependencies_checked": true,
+          "method": "DECLARED_STABILITY_ENVELOPE"
+        },
+        "result": {
+          "centre_region": {
+            "dimension": 2,
+            "lower_bound": [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE",
+            "upper_bound": [
+              {
+                "d": "1",
+                "n": "1"
+              },
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ]
+          },
+          "centre_type": "REGION",
+          "resolution_state": "RESOLVED_REGION"
+        },
+        "stability_envelope": {
+          "centre_region": {
+            "dimension": 2,
+            "lower_bound": [
+              {
+                "d": "1",
+                "n": "0"
+              },
+              {
+                "d": "1",
+                "n": "0"
+              }
+            ],
+            "region_type": "AXIS_ALIGNED_EXACT_RATIONAL_ENVELOPE",
+            "upper_bound": [
+              {
+                "d": "1",
+                "n": "1"
+              },
+              {
+                "d": "1",
+                "n": "1"
+              }
+            ]
+          },
+          "centre_type": "REGION",
+          "perturbation_family_id": "sha256:3e186e8497690367dfd7aaf9625bfc273f017a78f8faf5636bec92c62926f1e9",
+          "region_id": "sha256:7bf041cf2a47006b96522b6c3f99ca30e936944998d68bbb0a36f38566b35241",
+          "resolution_state": "RESOLVED_REGION",
+          "sample_count": 2,
+          "schema": "SEC-CENTRE-STABILITY-ENVELOPE-1-D01",
+          "stability_envelope_id": "sha256:37c54395dd7281b024d923acfd7419a2efe62d98da53da0bac1106a2f3d09cd5",
+          "system_version": "0.5.0",
+          "unique_point_count": 2,
+          "witness": {
+            "all_admitted_samples_inside": true,
+            "inference_outside_declared_family": false,
+            "minimal_axis_aligned_bounds_over_declared_samples": true
+          }
+        }
+      },
+      "operation": "RESOLUTION_CERTIFICATE",
+      "schema": "SEC-STRUCTURAL-CENTRE-INNOVATION-VECTOR-1-D01",
+      "system_version": "0.5.0",
+      "title": "Region certificate binds a genuine stability envelope",
+      "vector_hash": "sha256:eb6964de1d704e30701aa7ce33bd7a60c2865516111682b751f26dccdc79b496",
+      "vector_id": "SEC-INV-C002"
+    }
+  ]
+}

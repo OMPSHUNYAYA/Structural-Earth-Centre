@@ -179,7 +179,7 @@ jobs:
 
       - name: Run complete deterministic verification
         run: |
-          python -B verify/SEC_Verification_Runner_v0_5_0.py
+          python -B verify/SEC_Verification_Runner_v0_5_0.py --verbose
 
       - name: Install Playwright Chromium
         run: |

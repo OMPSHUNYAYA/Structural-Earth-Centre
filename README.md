@@ -17,13 +17,15 @@
 ![Deterministic](https://img.shields.io/badge/Core%20Model-Deterministic-purple)
 ![Shunyaya](https://img.shields.io/badge/Part%20of-Shunyaya%20Framework-gold)
 
-🌐 [Open Structural Earth Centre Laboratory](demo/Structural_Earth_Centre_Laboratory_v0_5_0.html)
+[![Structural Earth Centre Deterministic Verification](https://github.com/OMPSHUNYAYA/Structural-Earth-Centre/actions/workflows/sec-verification.yml/badge.svg?branch=main)](https://github.com/OMPSHUNYAYA/Structural-Earth-Centre/actions/workflows/sec-verification.yml)
 
-🧭 [Open Structural Centre Innovation Laboratory](demo/Structural_Earth_Centre_Innovation_Laboratory_v0_5_0.html)
+---
 
-🧩 [Open Advanced Structural Centre Laboratory](demo/Structural_Earth_Centre_Advanced_Laboratory_v0_5_0.html)
+### 🌐 Try the Live Interactive Laboratories
 
-🔁 [Open Structural Portability Laboratory](demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html)
+🌍 [Explore the Structural Earth Centre Laboratory](https://ompshunyaya.github.io/Structural-Earth-Centre/demo/Structural_Earth_Centre_Laboratory_v0_5_0.html)
+
+🔁 [Explore Structural Portability Beyond Centre Resolution](https://ompshunyaya.github.io/Structural-Earth-Centre/demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html)
 
 ---
 
@@ -319,7 +321,7 @@ Third-party verification is not claimed.
 
 # ⚡ **Try It**
 
-Open the [Integrated Structural Earth Centre Laboratory](demo/Structural_Earth_Centre_Laboratory_v0_5_0.html) and run:
+Open the [Live Structural Earth Centre Laboratory](https://ompshunyaya.github.io/Structural-Earth-Centre/demo/Structural_Earth_Centre_Laboratory_v0_5_0.html) and run:
 
 ```javascript
 await SEC_LAB_AUDIT.runAll({verbose:true})
@@ -329,7 +331,7 @@ Expected:
 
 `132/132 PASS`
 
-Open the [Structural Portability Laboratory](demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html) and run:
+Open the [Live Structural Portability Laboratory](https://ompshunyaya.github.io/Structural-Earth-Centre/demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html) and run:
 
 ```javascript
 await SEC_PORTABILITY_AUDIT.runAll({verbose:true})
@@ -360,19 +362,19 @@ python -B verify/SEC_Verification_Runner_v0_5_0.py --self-test
 Individual verification boundaries can also be run directly:
 
 ```text
-python demo/Structural_Earth_Centre_Reference_Kernel_v0_5_0.py --corpus corpus --audit
-python verify/SEC_Cross_Implementation_Parity_Auditor_v0_5_0.py --root . --verbose
-python verify/SEC_Earth_Profile_Validator_v0_5_0.py --profiles profiles --verbose
-python verify/SEC_Real_Land_Centre_Resolver_v0_5_0.py --self-test
-python verify/SEC_Real_Land_Reproducibility_Verifier_v0_5_0.py --self-test
-python verify/SEC_Real_Land_Reproducibility_Verifier_v0_5_0.py --fetch-evidence evidence/SEC_Real_Land_Centre_Natural_Earth_110m_Fetch_v0_5_0.json --offline-evidence evidence/SEC_Real_Land_Centre_Natural_Earth_110m_Offline_v0_5_0.json
-python verify/SEC_Structural_Centre_Resolver_v0_5_0.py --audit --verbose
-python verify/SEC_Structural_Centre_Innovation_Parity_Auditor_v0_5_0.py --root . --verbose
-python verify/SEC_Real_Land_Profile_Differential_v0_5_0.py --root . --verbose
-python verify/SEC_Structural_Centre_Advanced_Resolver_v0_5_0.py --audit --verbose
-python verify/SEC_Structural_Centre_Advanced_Parity_Auditor_v0_5_0.py --root . --verbose
-python verify/SEC_Structural_Portability_Kernel_v0_5_0.py --profiles profiles --audit --verbose
-python verify/SEC_Structural_Portability_Parity_Auditor_v0_5_0.py --root . --verbose
+python -B demo/Structural_Earth_Centre_Reference_Kernel_v0_5_0.py --corpus corpus --audit
+python -B verify/SEC_Cross_Implementation_Parity_Auditor_v0_5_0.py --root . --verbose
+python -B verify/SEC_Earth_Profile_Validator_v0_5_0.py --profiles profiles --verbose
+python -B verify/SEC_Real_Land_Centre_Resolver_v0_5_0.py --self-test
+python -B verify/SEC_Real_Land_Reproducibility_Verifier_v0_5_0.py --self-test
+python -B verify/SEC_Real_Land_Reproducibility_Verifier_v0_5_0.py --fetch-evidence evidence/SEC_Real_Land_Centre_Natural_Earth_110m_Fetch_v0_5_0.json --offline-evidence evidence/SEC_Real_Land_Centre_Natural_Earth_110m_Offline_v0_5_0.json
+python -B verify/SEC_Structural_Centre_Resolver_v0_5_0.py --audit --verbose
+python -B verify/SEC_Structural_Centre_Innovation_Parity_Auditor_v0_5_0.py --root . --verbose
+python -B verify/SEC_Real_Land_Profile_Differential_v0_5_0.py --root . --verbose
+python -B verify/SEC_Structural_Centre_Advanced_Resolver_v0_5_0.py --audit --verbose
+python -B verify/SEC_Structural_Centre_Advanced_Parity_Auditor_v0_5_0.py --root . --verbose
+python -B verify/SEC_Structural_Portability_Kernel_v0_5_0.py --profiles profiles --audit --verbose
+python -B verify/SEC_Structural_Portability_Parity_Auditor_v0_5_0.py --root . --verbose
 ```
 
 The standalone real-land resolver accepts the declared area-vector profile. Supplying the boundary-vector profile is rejected with `PROFILE_ID_MISMATCH` and points to:

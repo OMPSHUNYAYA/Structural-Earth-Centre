@@ -1,2 +1,9 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+/corpus/** -text
+/data/** -text
+/demo/** -text
+/evidence/** -text
+/profiles/** -text
+/verify/** -text

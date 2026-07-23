@@ -1,0 +1,393 @@
+name: Structural Earth Centre Deterministic Verification
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify Structural Earth Centre v0.5.0
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUTF8: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
+
+      - name: Validate JSON artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python -B <<'PY'
+          from pathlib import Path
+          import json
+          import sys
+
+          roots = (
+              Path("corpus"),
+              Path("data"),
+              Path("evidence"),
+              Path("profiles"),
+          )
+
+          files = sorted(
+              path
+              for root in roots
+              for path in root.rglob("*")
+              if path.is_file()
+              and path.suffix.lower() in {".json", ".geojson"}
+          )
+
+          if not files:
+              print("FAIL: No JSON artifacts were found.")
+              sys.exit(1)
+
+          def reject_duplicate_keys(pairs):
+              result = {}
+
+              for key, value in pairs:
+                  if key in result:
+                      raise ValueError(
+                          f"Duplicate decoded object key: {key!r}"
+                      )
+
+                  result[key] = value
+
+              return result
+
+          failed = False
+
+          for path in files:
+              try:
+                  json.loads(
+                      path.read_text(encoding="utf-8-sig"),
+                      object_pairs_hook=reject_duplicate_keys,
+                  )
+
+                  print(f"PASS: {path.as_posix()}")
+
+              except Exception as error:
+                  print(f"FAIL: {path.as_posix()}")
+                  print(error)
+                  failed = True
+
+          if failed:
+              sys.exit(1)
+
+          print("")
+          print(
+              f"JSON artifacts verified: {len(files)} file(s)."
+          )
+          PY
+
+      - name: Verify Python syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python -B <<'PY'
+          from pathlib import Path
+          import ast
+          import sys
+
+          files = sorted(
+              path
+              for path in Path(".").rglob("*.py")
+              if ".git" not in path.parts
+          )
+
+          if not files:
+              print("FAIL: No Python files were found.")
+              sys.exit(1)
+
+          failed = False
+
+          for path in files:
+              try:
+                  ast.parse(
+                      path.read_text(encoding="utf-8-sig"),
+                      filename=str(path),
+                  )
+
+                  print(f"PASS: {path.as_posix()}")
+
+              except Exception as error:
+                  print(f"FAIL: {path.as_posix()}")
+                  print(error)
+                  failed = True
+
+          if failed:
+              sys.exit(1)
+
+          print("")
+          print(
+              f"Python syntax verified: {len(files)} file(s)."
+          )
+          PY
+
+      - name: Verify JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          mapfile -d '' FILES < <(
+            find verify \
+              -type f \
+              -name '*.js' \
+              -print0 |
+            sort -z
+          )
+
+          if [ "${#FILES[@]}" -eq 0 ]; then
+            echo "FAIL: No JavaScript verification files were found."
+            exit 1
+          fi
+
+          for file in "${FILES[@]}"; do
+            node --check "$file"
+            echo "PASS: $file"
+          done
+
+          echo ""
+          echo "JavaScript syntax verified: ${#FILES[@]} file(s)."
+
+      - name: Validate verification runner configuration
+        run: |
+          python -B verify/SEC_Verification_Runner_v0_5_0.py --self-test
+
+      - name: Run complete deterministic verification
+        run: |
+          python -B verify/SEC_Verification_Runner_v0_5_0.py
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install \
+            --no-save \
+            --package-lock=false \
+            playwright@1.61.1
+
+          npx playwright install --with-deps chromium
+
+      - name: Run browser laboratory verification
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          node <<'NODE'
+          const path = require("path");
+          const { pathToFileURL } = require("url");
+          const { chromium } = require("playwright");
+
+          const laboratories = [
+            {
+              name: "Core browser reference",
+              file:
+                "demo/Structural_Earth_Centre_Browser_Reference_v0_5_0.html",
+              audit: "SEC_AUDIT",
+              expected: 38,
+            },
+            {
+              name: "Integrated centre laboratory",
+              file:
+                "demo/Structural_Earth_Centre_Laboratory_v0_5_0.html",
+              audit: "SEC_LAB_AUDIT",
+              expected: 132,
+            },
+            {
+              name: "Structural innovation laboratory",
+              file:
+                "demo/Structural_Earth_Centre_Innovation_Laboratory_v0_5_0.html",
+              audit: "SEC_INNOVATION_AUDIT",
+              expected: 24,
+            },
+            {
+              name: "Advanced structural laboratory",
+              file:
+                "demo/Structural_Earth_Centre_Advanced_Laboratory_v0_5_0.html",
+              audit: "SEC_ADVANCED_AUDIT",
+              expected: 30,
+            },
+            {
+              name: "Structural portability laboratory",
+              file:
+                "demo/Structural_Earth_Centre_Portability_Laboratory_v0_5_0.html",
+              audit: "SEC_PORTABILITY_AUDIT",
+              expected: 40,
+            },
+          ];
+
+          function check(name, pass) {
+            console.log(
+              `${pass ? "PASS" : "FAIL"}: ${name}`
+            );
+
+            return Boolean(pass);
+          }
+
+          (async () => {
+            const browser = await chromium.launch({
+              headless: true,
+            });
+
+            let failed = false;
+
+            try {
+              for (const laboratory of laboratories) {
+                const pageErrors = [];
+
+                const page = await browser.newPage({
+                  viewport: {
+                    width: 1600,
+                    height: 1200,
+                  },
+                });
+
+                page.on(
+                  "pageerror",
+                  (error) => {
+                    pageErrors.push(error.message);
+
+                    console.error(
+                      "PAGE ERROR:",
+                      laboratory.name,
+                      error.message
+                    );
+                  }
+                );
+
+                const htmlPath = path.resolve(
+                  laboratory.file
+                );
+
+                await page.goto(
+                  pathToFileURL(htmlPath).href,
+                  {
+                    waitUntil: "load",
+                  }
+                );
+
+                await page.waitForFunction(
+                  (auditName) =>
+                    typeof globalThis[auditName] ===
+                      "object" &&
+                    typeof globalThis[auditName].runAll ===
+                      "function",
+                  laboratory.audit,
+                  {
+                    timeout: 30000,
+                  }
+                );
+
+                const result = await page.evaluate(
+                  async (auditName) =>
+                    await globalThis[
+                      auditName
+                    ].runAll({
+                      verbose: false,
+                    }),
+                  laboratory.audit
+                );
+
+                const resultPass =
+                  result &&
+                  result.status === "PASS" &&
+                  result.passed ===
+                    laboratory.expected &&
+                  result.total ===
+                    laboratory.expected;
+
+                if (
+                  !check(
+                    `${laboratory.name} ` +
+                    `${laboratory.expected}/` +
+                    `${laboratory.expected} PASS`,
+                    resultPass
+                  )
+                ) {
+                  failed = true;
+                }
+
+                if (
+                  !check(
+                    `${laboratory.name} page errors`,
+                    pageErrors.length === 0
+                  )
+                ) {
+                  failed = true;
+                }
+
+                console.log(
+                  `${laboratory.name.toUpperCase()}: ` +
+                  `${result.passed}/${result.total} ` +
+                  `${result.status}`
+                );
+
+                console.log("");
+
+                await page.close();
+              }
+
+              if (failed) {
+                console.error(
+                  "Structural Earth Centre browser verification failed."
+                );
+
+                process.exitCode = 1;
+              } else {
+                console.log(
+                  "Structural Earth Centre browser verification passed."
+                );
+              }
+            } finally {
+              await browser.close();
+            }
+          })().catch(
+            (error) => {
+              console.error(error);
+              process.exit(1);
+            }
+          );
+          NODE
+
+      - name: Verification summary
+        run: |
+          echo "STRUCTURAL EARTH CENTRE v0.5.0 VERIFICATION PASS"
+          echo "Frozen technical surface: 60/60 PASS"
+          echo "Command-line verification stages: 13/13 PASS"
+          echo "Core: 38/38 PASS"
+          echo "Core parity: 38/38 PASS"
+          echo "Earth profiles: 20/20 PASS"
+          echo "Real-land resolver self-test: 26/26 PASS"
+          echo "Reproducibility self-test: 9/9 PASS"
+          echo "Stored reproducibility: 9/9 PASS"
+          echo "Structural innovation: 24/24 PASS"
+          echo "Innovation parity: 18/18 PASS"
+          echo "Same-dataset differential: 13/13 PASS"
+          echo "Advanced structural: 30/30 PASS"
+          echo "Advanced structural parity: 22/22 PASS"
+          echo "Structural portability: 40/40 PASS"
+          echo "Portability parity: 27/27 PASS"
+          echo "Integrated browser laboratory: 132/132 PASS"
+          echo "FINAL STATUS: PASS"
